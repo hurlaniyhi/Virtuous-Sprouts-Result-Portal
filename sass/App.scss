@@ -1,0 +1,1025 @@
+// VARIABLE
+$color-green: #6d9c7d;
+$color-green-dark: #28b485;
+$color-green-light: #7ed56f;
+$color-deep-white: #ccc;
+$color-grey-dark: #777;
+$color-grey-dark-2: #999;
+$color-grey-dark-3: #333;
+$color-white: #fff;
+$color-black: #000;
+$color-tertiary-light: #2998ff;
+$color-tertiary-dark: #5643fa;
+
+$color-grey-light-1: #f7f7f7;
+$color-grey-light-2: #eee;
+
+@mixin respond($breakpoint) {
+    @if $breakpoint == phone {
+      @media (max-width: 37.5em) {
+        @content;
+      } //600px
+    }
+    @if $breakpoint == tab-port {
+      @media (max-width: 56.25em) {
+        @content;
+      } //900px
+    }
+    @if $breakpoint == tab-land {
+      @media (max-width: 75em) {
+        @content;
+      } //1200px
+    }
+    @if $breakpoint == big-desktop {
+      @media (min-width: 112.5em) {
+        @content;
+      } //1800px
+    }
+  }
+
+html {
+    font-size: 62.5%;
+    height: 100%;
+  
+    @include respond(tab-port) {
+      font-size: 50%; // 1rem = 8px, 8/16 * 100 = 50%
+    }
+  
+    @include respond(phone) {
+      font-size: 45%; // 1rem = 8px, 8/16 * 100 = 50%
+    }
+}
+
+
+// ANIMATION
+
+@keyframes moveInLeft {
+    0% {
+      opacity: 0;
+      transform: translateX(
+        -20rem
+      ); 
+    }
+  
+    80% {
+      transform: translateX(1rem);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translate(0); /*to look the way it should look*/
+    }
+  }
+
+  @keyframes moveInBottom {
+    0% {
+      opacity: 0;
+      transform: translateY(5rem); 
+    }
+  
+    80% {
+      transform: translateY(-1rem);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translate(0); /*to look the way it should look*/
+    }
+  }
+
+  @keyframes position-change {
+    0% {
+      top: 110%;
+    }
+
+    50% {
+      top: -10%;
+    }
+  
+    100% {
+      top: 110%;
+    }
+  }
+
+  @keyframes position-change3 {
+    0% {
+      top: 105%;
+    }
+
+    50% {
+      top: -5%;
+    }
+  
+    100% {
+      top: 105%;
+    }
+  }
+
+  @keyframes position-change2 {
+    0% {
+      top: 115%;
+    }
+
+    50% {
+      top: -20%;
+    }
+  
+    100% {
+      top: 115%;
+    }
+  }
+
+  //*********************************************************************
+
+body{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.lpContainer{
+    height: 100%;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-green, 0.7),
+        rgba($color-green-dark, 0.7)
+      ),
+      url("../assets/nat-1-large.jpg");
+     
+    position: relative;
+    background-size: cover; 
+    background-position: top;
+    overflow: hidden;
+}
+.subLpContainer{
+    height: 80vh;
+    clip-path: polygon(0 0, 100% 0, 100% 55%, 90% 85%, 25% 100%, 0 80%);
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(#ccc, 0.85),
+        rgba($color-white, 0.85)
+      ),
+    url("../assets/nat-7.jpg");
+    position: relative;
+    background-size: cover; 
+    background-position: top;
+    overflow: hidden;
+}
+
+.getStarted{
+    padding: 2rem 6rem;
+    background-color: $color-white;
+    color: $color-grey-dark;
+    text-decoration: none;
+    outline: none;
+    font-size: 1.5rem;
+    border-radius: 10rem;
+    margin-top: 3rem;
+    font-weight: 500;
+    position: absolute;
+    bottom: 5rem;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+    transition: all 0.5s;
+    
+    @media (max-width: 296px) {
+        width: 10rem;
+    }
+
+
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+
+    &:hover,
+    &:active {
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+
+        &::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        background-color: $color-white;
+        opacity: 0;
+        }
+    }
+}
+
+.design1, .design2, .design3{
+    width: 8rem;
+    height: 8rem;
+    position: absolute;
+    border-radius: 50%;
+}
+.design1{
+    right: -4rem;
+    top: 2rem;
+    background-color: $color-green;
+}
+.design2{
+    right: -4rem;
+    top: 12rem;
+    background-color: $color-green;
+}
+.design3{
+    right: -2rem;
+    top: 7rem;
+    border: 2px solid $color-green;
+}
+.student-cartoon{
+    width: 15rem;
+    height: 15rem;
+    position: absolute;
+    top: 4rem;
+    right: 7rem;
+
+    @media(max-width: 1100px){
+        width: 10rem;
+        height: 10rem;
+        
+    }
+    @media(max-width: 770px){
+        display: none;
+    }
+}
+.school-logo{
+    width: 18rem;
+    height: 18rem;
+    position: absolute;
+    left: 4rem;
+    top: 3rem;
+    border-radius: 50%;
+    transition: all 2s;
+
+    &:hover{
+        transform: rotateY(360deg);
+    }
+
+    @media(max-width: 1050px){
+        width: 13rem;
+        height: 13rem;
+    }
+    @media(max-width: 1050px){
+        width: 15rem;
+        height: 15rem;
+    }
+    @media(max-width: 800px){
+        width: 13rem;
+        height: 13rem;
+    }
+    @media(max-width: 750px){
+        width: 16rem;
+        height: 16rem;
+        top: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+}
+.schoolName{
+    margin: 0;
+    font-size: 4rem;
+    font-weight: 600;
+    text-align: center;
+    color: $color-green;
+    text-transform: uppercase;
+    margin: 5.5rem 2rem;
+    animation-name: moveInLeft;
+    animation-duration: 3s;
+    animation-timing-function: ease-out;
+
+    @media(max-width: 750px){
+        margin-top: 22rem;
+    }
+}
+.aboutSchool{
+    color: $color-green;
+    text-align: center;
+    font-size: 1.6rem;
+    margin: 1rem 2rem;
+}
+.appTitle{
+    color: $color-green;
+    text-align: center;
+    font-size: 3.5rem;
+    margin: 8rem 2rem 2.5rem 2rem;
+    font-weight: 600;
+    letter-spacing: .5rem;
+    animation-name: moveInBottom;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+
+    @media(max-width: 440px){
+       margin-top: 5rem;
+    }
+    @media(max-width: 289px){
+        margin-top: 1.7rem;
+     }
+}
+
+/*
+###############################################
+                LOGIN PAGE
+################################################
+*/
+
+.login-container{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba(0,0,0, 0.8),
+        rgba(0,0,0, 0.8)
+      ),
+    url("../assets/nat-7.jpg");
+    position: relative;
+    background-size: cover; 
+    background-position: top;
+    overflow: hidden;
+    position: relative;
+    //color: #978D81;
+}
+
+.request-shade{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0, .75);
+    z-index: 5;
+}
+
+.input-container{
+    display: flex;
+    flex-direction: row;
+    height: 4.5rem;
+    width: 30%;
+    margin: 2rem auto 1rem auto;
+    background-color: rgba(#ccc, .1);
+    border-radius: 100px;
+    align-items: center;
+    overflow: hidden;
+
+    &:first-child{
+        margin-top: 4rem;
+    }
+
+    @media(max-width: 1050px){
+        width: 40%;
+    }
+    @media(max-width: 900px){
+        height: 5.7rem;
+    }
+    @media(max-width: 740px){
+        width: 50%;
+    }
+    @media(max-width: 540px){
+        width: 60%;
+    }
+    @media(max-width: 450px){
+        width: 70%;
+    }
+    @media(max-width: 340px){
+        width: 85%;
+    }
+
+}
+.user-icon{
+    font-size: 1.8rem;
+    color: rgba(#ccc, 1);
+    margin-left: 1.5rem;
+    width: 10%;
+    // @media(max-width: 900px){
+    //     font-size: 2rem;
+    // }
+}
+.user-input, .password-input{
+    height: 3rem;
+    border-color: $color-white;
+    background-color: transparent;
+    border: none;
+    border-left-width: 1px;
+    border-left-color: rgba(#ccc, .3);
+    border-left-style: solid;
+    margin-left: .8rem;
+    margin-right: 1.3rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    outline: none;
+    color: $color-deep-white;
+    font-size: 1.55rem;
+    width: 70%;
+    @media(max-width: 900px){
+        font-size: 1.8rem;
+    }
+}
+
+.password-input{
+    width: 60%;
+}
+.show-password-icon1, .show-password-icon2{
+    font-size: 1.5rem;
+    color: rgba(#ccc, .4);
+    margin-right: 1.5rem;
+    width: 8%;
+    transition: all .2s;
+
+    &:hover{
+        color: rgba($color-deep-white, .8);
+        transform: scale(1.03);
+    }
+
+    @media(max-width: 900px){
+        font-size: 1.8rem;
+    }
+}
+.show-password-icon1{
+    color: rgba(#ccc, .6);
+}
+
+.login-btn{
+    display: block;
+    box-sizing: border-box;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    background-color: $color-white;
+    color: $color-grey-dark;
+    text-decoration: none;
+    outline: none;
+    font-size: 1.7rem;
+    border-radius: 10rem;
+    margin: 3.5rem auto 2rem auto;
+    font-weight: 600;
+    width: 30%;
+    color: $color-white;
+    cursor: pointer;
+    background-color: $color-green;
+    transition: all 0.5s;
+
+    &:hover, &:focus{
+        background-color: $color-green-light;
+    }
+
+    @media(max-width: 1050px){
+        width: 40%;
+    }
+    @media(max-width: 900px){
+        height: 5.7rem;
+        font-size: 2.1rem;
+    }
+    @media(max-width: 740px){
+        width: 50%;
+    }
+    @media(max-width: 540px){
+        width: 60%;
+    }
+    @media(max-width: 450px){
+        width: 70%;
+    }
+    @media(max-width: 340px){
+        width: 85%;
+    }
+}
+.login-logo{
+    display: block;
+    margin: 4rem auto 3rem auto;
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+}
+.login-greeting{
+    font-size: 2rem;
+    font-size: 800;
+    text-align: center;
+    color: $color-deep-white;
+    margin-bottom: 6rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
+}
+
+.forget-password{
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: rgba(#ccc, .5);
+    font-size: 1.5rem;
+    padding-top: 10rem;
+    margin-left: 52%;
+}
+
+.keep-loggedIn{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 30%;
+    margin: 3.5rem auto 1rem auto;
+    height: 2.5rem;
+
+    @media(max-width: 1050px){
+        width: 40%;
+    }
+    @media(max-width: 900px){
+        height: 5.7rem;
+    }
+    @media(max-width: 740px){
+        width: 50%;
+    }
+    @media(max-width: 540px){
+        width: 60%;
+    }
+    @media(max-width: 450px){
+        width: 70%;
+    }
+    @media(max-width: 340px){
+        width: 85%;
+    }
+}
+.slider-container{
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 6rem;
+    height: 2.5rem;
+    background-color: rgba($color-deep-white, .15);
+    border-radius: 10rem;
+    overflow: hidden;
+}
+.checkbox{
+    position: absolute;
+    width: 100%;
+    height: 2.5rem;
+    opacity: 0;
+    z-index: 3;
+
+    &:checked ~ .slider{
+        margin-left: 3.1rem;
+    }
+    &:checked ~ .slider-shadow{
+        background-color: $color-green;
+    }
+}
+
+.slider-shadow{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6rem;
+    height: 2.5rem;
+    background-color: rgba($color-deep-white, .15);
+    transition: all .2s;
+}
+.slider{
+    width: 2.7rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: $color-white;
+    margin-left: .2rem;
+    z-index: 2;
+    transition: all .4s;
+}
+.slider-text{
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    color: rgba(#ccc, .5);
+    font-size: 1.3rem;
+    margin-left: 1.5rem;
+    font-weight: 600;
+    @media(max-width: 900px){
+        font-size: 1.8rem;
+    }
+}
+
+/*
+###############################################
+                MENU BAR
+################################################
+*/
+
+.nav-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: fixed;
+    height: 5.5rem;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: $color-green;
+    z-index: 2;
+}
+.page-title{
+    text-align: center;
+    font-size: 2rem;
+    color: $color-white;
+    font-weight: 600;
+}
+
+.nav-logo{
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    margin-left: 3.5rem;
+    opacity: 0;
+
+    @media(max-width: 600px){
+        opacity: 1;
+    }
+}
+.nav-logout{
+    font-size: 3rem;
+    color: $color-white;
+    margin-right: 5rem;
+}
+
+/*
+###############################################
+                ADMIN DASHBOARD
+################################################
+*/
+
+.admin-dashboard-container{
+    height: 100%;
+    width: 100%;
+}
+
+.create-dashboard{
+    //padding-top: 5.5rem;
+    height: 100%;
+}
+.sub-routes{
+    padding: 0 0 0 25rem;
+    height: 100%;
+
+    @media(max-width: 600px){
+        padding: 0 0;
+    }
+}
+// .open-side-bar{
+//     position: fixed;
+//     top: 5.5rem;
+//     left: 0;
+//     width: 100%;
+//     height: 100vh;
+//     background-color: rgba(0,0,0, .2);
+//     display: none;
+//     z-index: 2;
+
+//     @media(max-width: 600px){
+//         display: block;
+//     }
+// }
+
+.bottom-nav-container{
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    height: 6rem;
+    width: 100%;
+    padding: 1rem 0;
+    border-top-color: rgba(0,0,0,.1);
+    border-top-width: 1px;
+    border-top-style: solid;
+    background-color: $color-white;
+    z-index: 2;
+
+    @media(max-width: 600px){
+        display: flex;
+    }
+}
+.bottom-icon-container, .bottom-icon-container-trick{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: rgba(0,0,0, .5);
+    transition: all .2s;
+}
+.bottom-icon-container-trick{
+    color: $color-green;
+}
+
+.menu-div, .menu-div-trick{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 4.5rem;
+    width: 100%;
+    color: rgba(0,0,0, .5);
+    transition: all .2s;
+
+}
+.menu-div:hover{
+    background-color: rgba($color-deep-white, .15);
+    color: rgba(0,0,0, .5);
+}
+
+.menu-div-trick{
+    background-color: $color-green;
+    color: $color-white;
+}
+.menu-icon, .bottom-menu-icon{
+    font-size: 2rem;
+    margin-left: 2.5rem;
+}
+.menu-label, .bottom-menu-label{
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-left: 1.5rem;
+    cursor: pointer;
+}
+.bottom-menu-label{
+    margin: .8rem 0;
+    font-size: 1.3rem;
+}
+.bottom-menu-icon{
+    margin: 0;
+    font-size: 2.2rem;
+}
+
+
+/*
+###############################################
+                SIDE MENU
+################################################
+*/
+
+.side-menu-container{
+    position: fixed;
+    top: 5.5rem;
+    left: 0;
+    height: 94.5vh;
+    border: none;
+    overflow-y: auto;
+    box-shadow: .5rem 0 1.5rem rgba(0, 0, 0, 0.3);
+    width: 25rem;
+    padding: 4rem 0 5rem 0;
+    background-color: $color-white;
+
+    @media(max-width: 600px){
+        display: none;
+    }
+}
+.side-menu-logo{
+    display: block;
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+
+/*
+###############################################
+                ADMIN HOME 
+################################################
+*/
+
+.admin-home-container{
+    height: 100%;
+    width: 100%;
+    //background-color: rgba($color-deep-white, .5);
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-green, 0.1),
+        rgba($color-green-dark, 0.1)
+      ),
+      url("../assets/white3.jpeg");
+    position: relative;
+    background-size: cover; 
+    background-position: top;
+    overflow: hidden;
+}
+.home-intro-container{
+    padding-top: 12rem;
+    margin: 0 auto;
+    height: 15rem;
+    width: 50%;
+    color: $color-green;
+    background-color: rgba($color-white, .7);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    //clip-path: polygon(0 35%, 35% 0, 65% 0, 100% 35%, 100% 65%, 65% 100%, 35% 100%, 0 65%);
+}
+.home-intro{
+    font-size: 3rem;
+    text-align: center;
+    padding: 1rem 2rem;
+    font-weight: 900;
+    letter-spacing: .5rem;
+    margin: 0;
+}
+
+.add-member{
+    padding: 2rem 6rem;
+    background-color: $color-green;
+    color: $color-white;
+    text-decoration: none;
+    outline: none;
+    font-size: 1.5rem;
+    border-radius: 10rem;
+    margin-top: 3rem;
+    font-weight: 500;
+    position: absolute;
+    bottom: 15rem;
+    left: 50%;
+    cursor: pointer;
+    transform: translateX(-50%);
+    transition: all 0.5s;
+    z-index: 1;
+
+    // &:hover, &:active{
+    //     background-color: $color-white;
+    //     border: 2px dashed $color-green;
+    //     color: $color-green;
+    // }
+    
+
+    @media (max-width: 360px) {
+        text-align: center;
+        padding: 2rem;
+        width: 16rem;
+    }
+
+
+    &::after {
+        content: "";
+        display: inline-block;
+        height: 100%;
+        width: 100%;
+        border-radius: 10rem;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        z-index: -1;
+        transition: all 0.4s;
+    }
+
+    &:hover,
+    &:active {
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+        &::after {
+        transform: scaleX(1.4) scaleY(1.6);
+        background-color: $color-green;
+        opacity: 0;
+        }
+    }
+}
+
+.bubble1, .bubble2, .bubble3{
+    position: absolute;
+    width: 8rem;
+    height: 8rem;
+    border-radius: 50%;
+}
+.bubble1{
+    left: 4rem;
+    background-color: rgba($color-green, 0.6);
+    animation: position-change 40s infinite;
+}
+
+.bubble2{
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba($color-deep-white, 0.7);
+    animation: position-change2 60s infinite;
+}
+.bubble3{
+    right: 4rem;
+    background-color: rgba($color-white, 0.8);
+    animation: position-change3 40s infinite;
+}
+
+
+/*
+###############################################
+                Registration
+################################################
+*/
+
+.registration-container{
+    //font-size: 4rem;
+    //color: #777; 
+    padding-top: 7rem; 
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 10rem;
+}
+.form-container{
+    position: relative;
+    width: 40%;
+    margin: 0 auto 4rem auto;
+    padding: 2rem 2rem;
+    border: 1px solid rgba($color-deep-white, .4);
+    box-shadow: .5rem .5rem .5rem rgba(0,0,0, .2);
+
+    @media(max-width: 1180px){
+        width: 50%;
+    }
+    @media(max-width: 1030px){
+        width: 60%;
+    }
+    @media(max-width: 780px){
+        width: 70%;
+    }
+    @media(max-width: 670px){
+        width: 80%;
+    }
+    @media(max-width: 600px){
+        width: 60%;
+    }
+    @media(max-width: 500px){
+        width: 70%;
+    }
+    @media(max-width: 420px){
+        width: 80%;
+    }
+    @media(max-width: 340px){
+        width: 85%;
+    }
+}
+.page-title-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 1rem 2rem;
+    margin-bottom: 3rem;
+}
+.page-title-icon{
+    font-size: 3rem;
+    color: $color-green;
+}
+.page-title-text{
+    font-size: 2.5rem;
+    color: $color-green;
+    font-weight: 600;
+    padding-left: 4%;
+    padding-right: 15%;
+}
+.resized-input{
+    width: 80%;
+    background-color: rgba($color-green, 0.1);
+    position: relative;
+
+    @media(max-width: 315px){
+        width: 90%;
+    }
+}
+.resized-text{
+    font-size: 1.5rem;
+    color: rgba(0,0,0,.6);
+
+    &::placeholder{
+        color: rgba(0,0,0, .25);
+    }
+}
+
+.select-field{
+    opacity: 0;
+    position: absolute;
+    background-color: rgba($color-green, .1);
+    width: 80%;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    height: 4.5rem;
+    z-index: 2;
+
+    &:hover ~ .select-field-icon{
+        background-color: rgba($color-green, .5);
+    }
+}
+.select-field-icon{
+    position: absolute;
+    font-size: 1.7rem;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba($color-green, .3);
+    padding: 2rem;
+    color: rgba($color-white, 1);
+    transition: all .2s;
+}
+.create-member{
+    width: 80%;
+    padding: 1.4rem;
+}

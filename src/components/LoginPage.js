@@ -26,43 +26,47 @@ const Login = () => {
     function handlePasswordType(type){
         type === "password" ? setPasswordType("password") : setPasswordType("text")
     }
+
+    let auth = localStorage.getItem("token")
    
     return(
-        <div className="login-container">
-            {state.process ? <div className="request-shade">
-                <Loader 
-                    type="Puff"
-                    color="#6d9c7d"
-                    height={100}
-                    width={100}
-                />
-            </div> : null}
-            <img src={loginLogo} className="login-logo" />
-            <p className="login-greeting">Welcome Back, Kindly Login here</p>
-            
-            <div className="input-container">
-                <FaUser  className="user-icon"/>
-                <input type="text" name="username" className="user-input" placeholder="Username" onChange={handleInput}/>
-            </div>
-            <div className="input-container">
-                <FaLock  className="user-icon"/>
-                <input type={passwordType} name="password" className="password-input" placeholder="Password" onChange={handleInput}/>
-                {passwordType != "password" ? 
-                <FaEye className="show-password-icon1" onClick={()=>handlePasswordType("password")}/> : 
-                <FaEyeSlash className="show-password-icon2" onClick={()=>handlePasswordType("text")}/>}
-            </div>
-            
-            <a className="login-btn" onClick={handleLogin}>Login</a>
-            
-            <div className="keep-loggedIn">
-                <div className="slider-container">
-                    <input type="checkbox" className="checkbox"/>
-                    <div className="slider-shadow"></div>
-                    <div className="slider"></div>
+        <div style={{height: "100%", width: "100%", overflow: "hidden"}}>
+            {!auth ? <div className="login-container">
+                {state.process ? <div className="request-shade">
+                    <Loader 
+                        type="Puff"
+                        color="#6d9c7d"
+                        height={100}
+                        width={100}
+                    />
+                </div> : null}
+                <img src={loginLogo} className="login-logo" />
+                <p className="login-greeting">Welcome Back, Kindly Login here</p>
+                
+                <div className="input-container">
+                    <FaUser  className="user-icon"/>
+                    <input type="text" name="username" className="user-input" placeholder="Username" onChange={handleInput}/>
                 </div>
-                <p className="slider-text">Keep Logged In</p>
-            </div>
-            {/* <a className="forget-password">Forget Password?</a> */}
+                <div className="input-container">
+                    <FaLock  className="user-icon"/>
+                    <input type={passwordType} name="password" className="password-input" placeholder="Password" onChange={handleInput}/>
+                    {passwordType != "password" ? 
+                    <FaEye className="show-password-icon1" onClick={()=>handlePasswordType("password")}/> : 
+                    <FaEyeSlash className="show-password-icon2" onClick={()=>handlePasswordType("text")}/>}
+                </div>
+                
+                <a className="login-btn" onClick={handleLogin}>Login</a>
+                
+                <div className="keep-loggedIn">
+                    <div className="slider-container">
+                        <input type="checkbox" className="checkbox"/>
+                        <div className="slider-shadow"></div>
+                        <div className="slider"></div>
+                    </div>
+                    <p className="slider-text">Keep Logged In</p>
+                </div>
+                {/* <a className="forget-password">Forget Password?</a> */}
+            </div> : history.push("/admin")}
         </div>
     )
 }

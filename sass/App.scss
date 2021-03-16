@@ -817,6 +817,28 @@ body{
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
     //clip-path: polygon(0 35%, 35% 0, 65% 0, 100% 35%, 100% 65%, 65% 100%, 35% 100%, 0 65%);
+
+    @media(max-width: 1130px){
+        width: 60%;
+    }
+    @media(max-width: 830px){
+        width: 70%;
+    }
+    @media(max-width: 670px){
+        width: 80%;
+    }
+    @media(max-width: 600px){
+        width: 70%;
+    }
+    @media(max-width: 500px){
+        width: 80%;
+    }
+    @media(max-width: 380px){
+        width: 90%;
+    }
+    @media(max-width: 315px){
+        width: 95%;
+    }
 }
 .home-intro{
     font-size: 3rem;
@@ -920,16 +942,16 @@ body{
     padding-top: 7rem; 
     text-align: center;
     width: 100%;
-    height: 100%;
+    //height: 100%;
     padding-bottom: 10rem;
 }
 .form-container{
     position: relative;
     width: 40%;
-    margin: 0 auto 4rem auto;
+    margin: 0 auto;
     padding: 2rem 2rem;
     border: 1px solid rgba($color-deep-white, .4);
-    box-shadow: .5rem .5rem .5rem rgba(0,0,0, .2);
+    box-shadow: .3rem .3rem .4rem rgba(0,0,0, .2);
 
     @media(max-width: 1180px){
         width: 50%;
@@ -948,6 +970,8 @@ body{
     }
     @media(max-width: 500px){
         width: 70%;
+        box-shadow: none;
+        border-radius: 1.5rem;
     }
     @media(max-width: 420px){
         width: 80%;

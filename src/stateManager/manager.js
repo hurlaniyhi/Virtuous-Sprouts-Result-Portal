@@ -36,6 +36,9 @@ export const StateProvider = (props) => {
             await dispatch({type: "toggleProcess", payload: false})
 
             if(response.data.responseCode === "00"){
+                await dispatch({type: "store_user_data", payload: response.data.profile})
+                await localStorage.setItem("token", response.data.token)
+                await localStorage.setItem("username", response.data.profile.username)
                 history.push("/admin")
             }
             else{

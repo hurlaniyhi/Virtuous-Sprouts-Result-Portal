@@ -8,6 +8,7 @@ import logo from '../../assets/logo2.jpg'
 const MenuBar = ({title}) =>{
     const history = useHistory()
     function handleLogout(){
+        localStorage.clear()
         history.push("/")
     }
     return(

@@ -11,7 +11,7 @@ const AdminHome = () => {
         <div className="admin-home-container">
             <div className="home-intro-container">
                 <p className="home-intro">Hi,</p>
-                <p className="home-intro">This is Admin,</p>
+                <p className="home-intro">This is Admin.</p>
             </div>
             <a className="add-member" onClick={handleNavigation}>Add New Member</a>
             <div className="bubble1"></div>

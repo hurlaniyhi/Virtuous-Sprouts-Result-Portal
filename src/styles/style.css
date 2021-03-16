@@ -636,6 +636,27 @@ body {
   background-color: rgba(255, 255, 255, 0.7);
   border-bottom-left-radius: 50%;
   border-bottom-right-radius: 50%; }
+  @media (max-width: 1130px) {
+    .home-intro-container {
+      width: 60%; } }
+  @media (max-width: 830px) {
+    .home-intro-container {
+      width: 70%; } }
+  @media (max-width: 670px) {
+    .home-intro-container {
+      width: 80%; } }
+  @media (max-width: 600px) {
+    .home-intro-container {
+      width: 70%; } }
+  @media (max-width: 500px) {
+    .home-intro-container {
+      width: 80%; } }
+  @media (max-width: 380px) {
+    .home-intro-container {
+      width: 90%; } }
+  @media (max-width: 315px) {
+    .home-intro-container {
+      width: 95%; } }
 
 .home-intro {
   font-size: 3rem;
@@ -716,16 +737,15 @@ body {
   padding-top: 7rem;
   text-align: center;
   width: 100%;
-  height: 100%;
   padding-bottom: 10rem; }
 
 .form-container {
   position: relative;
   width: 40%;
-  margin: 0 auto 4rem auto;
+  margin: 0 auto;
   padding: 2rem 2rem;
   border: 1px solid rgba(204, 204, 204, 0.4);
-  box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2); }
+  box-shadow: 0.3rem 0.3rem 0.4rem rgba(0, 0, 0, 0.2); }
   @media (max-width: 1180px) {
     .form-container {
       width: 50%; } }
@@ -743,7 +763,9 @@ body {
       width: 60%; } }
   @media (max-width: 500px) {
     .form-container {
-      width: 70%; } }
+      width: 70%;
+      box-shadow: none;
+      border-radius: 1.5rem; } }
   @media (max-width: 420px) {
     .form-container {
       width: 80%; } }

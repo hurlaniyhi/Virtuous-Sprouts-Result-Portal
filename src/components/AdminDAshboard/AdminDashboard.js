@@ -39,15 +39,18 @@ const AdminDashboard = () => {
             }
         }
 
-        history.push(`/admin/${route}`)
-        
+        history.push(`/admin/${route}`)   
     }
+
+    let auth = localStorage.getItem("token")
 
     return(
         <div className="admin-dashboard-container">
+            
             <MenuBar title="Admin Dashboard"/>
             {/* <div className="open-side-bar"></div> */}
-            <div className="bottom-nav-container">
+
+            {auth ? <div className="bottom-nav-container">
                 <div className="bottom-icon-container" id="btm-home" onClick={()=>handleMenu("btm-home", "home")}>
                     <FaHome style={{fontSize:"2.5rem"}} className="bottom-menu-icon" />
                     <p className="bottom-menu-label">Home</p>
@@ -64,8 +67,8 @@ const AdminDashboard = () => {
                     <FaEnvelope className="bottom-menu-icon" />
                     <p className="bottom-menu-label">Broadcast Mail</p>
                 </div>
-            </div>
-            <div className="create-dashboard">
+            </div> : null}
+            {auth ? <div className="create-dashboard">
                 <SideMenu>
                     <div className="menu-div" id="home" onClick={()=>handleMenu("home", "home")}>
                         <FaHome style={{fontSize:"2.5rem"}} className="menu-icon" />
@@ -93,10 +96,8 @@ const AdminDashboard = () => {
                         <Redirect from="/admin/:id" to="/admin/" />
                     </Switch>
                 </div>
-            </div>
-        </div>
-       
-       
+            </div> : history.push("/login")}
+        </div> 
     )
 }
 

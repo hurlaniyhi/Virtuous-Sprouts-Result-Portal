@@ -1,5 +1,6 @@
 import React, {useReducer} from 'react'
 import myAPI from '../API/Api'
+import {helpers} from '../helpers/helpers'
 
 const StateManager = React.createContext()
 
@@ -8,26 +9,53 @@ const stateReducer = (state, action) => {
     switch (action.type){
 
         case "store_user_data": 
+        console.log({user: action.payload})
             return {...state, user: action.payload}
 
         case "toggleProcess":
             return {...state, process: action.payload}
+
+        case "handle-feedback":
+            return {...state, feedbackView: action.payload.view, feedbackColor: action.payload.color, 
+                feedbackTitle: action.payload.title, feedbackText: action.payload.text}
+        
+        case "handle-select-field": 
+            return {...state, member: action.payload}
+
+        case "handle-alert": 
+            return {...state, alertView: action.payload.view, alertText: action.payload.text}
+
+        default: return state
     }
 
 }
 
 
-
 export const StateProvider = (props) => {
 
-
     const [state, dispatch] = useReducer(stateReducer,{
-        user: {}, process: false,
+        user: {}, process: false, feedbackView: false, feedbackColor: "#6d9c7d", feedbackTitle: "No Message",
+        feedbackText: "No message for now", 
+        member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
+        memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show"
     })
+
+    async function presentFeedback(data){
+        await dispatch({type: "handle-feedback", payload: data})
+    }
+
+    async function infoNotifier(data){
+        await dispatch({type: "handle-alert", payload: data})
+    }
+
+    const handleMemberSelectField = async(data) => {
+        await dispatch({type: "handle-select-field", payload: data})
+    }
+
 
     const signIn = async(history, username, password) => { 
         if(!username || !password){
-            return alert("Kindly provide your username and password")
+            return infoNotifier(helpers.alertInfo("Kindly provide your username and password"))
         }
 
         try{
@@ -42,21 +70,21 @@ export const StateProvider = (props) => {
                 history.push("/admin")
             }
             else{
-                alert(response.data.message)
+                presentFeedback(helpers.errorAlert(response.data.message))
             }
         }
         catch(err){
             await dispatch({type: "toggleProcess", payload: false})
-            alert("No network connection")
+            presentFeedback(helpers.errorAlert("No network connection"))
         }       
     }
 
 
     const signUp = async(body) => { 
-        // if(!username || !password){
-        //     return alert("Kindly provide your username and password")
-        // }
-        console.log("the body is : " + body)
+        if(!body.firstname || !body.surname || !body.email || !body.memberType || !body.phoneNumber
+            || !body.address || !body.memberClass || !body.gender){
+                return infoNotifier(helpers.alertInfo("Kindly provide all required information"))
+        }
 
         try{
             await dispatch({type: "toggleProcess", payload: true})
@@ -64,22 +92,26 @@ export const StateProvider = (props) => {
             await dispatch({type: "toggleProcess", payload: false})
 
             if(response.data.responseCode === "00"){
-                alert("Member successfully created")
+                presentFeedback(helpers.successAlert("Member successfully added"))
             }
-            else{
-                alert(response.data.message)
+            else{ 
+                presentFeedback(helpers.errorAlert(response.data.message))
             }
         }
         catch(err){
             await dispatch({type: "toggleProcess", payload: false})
-            alert("No network")
+            presentFeedback(helpers.errorAlert("No network connection"))
         }       
     }
 
 
+
     const boundActions = {
         signIn,
-        signUp
+        signUp,
+        presentFeedback,
+        handleMemberSelectField,
+        infoNotifier
     }
 
 

@@ -178,12 +178,15 @@ body{
     margin-top: 3rem;
     font-weight: 500;
     position: absolute;
-    bottom: 5rem;
+    bottom: 7rem;
     left: 50%;
     cursor: pointer;
     transform: translateX(-50%);
     transition: all 0.5s;
     
+    @media (max-width: 600px) {
+        bottom: 10rem;
+    }
     @media (max-width: 296px) {
         width: 10rem;
     }
@@ -241,6 +244,7 @@ body{
     position: absolute;
     top: 4rem;
     right: 7rem;
+    display: none;
 
     @media(max-width: 1100px){
         width: 10rem;
@@ -1046,4 +1050,126 @@ body{
 .create-member{
     width: 80%;
     padding: 1.4rem;
+}
+
+/*
+###############################################
+                FEEDBACK
+################################################
+*/
+
+.feedback-container{
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, .5);
+    z-index: 5;
+}
+.feedback-block{
+    width: 25rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-white;
+    padding-bottom: 1.5rem;
+}
+.top-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    background-color: rgba($color-green, 1);
+    margin-bottom: 2.5rem;
+}
+.feedback-icon{
+    color: $color-white;
+    font-size: 4rem;
+}
+.feedback-title{
+    color: $color-green;
+    font-size: 2rem;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+}
+.feedback-text{
+    font-size: 1.4rem;
+    color: rgba(0,0,0, .5);
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    text-align: center;
+}
+.feedback-btn{
+    display: block;
+    padding: .5rem;
+    width: 5rem;
+    background-color: $color-green;
+    color: $color-white;
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    font-size: 1.5rem;
+    border-radius: .5rem;
+    margin-top: 3rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*
+###############################################
+                ALERT
+################################################
+*/
+
+.alert-block{
+    width: 30rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $color-white;
+    border-radius: 2rem;
+    overflow: hidden;
+}
+.alert-title{
+    color: rgba(0,0,0, .7);
+    font-size: 2rem;
+    font-weight: 600;
+    display: block;
+    text-align: center;
+    padding: 0rem 1rem;
+}
+.alert-text{
+    font-size: 1.4rem;
+    color: rgba(0,0,0, .5);
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    text-align: center;
+}
+.alert-btn{
+    display: block;
+    padding: .8rem;
+    box-sizing: border-box;
+    width: 100%;
+    background-color: $color-white;
+    color: rgba(0,0,0, .5);
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    font-size: 1.5rem;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: rgba($color-deep-white, .4);
+    margin-top: 3rem;
+    font-weight: 500;
+    cursor: pointer;
+
+    &:hover{
+        background-color: rgba($color-deep-white, .3);
+    }
 }

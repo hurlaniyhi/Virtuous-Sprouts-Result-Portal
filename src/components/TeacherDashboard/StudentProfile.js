@@ -1,0 +1,9 @@
+import React from 'react'
+import Profile from '../reusable/profile'
+
+const MemberProfile = () => {
+    return(
+        <Profile route="/teacher" />
+    )
+}
+export default MemberProfile

@@ -1,23 +1,18 @@
 import React from 'react'
-import { useHistory } from "react-router-dom"
+import Home from '../reusable/Home'
 
 const AdminHome = () => {
-    const history = useHistory()
     
-    function handleNavigation(){
-        history.push("/admin/add-member")
-    }
     return(
-        <div className="admin-home-container">
-            <div className="home-intro-container">
-                <p className="home-intro">Hi,</p>
-                <p className="home-intro">This is Admin.</p>
-            </div>
-            <a className="add-member" onClick={handleNavigation}>Add New Member</a>
-            <div className="bubble1"></div>
-            <div className="bubble2"></div>
-            <div className="bubble3"></div>
-        </div>
+        <Home 
+        navRoute="/admin/add-member" 
+        containerClass="admin-home-container"
+        greeting="Hi,"
+        notification="This is Admin."
+        buttonText="Add New Member"
+        buttonClass="add-member"
+        introContainer="home-intro-container"
+        />
     )
 }
 export default AdminHome

@@ -1,6 +1,6 @@
 import React from 'react'
 import myLogo from '../assets/logo2.jpg'
-import studentCartoon from '../assets/smiley1.png'
+import graduation from '../assets/graduation.svg'
 import {useHistory} from 'react-router-dom'
 import "../styles/style.css"
 
@@ -17,8 +17,9 @@ const LandingPage = () => {
                 <div className="design1"></div>
                 <div className="design2"></div>
                 <div className="design3"></div>
-                <img src={studentCartoon} className="student-cartoon" />
+                <img src={graduation} className="student-cartoon" />
                 <img src={myLogo} className="school-logo"/>
+                {/* <p className="schoolName school-name-arabic">أكادمية النبت الطيب</p> */}
                 <p className="schoolName">Virtuous Sprout Academy</p>
                 <p className="aboutSchool">An haven where you can get your child a solid/sound western and islamic education.</p>
                 <p className="aboutSchool">We offer western education, Tahfeedhul Qur'an, Virtue and Etiquettes,</p>

@@ -32,14 +32,6 @@ const Login = () => {
     return(
         <div style={{height: "100%", width: "100%", overflow: "hidden"}}>
             {!auth ? <div className="login-container">
-                {state.process ? <div className="request-shade">
-                    <Loader 
-                        type="Puff"
-                        color="#6d9c7d"
-                        height={100}
-                        width={100}
-                    />
-                </div> : null}
                 <img src={loginLogo} className="login-logo" />
                 <p className="login-greeting">Welcome Back, Kindly Login here</p>
                 

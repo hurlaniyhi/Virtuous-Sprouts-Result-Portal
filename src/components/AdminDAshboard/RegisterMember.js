@@ -1,12 +1,14 @@
 import React, {useContext, useState} from 'react'
 import StateManager from '../../stateManager/manager'
 import {FaUserPlus, FaUser, FaAt, FaPhoneAlt, FaLocationArrow, 
-    FaChevronDown, FaUsersCog, FaUsers, FaGlobe} from 'react-icons/fa'
+    FaChevronDown, FaUsersCog, FaUsers, FaGlobe, FaEdit} from 'react-icons/fa'
+import {useHistory} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 
 
 const RegisterMember = () => {
-    const {state, signUp, handleMemberSelectField} = useContext(StateManager)
+    const history = useHistory()
+    const {state, signUp, handleMemberSelectField, editMemberProfile} = useContext(StateManager)
 
     function handleSelectField(e){
         let updated = {...state.member, [e.target.name]: e.target.value}
@@ -16,23 +18,27 @@ const RegisterMember = () => {
     async function handleMemberCreation(){
         await signUp(state.member);
     }
+    function handleProfileUpdate(){
+        editMemberProfile(state.member, history)
+    }
+
+    if((history.location.pathname === "/admin/edit-profile" || history.location.pathname === "/teacher/edit-profile")
+     && !state.member.firstName){
+        
+        let path = history.location.pathname.split("/")[1]
+        history.push(`/${path}`)
+    }
 
     return(
         <div className="registration-container">
-            {state.process ? <div className="request-shade">
-                <Loader 
-                    type="Puff"
-                    color="#6d9c7d"
-                    height={100}
-                    width={100}
-                />
-            </div> : null}
-
             <div className="form-container">
-                <div className="page-title-container">
+                {state.operation != "edit" ? <div className="page-title-container">
                     <FaUserPlus className="page-title-icon"/>
                     <p className="page-title-text">New Member</p>
-                </div>
+                </div>: <div className="page-title-container">
+                    <FaEdit className="page-title-icon"/>
+                    <p className="page-title-text">Edit Profile</p>
+                    </div>}
 
                 <div className="input-container resized-input">
                     <FaUser  className="user-icon"/>
@@ -93,7 +99,13 @@ const RegisterMember = () => {
                     <FaChevronDown  className="select-field-icon"/>
                 </div>
 
-                <a className="login-btn create-member" onClick={handleMemberCreation}>Create member</a>
+                {state.operation != "edit" ? 
+                <a className="login-btn create-member" onClick={handleMemberCreation}>
+                    Create member
+                </a>: 
+                <a className="login-btn create-member" onClick={handleProfileUpdate}>
+                    Update profile
+                </a>}
             </div>
             
         </div>

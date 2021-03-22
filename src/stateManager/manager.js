@@ -25,6 +25,25 @@ const stateReducer = (state, action) => {
         case "handle-alert": 
             return {...state, alertView: action.payload.view, alertText: action.payload.text}
 
+        case "handle-fetch-members": 
+            return {...state, allMembers: action.payload}
+
+        case "handle-member-profile": 
+            return {...state, memberProfile: action.payload}
+
+        case "clear-member-profile": 
+            return {...state, memberProfile: null, allMembers: []}
+
+        case "handle-set-profile-update": 
+            return {...state, member: action.payload, operation: "edit"}
+
+        case "handle-state-reset": 
+            return action.payload
+
+        case "handle-result-view": 
+        console.log({result: action.payload})
+            return {...state, resultData: action.payload}
+
         default: return state
     }
 
@@ -37,7 +56,8 @@ export const StateProvider = (props) => {
         user: {}, process: false, feedbackView: false, feedbackColor: "#6d9c7d", feedbackTitle: "No Message",
         feedbackText: "No message for now", 
         member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
-        memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show"
+        memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show",
+        allMembers: [], memberProfile: null, operation: "", resultData: [] 
     })
 
     async function presentFeedback(data){
@@ -66,8 +86,19 @@ export const StateProvider = (props) => {
             if(response.data.responseCode === "00"){
                 await dispatch({type: "store_user_data", payload: response.data.profile})
                 await localStorage.setItem("token", response.data.token)
-                await localStorage.setItem("username", response.data.profile.username)
-                history.push("/admin")
+                await localStorage.setItem("userData", JSON.stringify(response.data.profile))
+                await localStorage.setItem("firstName", response.data.profile.firstName)
+                await localStorage.setItem("memberType", response.data.profile.memberType)
+                if(response.data.profile.memberType === "Teacher"){
+                    history.push("/teacher")
+                }
+                else if(response.data.profile.memberType === "Student"){
+                    history.push("/student")
+                }
+                else{
+                    history.push("/admin")
+                }
+                
             }
             else{
                 presentFeedback(helpers.errorAlert(response.data.message))
@@ -75,13 +106,14 @@ export const StateProvider = (props) => {
         }
         catch(err){
             await dispatch({type: "toggleProcess", payload: false})
-            presentFeedback(helpers.errorAlert("No network connection"))
+            infoNotifier(helpers.alertInfo("No network connection"))
         }       
     }
 
 
     const signUp = async(body) => { 
-        if(!body.firstname || !body.surname || !body.email || !body.memberType || !body.phoneNumber
+       
+        if(!body.firstName || !body.surname || !body.email || !body.memberType || !body.phoneNumber
             || !body.address || !body.memberClass || !body.gender){
                 return infoNotifier(helpers.alertInfo("Kindly provide all required information"))
         }
@@ -96,14 +128,130 @@ export const StateProvider = (props) => {
             }
             else{ 
                 presentFeedback(helpers.errorAlert(response.data.message))
+                console.log({response: response.data})
             }
         }
         catch(err){
             await dispatch({type: "toggleProcess", payload: false})
-            presentFeedback(helpers.errorAlert("No network connection"))
+            infoNotifier(helpers.alertInfo("No network connection"))
         }       
     }
 
+    const fetchAllMembers = async(memberClass) => {
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/fetchMembers', {memberClass})
+            await dispatch({type: "toggleProcess", payload: false})
+
+            if(response.data.responseCode === "00"){
+                await dispatch({type: "handle-fetch-members", payload: response.data.info})
+                if(response.data.info.length < 1){
+                    infoNotifier(helpers.alertInfo("No member in this class"))
+                }
+            }
+            else{ 
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+            
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
+    }
+
+    const getMemberProfile = async(data) => {
+        await dispatch({type: "handle-member-profile", payload: data})
+    }
+
+    const setProfileUpdate = async(route, history) => {
+        await dispatch({type: "handle-set-profile-update", payload: state.memberProfile})
+        history.push(route)
+    }
+
+    const editMemberProfile = async(body, history) =>{
+        if(!body.firstName || !body.surname || !body.email || !body.memberType || !body.phoneNumber
+            || !body.address || !body.memberClass || !body.gender){
+                return infoNotifier(helpers.alertInfo("Kindly provide all required information"))
+        }
+        body.id = body._id
+
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/updateMember', body)
+            await dispatch({type: "toggleProcess", payload: false})
+
+            if(response.data.responseCode === "00"){
+                getMemberProfile(response.data.info)
+                presentFeedback(helpers.successAlert(response.data.message))
+                history.push("/admin/member-profile")
+            }
+            else{ 
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+            
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
+    }
+
+    const memberDelete = async() => {
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/deleteMember', {id: state.memberProfile._id})
+            await dispatch({type: "toggleProcess", payload: false})
+
+            if(response.data.responseCode === "00"){
+                await dispatch({type: "clear-member-profile"})
+                presentFeedback(helpers.successAlert(response.data.message))
+            }
+            else{ 
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
+    }
+
+    const studentProfile = async(history) => {
+       let userData = await JSON.parse(localStorage.getItem("userData"))
+        
+        getMemberProfile(userData)
+    }
+
+    const fetchStudentResult = async(body) => {
+        if(!body.studentName || !body.studentClass || !body.session || !body.term){
+            return infoNotifier(helpers.alertInfo("Kindly provide all required details"))
+        }
+
+        try{
+            console.log({body})
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.get('/get-result', body)
+            await dispatch({type: "toggleProcess", payload: false})
+
+            if(response.data.responseCode === "00"){
+                await dispatch({type: "handle-result-view", payload: response.data.result})
+            }
+            else{
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
+    }
+
+    const signOut = async(history) => {
+        await dispatch({type: "handle-state-reset", payload: helpers.errorAlert()})
+        localStorage.clear()
+        history.push("/")
+    }
 
 
     const boundActions = {
@@ -111,7 +259,15 @@ export const StateProvider = (props) => {
         signUp,
         presentFeedback,
         handleMemberSelectField,
-        infoNotifier
+        infoNotifier,
+        fetchAllMembers,
+        getMemberProfile,
+        setProfileUpdate,
+        editMemberProfile,
+        memberDelete,
+        studentProfile,
+        fetchStudentResult,
+        signOut
     }
 
 

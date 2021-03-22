@@ -40,6 +40,7 @@ $color-grey-light-2: #eee;
 html {
     font-size: 62.5%;
     height: 100%;
+    box-sizing: border-box;
   
     @include respond(tab-port) {
       font-size: 50%; // 1rem = 8px, 8/16 * 100 = 50%
@@ -71,6 +72,24 @@ html {
     }
   }
 
+  @keyframes moveInRight {
+    0% {
+      opacity: 0;
+      transform: translateX(
+        20rem
+      ); 
+    }
+  
+    80% {
+      transform: translateX(-1rem);
+    }
+  
+    100% {
+      opacity: 1;
+      transform: translate(0);
+    }
+  }
+
   @keyframes moveInBottom {
     0% {
       opacity: 0;
@@ -83,7 +102,7 @@ html {
   
     100% {
       opacity: 1;
-      transform: translate(0); /*to look the way it should look*/
+      transform: translate(0);
     }
   }
 
@@ -145,7 +164,7 @@ body{
         rgba($color-green, 0.7),
         rgba($color-green-dark, 0.7)
       ),
-      url("../assets/nat-1-large.jpg");
+      url("../assets/nat-1-large.jpg"); // nat-1-large
      
     position: relative;
     background-size: cover; 
@@ -160,7 +179,7 @@ body{
         rgba(#ccc, 0.85),
         rgba($color-white, 0.85)
       ),
-    url("../assets/nat-7.jpg");
+    url("../assets/student-ceremony.jpg"); // nat-7
     position: relative;
     background-size: cover; 
     background-position: top;
@@ -244,7 +263,7 @@ body{
     position: absolute;
     top: 4rem;
     right: 7rem;
-    display: none;
+    //display: none;
 
     @media(max-width: 1100px){
         width: 10rem;
@@ -288,15 +307,21 @@ body{
         transform: translateX(-50%);
     }
 
+    @media(max-width: 430px){
+        width: 13rem;
+        height: 13rem;
+        top: 1.5rem;
+    }
+
 }
-.schoolName{
-    margin: 0;
+.schoolName, .school-name-arabic{
+    //margin: 0rem 2rem 5.5rem 2rem;
+    margin: 5.5rem 2rem;
     font-size: 4rem;
     font-weight: 600;
     text-align: center;
     color: $color-green;
     text-transform: uppercase;
-    margin: 5.5rem 2rem;
     animation-name: moveInLeft;
     animation-duration: 3s;
     animation-timing-function: ease-out;
@@ -304,6 +329,19 @@ body{
     @media(max-width: 750px){
         margin-top: 22rem;
     }
+}
+.school-name-arabic{
+    margin: 3.5rem 2rem .5rem 2rem;
+    font-size: 3.5rem;
+    //letter-spacing: .3rem;
+    animation-name: moveInRight;
+
+    // @media(max-width: 750px){
+    //     margin-top: 22rem;
+    // }
+    // @media(max-width: 430px){
+    //     margin-top: 16rem;
+    // }
 }
 .aboutSchool{
     color: $color-green;
@@ -325,6 +363,10 @@ body{
     @media(max-width: 440px){
        margin-top: 5rem;
     }
+
+    @media(max-width: 320px){
+        margin-top: 2.5rem;
+     }
     @media(max-width: 289px){
         margin-top: 1.7rem;
      }
@@ -811,11 +853,49 @@ body{
     background-position: top;
     overflow: hidden;
 }
+.home-intro-container2{
+    padding-top: 8rem; // 12
+    margin: 0 auto;
+    height: 15rem;
+    width: 35%; // 50%
+    color: $color-green;
+    background-color: rgba($color-white, .7);
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    //clip-path: polygon(0 35%, 35% 0, 65% 0, 100% 35%, 100% 65%, 65% 100%, 35% 100%, 0 65%);
+
+    @media(max-width: 1130px){
+        width: 35%;
+    }
+    @media(max-width: 830px){
+        width: 45%;
+    }
+    @media(max-width: 670px){
+        width: 50%;
+    }
+    @media(max-width: 600px){
+        width: 60%;
+    }
+    @media(max-width: 500px){
+        width: 70%;
+    }
+    @media(max-width: 380px){
+        width: 80%;
+    }
+    @media(max-width: 315px){
+        width: 95%;
+    }
+}
+
+.home-intro-container3{
+    background-color: $color-white;
+}
+
 .home-intro-container{
     padding-top: 12rem;
     margin: 0 auto;
     height: 15rem;
-    width: 50%;
+    width: 50%; // 50%
     color: $color-green;
     background-color: rgba($color-white, .7);
     border-bottom-left-radius: 50%;
@@ -844,6 +924,9 @@ body{
         width: 95%;
     }
 }
+
+
+
 .home-intro{
     font-size: 3rem;
     text-align: center;
@@ -870,12 +953,6 @@ body{
     transform: translateX(-50%);
     transition: all 0.5s;
     z-index: 1;
-
-    // &:hover, &:active{
-    //     background-color: $color-white;
-    //     border: 2px dashed $color-green;
-    //     color: $color-green;
-    // }
     
 
     @media (max-width: 360px) {
@@ -955,7 +1032,8 @@ body{
     margin: 0 auto;
     padding: 2rem 2rem;
     border: 1px solid rgba($color-deep-white, .4);
-    box-shadow: .3rem .3rem .4rem rgba(0,0,0, .2);
+    //box-shadow: .3rem .3rem .4rem rgba(0,0,0, .2);
+    box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
 
     @media(max-width: 1180px){
         width: 50%;
@@ -974,7 +1052,7 @@ body{
     }
     @media(max-width: 500px){
         width: 70%;
-        box-shadow: none;
+        //box-shadow: none;
         border-radius: 1.5rem;
     }
     @media(max-width: 420px){
@@ -1172,4 +1250,443 @@ body{
     &:hover{
         background-color: rgba($color-deep-white, .3);
     }
+}
+
+/*
+###############################################
+                MENU BAR PLUS
+################################################
+*/
+.navigation{
+    width: 100%;
+
+    &__checkbox {
+        display: none;
+    }
+
+    &__button {
+        height: 5rem;
+        width: 5rem;
+        position: fixed;
+        top: .25rem;
+        right: 2rem;
+        z-index: 3;
+        text-align: center;
+        cursor: pointer;
+
+       @media(max-width: 350px) {
+        right: 1.3rem;
+       }
+       @media(max-width: 300px) {
+        right: 1rem;
+        }
+     }
+
+    &__background {
+        height: 5.5rem;
+        width: 100%;
+        position: fixed;
+        top: 0rem;
+        right: 0rem;
+        background-color: $color-green;
+        z-index: 2;
+        transition: all .3s; 
+        overflow: hidden;
+    }
+
+    // FUNCTIONALITY
+    &__checkbox:checked ~ &__background {
+        height: 20rem;
+    } 
+
+    &__checkbox:checked ~ &__background .option-list{
+        opacity: 1;
+    } 
+
+    &__checkbox:checked ~ &__nav {
+        width: 100%;
+        opacity: 1;
+    } 
+
+     // ICON
+     &__icon {
+         position: relative;
+         margin-top: 2.5rem;
+         &,
+         &::before,
+         &::after {
+             width: 3rem;
+             height: 2px;
+             background-color: $color-white;
+             display: inline-block;
+         }
+
+         &::before,
+         &::after {
+             content: "";
+             position: absolute;
+             left: 0;
+             transition: all .2s;
+         }
+
+         &::before {
+             top: -.8rem;
+             //transform-origin: right; // it depects which side we want the transformation to
+         }
+
+         &::after {
+             top: .8rem;
+         }
+     }
+
+     &__button:hover &__icon::before {
+         top: -1rem;
+     }
+
+     &__button:hover &__icon::after {
+        top: 1rem;
+    }
+
+    &__checkbox:checked + &__button &__icon {
+        background-color: transparent; // background color of the original span
+    }
+
+    &__checkbox:checked + &__button &__icon::before {
+        top: 0;
+        transform: rotate(135deg);
+    }
+
+    &__checkbox:checked + &__button &__icon::after {
+        top: 0;
+        transform: rotate(-135deg);
+    }
+}
+
+.nav-logo-plus{
+    position: absolute;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: 50%;
+    left: 2rem;
+    top: .5rem;
+
+    @media(max-width: 350px) {
+        left: 1.2rem;
+    }
+    @media(max-width: 300px) {
+        left: 1rem;
+    }
+}
+.nav-title-plus{
+    font-size: 2rem;
+    color: $color-white;
+    font-weight: 600;
+}
+.option-list{
+    position: absolute;
+    top: 9rem;
+    left: 12%;
+    color: $color-white;
+    opacity: 0;
+    transition: all .3s ease-in;
+
+    @media(max-width: 800px){
+        left: 14%;
+    }
+    @media(max-width: 390px){
+        left: 15%;
+    }
+
+    &-items{
+        font-size: 1.5rem;
+        margin: 0;
+        padding-bottom: 1rem;
+        cursor: pointer;
+        transition: all .3s;
+
+        &:hover{
+            transform: scaleY(1.2);
+        }
+    }
+}
+
+// Teacher Dashboard
+.teacher-dashboard-route{
+    height: 100%;
+}
+
+.teacher-home-container{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-green, 0.1),
+        rgba($color-green-dark, 0.1)
+      ),
+      url("../assets/whitish.jpg");
+    position: relative;
+    background-size: cover; 
+    background-position: top;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+.button-down{
+    bottom: 5rem
+}
+.teacher-illustrator{
+    position: absolute;
+    width: 40rem;
+    height: 25rem;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+
+/*
+###############################################
+                PROFILE
+################################################
+*/
+.profile-main-container{
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    position: relative;
+   // padding-bottom: 4rem;
+}
+.profile-sub-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0rem auto 2rem auto;
+    background-color: rgba($color-deep-white, .3);
+    width: 50%;
+    box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
+
+    @media(max-width: 945px){
+        width: 60%;
+    }
+    @media(max-width: 680px){
+        width: 70%;
+    }
+    @media(max-width: 600px){
+        width: 60%;
+    }
+    @media(max-width: 440px){
+        width: 70%;
+    }
+    @media(max-width: 370px){
+        width: 80%;
+    }
+    @media(max-width: 330px){
+        width: 94%;
+    }
+}
+.info-container{
+    display: flex;
+    flex-direction: row;
+    box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
+    width: 100%;
+
+    &:not(:last-child){
+        margin-bottom: .4rem;
+    }
+}
+.info-label, .user-info{
+    padding: 1.5rem 1.5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: $color-white;
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgba(0,0,0, .5);
+}
+.info-label{
+    width: 30%;
+    margin-right: 1%;
+    font-weight: 600;
+}
+.user-info{
+    width: 68%;
+    margin-left: 1%;
+}
+.custom-input-container{
+    width: 50%;
+    margin: 10rem auto 9rem auto;
+    
+
+    @media(max-width: 1090px){
+        width: 70%;
+    }
+    @media(max-width: 750px){
+        width: 80%;
+    }
+    @media(max-width: 650px){
+        width: 85%;
+    }
+    @media(max-width: 600px){
+        width: 65%;
+    }
+    @media(max-width: 500px){
+        width: 75%;
+    }
+    @media(max-width: 430px){
+        width: 90%;
+    }
+    @media(max-width: 330px){
+        width: 100%;
+    }
+}
+.view-result-btn{
+    text-decoration: none;
+    outline: none;
+    display: block;
+    padding: .8rem .2rem;
+    margin: 1.5rem auto;
+    background-color: $color-green;
+    color: $color-white;
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    width: 10rem;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover{
+        background-color: $color-green-light
+    }
+
+    @media(max-width: 600px){
+        margin-bottom: 11rem;
+    }
+}
+.info-title-text{
+    font-size: 1.7rem;
+    color: $color-green;
+    text-align: center;
+    font-weight: 600;
+}
+.header-text{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin: 0rem auto;
+    width: 50%;
+
+    &-icon-1,&-icon-2{
+        position: absolute;
+        font-size: 2rem;
+        color: $color-green;
+        transition: all .2s;
+
+        &:hover{
+            color: $color-green-light;
+        }
+    }
+    &-icon-1{
+        right: 4.5rem;
+    }
+
+    &-icon-2{
+        right: 1rem;
+    }
+
+
+    @media(max-width: 945px){
+        width: 60%;
+    }
+    @media(max-width: 680px){
+        width: 70%;
+    }
+    @media(max-width: 600px){
+        width: 60%;
+    }
+    @media(max-width: 440px){
+        width: 70%;
+    }
+    @media(max-width: 370px){
+        width: 80%;
+    }
+    @media(max-width: 330px){
+        width: 94%;
+    }
+}
+
+
+/*
+###############################################
+                STUDENT HOME
+################################################
+*/
+
+.student-home-container{
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-green, 0.2),
+        rgba($color-green-dark, 0.2)
+      ),
+      url("../assets/student2.jpg");
+    position: relative;
+    background-size: cover; 
+    background-position: top;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+
+/*
+###############################################
+                RESULT VIEW
+################################################
+*/
+
+.result-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0rem auto 2rem auto;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color-deep-white, .3);
+    width: 65%;
+    box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
+}
+
+
+.result-sn, .result-subjects, .result-test-score, .result-exam-score, .result-total{
+    padding: 1.5rem .7rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: $color-white;
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgba(0,0,0, .5);
+    margin-right: .5%;
+}
+.result-label{
+    font-weight: 600;
+}
+.result-sn{
+    width: 6%;
+    //font-weight: 600;
+}
+.result-subjects{
+    width: 40%;
+}
+.result-test-score, .result-exam-score{
+    width: 18%;
+}
+.result-total{
+    width: 24%;
+    margin-right: 0
+}
+.header-text-large{
+    width: 65%;
+}
+.upload-btn{
+    width: 13rem
 }

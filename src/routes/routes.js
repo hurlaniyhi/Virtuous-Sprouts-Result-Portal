@@ -8,7 +8,7 @@ import LandingPage from '../components/LandingPage'
 import Login from "../components/LoginPage"
 import TeacherDashboard from '../components/TeacherDashboard/TeacherDashboard';
 import StudentDashboard from '../components/StudentDashboard/StudentDashboard';
-import AdminDashboard from '../components/AdminDashboard/AdminDashboard';
+import AdminDashboard from '../components/AdminDashboard/AdminDashboard3';
 
 function App() {
     const {state, presentFeedback, infoNotifier} = useContext(StateManager)

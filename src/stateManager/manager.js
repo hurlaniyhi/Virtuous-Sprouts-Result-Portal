@@ -345,6 +345,28 @@ export const StateProvider = (props) => {
         }
     }
 
+    const deleteResult = async(requestPayload) => {
+        
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/delete-result', requestPayload)
+            await dispatch({type: "toggleProcess", payload: false})
+    
+            if(response.data.responseCode === "00"){
+                await dispatch({type: "handle-result-view", 
+                payload: {result: null, resultID: null} })
+                presentFeedback(helpers.successAlert(response.data.message))
+            }
+            else{
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo(err))
+        }
+    }
+
     const recoverUser = async() => {
         let user = await JSON.parse(localStorage.getItem("userData"))
         await dispatch({type: "handle-user-recovery", payload: user})
@@ -374,6 +396,7 @@ export const StateProvider = (props) => {
         handleResultUploadData,
         uploadResult,
         updateResult, 
+        deleteResult,
         recoverUser,
         signOut
     }

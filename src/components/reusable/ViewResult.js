@@ -7,7 +7,11 @@ import {FiUpload} from 'react-icons/fi'
 
 const ViewResult = () => {
     const history = useHistory()
-    const {state, fetchAllMembers, fetchStudentResult, recoverUser, handleResultUploadData} = useContext(StateManager)
+
+    const {state, fetchAllMembers, fetchStudentResult, 
+        recoverUser, handleResultUploadData, 
+        deleteResult} = useContext(StateManager)
+
     const [resultInput, setResultInput] = useState({studentClass: "", studentName: "", session: "", term: ""})
 
     useEffect(()=>{
@@ -42,6 +46,9 @@ const ViewResult = () => {
             })
             console.log({resultId: state.resultID})
             history.push("/admin/result-update")
+        }
+        else if(route === "delete"){
+            deleteResult(resultInput)
         }
     }
 
@@ -155,7 +162,7 @@ const ViewResult = () => {
                     {state.user.memberType === "Admin" ? 
                     <FaEdit className="header-text-icon-1" onClick={()=>handleRoute("edit")} />: null}
                     {state.user.memberType === "Admin" ? 
-                    <FaTrash className="header-text-icon-2" />: null}
+                    <FaTrash className="header-text-icon-2" onClick={()=>handleRoute("delete")} />: null}
                 </div>
 
                 <div className="result-container">

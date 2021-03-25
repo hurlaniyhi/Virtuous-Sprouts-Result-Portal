@@ -6,9 +6,9 @@ import ShowAlert from '../components/reusable/showAlert'
 import Loader from 'react-loader-spinner'
 import LandingPage from '../components/LandingPage'
 import Login from "../components/LoginPage"
-import AdminDashboard from '../components/AdminDashboard/AdminDashboard'
-import TeacherDashboard from '../components/TeacherDashboard/TeacherDashboard'
-import StudentDashboard from '../components/StudentDashboard/StudentDashboard'
+import AdminDashboard from '../components/AdminDashboard/AdminDashboard';
+import TeacherDashboard from '../components/TeacherDashboard/TeacherDashboard';
+import StudentDashboard from '../components/StudentDashboard/StudentDashboard';
 
 function App() {
     const {state, presentFeedback, infoNotifier} = useContext(StateManager)

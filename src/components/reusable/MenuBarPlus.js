@@ -1,10 +1,10 @@
 import React, {useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../../stateManager/manager'
-import logo from '../../assets/logo2.jpg'
+import logo from '../../assets/virtuous-sprouts.png'
 
 
-const MenuBarPlus = ({homeRoute, profileRoute}) => {
+const MenuBarPlus = ({homeRoute, profileRoute, resultRoute}) => {
     const history = useHistory()
     const {signOut} = useContext(StateManager)
 
@@ -17,6 +17,8 @@ const MenuBarPlus = ({homeRoute, profileRoute}) => {
         signOut(history)
     }
 
+    let userData = JSON.parse(localStorage.getItem("userData"))
+
     return(
         <div class="navigation">
             <input type="checkbox" class="navigation__checkbox" id="navi-toggle" />
@@ -26,10 +28,15 @@ const MenuBarPlus = ({homeRoute, profileRoute}) => {
 
             <div class="navigation__background">
                 <img src={logo}  className="nav-logo-plus" />
-                <p style={{textAlign: "center"}} className="nav-title-plus">Virtuous Sprout Academy</p>
+                <p style={{textAlign: "center"}} className="nav-title-plus">Virtuous Sprouts Academy</p>
                 <div className="option-list">
                     <p className="option-list-items" onClick={()=>handleNavigation(homeRoute)}>Home</p>
                     <p className="option-list-items" onClick={()=>handleNavigation(profileRoute)}>Student Profile</p>
+                    <p className="option-list-items" onClick={()=>handleNavigation(resultRoute)}>View Result</p>
+                    {userData.memberType === "Teacher" ?
+                        <p className="option-list-items" onClick={()=>handleNavigation("/teacher/result-upload")}>
+                            Upload Result
+                        </p>: null}
                     <p className="option-list-items" onClick={handleLogOut}>Logout</p>
                 </div>
             </div>

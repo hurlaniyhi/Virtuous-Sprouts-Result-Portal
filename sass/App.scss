@@ -179,7 +179,7 @@ body{
         rgba(#ccc, 0.85),
         rgba($color-white, 0.85)
       ),
-    url("../assets/student-ceremony.jpg"); // nat-7
+    url("../assets/nat-7.jpg"); // nat-7 student-ceremony
     position: relative;
     background-size: cover; 
     background-position: top;
@@ -209,7 +209,6 @@ body{
     @media (max-width: 296px) {
         width: 10rem;
     }
-
 
     &::after {
         content: "";
@@ -274,7 +273,7 @@ body{
         display: none;
     }
 }
-.school-logo{
+.school-logo, .logo-image, .logo-hue{
     width: 18rem;
     height: 18rem;
     position: absolute;
@@ -282,7 +281,7 @@ body{
     top: 3rem;
     border-radius: 50%;
     transition: all 2s;
-
+    
     &:hover{
         transform: rotateY(360deg);
     }
@@ -314,6 +313,18 @@ body{
     }
 
 }
+
+// .school-logo{
+//     &:hover{
+//         transform: rotateY(360deg);
+//     }
+// }
+// .logo-hue{
+//     background-color: rgba($color-deep-white, .35);
+//     padding: 0;
+//     margin: 0;
+// }
+
 .schoolName, .school-name-arabic{
     //margin: 0rem 2rem 5.5rem 2rem;
     margin: 5.5rem 2rem;
@@ -784,7 +795,7 @@ body{
 }
 .menu-icon, .bottom-menu-icon{
     font-size: 2rem;
-    margin-left: 2.5rem;
+    margin-left: 3.5rem;  // 2.5
 }
 .menu-label, .bottom-menu-label{
     font-size: 1.5rem;
@@ -826,10 +837,11 @@ body{
 }
 .side-menu-logo{
     display: block;
-    width: 15rem;
-    height: 15rem;
+    width: 11rem;  // 15
+    height: 11rem;  // 15
     border-radius: 50%;
     margin: 0 auto;
+    margin-bottom: 3rem;
 }
 
 /*
@@ -1296,7 +1308,7 @@ body{
 
     // FUNCTIONALITY
     &__checkbox:checked ~ &__background {
-        height: 20rem;
+        height: 23.5rem;
     } 
 
     &__checkbox:checked ~ &__background .option-list{
@@ -1648,12 +1660,28 @@ body{
 .result-container{
     display: flex;
     flex-direction: column;
-    margin: 0rem auto 2rem auto;
+    margin: 0rem auto 3rem auto;
     justify-content: center;
     align-items: center;
     background-color: rgba($color-deep-white, .3);
-    width: 65%;
+    width: 85%;
     box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
+
+   
+    @media(max-width: 730px){
+        width: 90%;
+    }
+    @media(max-width: 600px){
+        width: 85%;
+        margin-bottom: 12rem;
+    }
+    @media(max-width: 470px){
+        width: 90%;
+    }
+    @media(max-width: 350px){
+        width: 95%;
+    }
+   
 }
 
 
@@ -1685,8 +1713,283 @@ body{
     margin-right: 0
 }
 .header-text-large{
-    width: 65%;
+    width: 85%;
+
+    @media(max-width: 730px){
+        width: 90%;
+    }
+    @media(max-width: 600px){
+        width: 85%;
+    }
+    @media(max-width: 470px){
+        width: 90%;
+    }
+    @media(max-width: 350px){
+        width: 95%;
+    }
 }
-.upload-btn{
-    width: 13rem
+.get-result-btn{
+    width: 13rem;
+    margin-top: 2rem;
+    background-color: rgba($color-green, .6);
+    color: $color-white;
+}
+.result-upload-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    background-color: rgba($color-green, .6);
+    color: $color-white;
+    position: fixed;
+    top: 9rem;
+    right: 5rem;
+    box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
+    transition: all .3s;
+
+    &:hover{
+        transform: scale(1.1);
+        background-color: $color-green-light;
+    }
+
+    @media(max-width: 790px){
+        right: 3rem;
+    }
+    @media(max-width: 700px){
+        right: 1.5rem;
+    }
+    @media(max-width: 520px){
+        display: none;
+    }
+
+}
+.result-upload-icon{
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+
+
+/*
+###############################################
+                UPLOAD VIEW
+################################################
+*/
+
+.upload-result-container{
+    display: flex;
+    flex-direction: column;
+    margin: 0rem auto 3rem auto;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba($color-deep-white, .3);
+    width: 65%;
+    box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
+
+    @media(max-width: 750px){
+        width: 75%;
+    }
+    @media(max-width: 550px){
+        width: 80%;
+    }
+    @media(max-width: 450px){
+        width: 85%;
+    }
+    @media(max-width: 340px){
+        width: 90%;
+    }
+}
+
+.upload-sn, .upload-subjects, .upload-type, .upload-result-delete{
+    padding: 1.5rem .7rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    background-color: $color-white;
+    text-align: center;
+    font-size: 1.5rem;
+    color: rgba(0,0,0, .5);
+    margin-right: .5%;
+}
+.upload-sn{
+    width: 6%;
+    //font-weight: 600;
+}
+.upload-subjects{
+    width: 60%;
+}
+.upload-type{
+    width: 30%;
+}
+.upload-result-delete{
+    width: 4%;
+    margin-right: 0
+}
+.upload-delete-icon{
+    font-size: 1.8rem;
+    transition: all .2s;
+
+    &:hover{
+        color: red;
+    }
+}
+
+.resize-select-field{
+    width: 100%;
+}
+.remove-input-border{
+    border: none;
+}
+
+.each-subject-result-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    //flex-wrap: wrap;
+    align-items: center;
+    width: 70%;
+    margin: 1rem auto 4rem auto;
+
+    @media(max-width: 909px){
+        width: 75%
+    }
+
+    @media(max-width: 750px){
+        width: 80%;
+    }
+
+    @media(max-width: 675px){
+        width: 95%;
+    }
+
+    @media(max-width: 600px){
+        width: 60%;
+        flex-direction: column;
+        padding: 3rem 1rem;
+        border: 1px solid rgba($color-green, .2);
+        border-radius: 2rem;
+    }
+    @media(max-width: 368px){
+        width: 75%;
+    }
+}
+.reduced-width-select{
+    width: 47%;
+    height: 4.5rem;
+    border-radius: 10rem;
+    padding-right: 5.7rem;
+    display: block;
+    box-sizing: border-box;
+    position: relative;
+    margin-right: 5%;
+    overflow: hidden;
+
+    @media(max-width: 600px){
+        margin-right: 0;
+        margin-bottom: 2rem;
+        width: 75%;
+    }
+    
+    @media(max-width: 450px){
+        width: 85%;
+    }
+}
+.score-input{
+    width: 28%;
+    border: none;
+    height: 4.5rem;
+    text-align: center;
+    box-sizing: border-box;
+    border-radius: 10rem;
+    padding: 0 .5rem;
+    background-color: rgba($color-green, .1);
+    color: rgba(0,0,0, .6);
+    margin-right: 5%;
+    font-size: 1.5rem;
+    outline: none;
+
+    &::placeholder{
+        color: rgba(0,0,0, .25);
+    }
+
+    @media(max-width: 600px){
+        margin-right: 0;
+        margin-bottom: 2rem;
+        text-align: left;
+        padding-left: 2rem;
+        width: 75%;
+    }
+    @media(max-width: 450px){
+        width: 85%;
+    }
+}
+
+.add-result-btn{
+    outline: none;
+    text-decoration: none;
+    width: 18%;
+    text-align: center;
+    display: block;
+    padding: 1.3rem .5rem;
+    border-radius: 1.5rem; // 10rem
+    color: $color-white;
+    background-color: rgba($color-green, .5);
+    font-size: 1.5rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .2s;
+
+    &:hover{
+        background-color: $color-green-light;
+    }
+    
+    @media(max-width: 600px){
+        border-radius: 1rem;
+        width: 30%;
+    }
+    @media(max-width: 450px){
+        width: 35%;
+    }
+}
+
+.each-upload-select-field{
+    opacity: 0;
+    position: absolute;
+    background-color: rgba($color-green, .1);
+    width: 100%;
+    right: 0;
+    padding: 0;
+    margin: 0;
+    height: 4.5rem;
+    z-index: 2;
+
+    &:hover ~ .each-upload-select-field-icon{
+        background-color: rgba($color-green, .5);
+    }
+}
+.each-upload-select-field-icon{
+    position: absolute;
+    font-size: 1.7rem;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba($color-green, .3);
+    padding: 2rem;
+    color: rgba($color-white, 1);
+    transition: all .2s;
+}
+.upload-select-input{
+    width: 100%;
+    height: 4.5rem;
+    border: none;
+    box-sizing: border-box;
+    background-color: rgba($color-green, 0.1);
+    padding: 0 .5rem 0 1.5rem;
+    position: relative;
+
+
+    // @media(max-width: 315px){
+    //     width: 90%;
+    // }
 }

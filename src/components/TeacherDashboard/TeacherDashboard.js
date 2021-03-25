@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 're
 import MenuBarPlus from '../reusable/MenuBarPlus'
 import TeacherHome from '../TeacherDashboard/TeacherHome'
 import MemberProfile from '../TeacherDashboard/StudentProfile'
+import ShowResult from '../TeacherDashboard/ShowResult'
+import UploadResult from '../TeacherDashboard/UploadResult'
 
 
 const TeacherDashboard = () => {
@@ -19,15 +21,21 @@ const TeacherDashboard = () => {
     let userType = localStorage.getItem('memberType')
 
     return(
-        <div className="admin-dashboard-container">
+        <div className="admin-dashboard-container"> 
             
-            <MenuBarPlus homeRoute="/teacher/home" profileRoute="/teacher/student-profile" />
+            <MenuBarPlus 
+                homeRoute="/teacher/home" 
+                profileRoute="/teacher/student-profile" 
+                resultRoute="/teacher/result-view"
+            />
 
             {auth && userType === "Teacher" ? <div className="teacher-dashboard-route">
                 <Switch>
                     <Route path="/teacher/" exact component={TeacherHome}></Route>
                     <Route path="/teacher/home" component={TeacherHome}></Route>
                     <Route path="/teacher/student-profile" component={MemberProfile}></Route>
+                    <Route path="/teacher/result-view" component={ShowResult}></Route>
+                    <Route path="/teacher/result-upload" component={UploadResult}></Route>
                     <Redirect from="/teacher/:id" to="/teacher/" />
                 </Switch>
             </div> : logUserOut()}

@@ -13,7 +13,7 @@ const MyProfile = () => {
     }, [])
 
     return(
-        <Profile route="/student" />
+        <Profile route="/student" resultRoute="/student/result-view"/>
     )
 }
 export default MyProfile

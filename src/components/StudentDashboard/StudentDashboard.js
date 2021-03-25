@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 're
 import MenuBarPlus from '../reusable/MenuBarPlus'
 import StudentHome from '../StudentDashboard/StudentHome'
 import MyProfile from '../StudentDashboard/StudentProfile'
+import ShowResult from "../StudentDashboard/ShowResult";
 
 
 const StudentDashboard = () => {
@@ -21,13 +22,18 @@ const StudentDashboard = () => {
     return(
         <div className="admin-dashboard-container">
             
-            <MenuBarPlus homeRoute="/student/home" profileRoute="/student/student-profile" />
+            <MenuBarPlus 
+                homeRoute="/student/home" 
+                profileRoute="/student/student-profile" 
+                resultRoute="/student/result-view" 
+            />
 
             {auth && userType === "Student" ? <div className="teacher-dashboard-route">
                 <Switch>
                     <Route path="/student/" exact component={StudentHome}></Route>
                     <Route path="/student/home" component={StudentHome}></Route>
                     <Route path="/student/student-profile" component={MyProfile}></Route>
+                    <Route path="/student/result-view" component={ShowResult}></Route>
                     <Redirect from="/student/:id" to="/student/" />
                 </Switch>
             </div> :  logUserOut()}

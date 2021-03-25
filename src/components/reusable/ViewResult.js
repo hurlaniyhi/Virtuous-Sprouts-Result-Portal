@@ -1,13 +1,22 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../../stateManager/manager'
-import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash } from 'react-icons/fa'
+import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash, FaUpload } from 'react-icons/fa'
+import {FiUpload} from 'react-icons/fi'
 
 
 const ViewResult = () => {
     const history = useHistory()
-    const {state, fetchAllMembers, fetchStudentResult} = useContext(StateManager)
+    const {state, fetchAllMembers, fetchStudentResult, recoverUser, handleResultUploadData} = useContext(StateManager)
     const [resultInput, setResultInput] = useState({studentClass: "", studentName: "", session: "", term: ""})
+
+    useEffect(()=>{
+        userRecovery()
+    }, [])
+
+    async function userRecovery(){
+        recoverUser()
+    }
 
     function handleResultField(e){
         setResultInput({...resultInput, [e.target.name]: e.target.value})
@@ -17,7 +26,23 @@ const ViewResult = () => {
     }
 
     function handleResultFetch() {
+        if(state.user.memberType === "Student"){
+            resultInput.studentName = `${state.user.firstName} ${state.user.surname}`
+            resultInput.studentClass = state.user.memberClass
+        }
         fetchStudentResult(resultInput)
+    }
+
+    function  handleRoute(route) {
+        if(route === "edit"){
+
+            handleResultUploadData({...state.editResultData, 
+                session: resultInput.session, term: resultInput.term, resultId: state.resultID,
+                studentName: resultInput.studentName, studentClass: resultInput.studentClass
+            })
+            console.log({resultId: state.resultID})
+            history.push("/admin/result-update")
+        }
     }
 
     let options;
@@ -32,13 +57,13 @@ const ViewResult = () => {
 
     let result;
 
-    if(state.resultData.length > 0){
+    if(state.resultData != null){
         let count = 0
         result = state.resultData.map(data => {
            
             count++
             return(
-                <div className="info-container">
+                <div className="info-container" key={count}>
                     <p className="result-sn">{count}</p>
                     <p className="result-subjects">{data.subject}</p>
                     <p className="result-test-score">{data.testScore}</p>
@@ -49,12 +74,12 @@ const ViewResult = () => {
         })
     }
 
-    let userType = localStorage.getItem('memberType')
+    //let userData = JSON.parse(localStorage.getItem("userData"))
 
     return (
         <div className="profile-main-container">
             <div className="custom-input-container">
-                <div className="input-container resized-input select-input">
+            {state.user.memberType != "Student" ? <div className="input-container resized-input select-input">
                     <FaUsersCog  className="user-icon"/>
                     <input disabled type="text" value={resultInput.studentClass} className="user-input resized-text" placeholder="Select member class"/>
                     <select name="studentClass" className="user-input resized-text select-field" onChange={handleResultField}>
@@ -68,8 +93,8 @@ const ViewResult = () => {
                         <option value="Primary 5">Primary 5</option>
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
-                </div>
-                <div className="input-container resized-input select-input">
+                </div> : null}
+               {state.user.memberType != "Student" ? resultInput.studentClass ?<div className="input-container resized-input select-input">
                     <FaUsers  className="user-icon"/>
                     <input disabled type="text" value={resultInput.studentName} className="user-input resized-text" placeholder="Select student"/>
                     <select name="studentName" className="user-input resized-text select-field" onChange={handleResultField}>
@@ -77,8 +102,9 @@ const ViewResult = () => {
                         {options}
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
-                </div>
-                <div className="input-container resized-input select-input">
+                </div> : null : null}
+
+                {state.user.memberType != "Student" ? resultInput.studentName ? <div className="input-container resized-input select-input">
                     <FaUsers  className="user-icon"/>
                     <input disabled type="text" value={resultInput.session} className="user-input resized-text" placeholder="Select session"/>
                     <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
@@ -87,8 +113,18 @@ const ViewResult = () => {
                         <option value="2020/2021">2020/2021</option>
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
-                </div>
-                <div className="input-container resized-input select-input">
+                </div>: null : <div className="input-container resized-input select-input">
+                    <FaUsers  className="user-icon"/>
+                    <input disabled type="text" value={resultInput.session} className="user-input resized-text" placeholder="Select session"/>
+                    <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
+                        <option value="">Select Session</option>
+                        <option value="2019/2020">2019/2020</option>
+                        <option value="2020/2021">2020/2021</option>
+                    </select>
+                    <FaChevronDown  className="select-field-icon"/>
+                </div>}
+
+                {state.user.memberType != "Student" ? resultInput.session ? <div className="input-container resized-input select-input">
                     <FaUsers  className="user-icon"/>
                     <input disabled type="text" value={resultInput.term} className="user-input resized-text" placeholder="Select term"/>
                     <select name="term" className="user-input resized-text select-field" onChange={handleResultField}>
@@ -98,17 +134,27 @@ const ViewResult = () => {
                         <option value="3rd">3rd</option>
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
-                </div>
+                </div>: null: <div className="input-container resized-input select-input">
+                    <FaUsers  className="user-icon"/>
+                    <input disabled type="text" value={resultInput.term} className="user-input resized-text" placeholder="Select term"/>
+                    <select name="term" className="user-input resized-text select-field" onChange={handleResultField}>
+                        <option value="">Select Term</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                    </select>
+                    <FaChevronDown  className="select-field-icon"/>
+                </div>}
+
+                <a className="view-result-btn get-result-btn" onClick={handleResultFetch}>Get Result</a>
             </div>
 
-            <a className="view-result-btn upload-btn" onClick={handleResultFetch}>getResult</a>
-
-            <div style={{width: "100%"}}>
+            {state.resultData != null ? <div style={{width: "100%"}}>
                 <div className="header-text header-text-large">
                     <p className="info-title-text">Result Data</p>
-                    {userType === "Admin" ? 
-                    <FaEdit className="header-text-icon-1" />: null}
-                    {userType === "Admin" ? 
+                    {state.user.memberType === "Admin" ? 
+                    <FaEdit className="header-text-icon-1" onClick={()=>handleRoute("edit")} />: null}
+                    {state.user.memberType === "Admin" ? 
                     <FaTrash className="header-text-icon-2" />: null}
                 </div>
 
@@ -122,9 +168,11 @@ const ViewResult = () => {
                     </div>
                     {result}
                 </div>
+            </div> : null}
 
-                <a className="view-result-btn upload-btn">New upload</a>
-            </div>
+            {state.user.memberType === "Teacher" ? <div className="result-upload-btn">
+                <FiUpload className="result-upload-icon" onClick={()=> history.push("/teacher/result-upload")} />
+            </div> : null}
         </div>
     )
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import myLogo from '../assets/logo2.jpg'
+import myLogo from '../assets/virtuous-sprouts.png'
 import graduation from '../assets/graduation.svg'
 import {useHistory} from 'react-router-dom'
 import "../styles/style.css"
@@ -17,6 +17,7 @@ const LandingPage = () => {
                 <div className="design1"></div>
                 <div className="design2"></div>
                 <div className="design3"></div>
+                {/* <div className="school-logo"><img src={myLogo} className="logo-image"/><p className="logo-hue"></p></div> */}
                 <img src={graduation} className="student-cartoon" />
                 <img src={myLogo} className="school-logo"/>
                 {/* <p className="schoolName school-name-arabic">أكادمية النبت الطيب</p> */}

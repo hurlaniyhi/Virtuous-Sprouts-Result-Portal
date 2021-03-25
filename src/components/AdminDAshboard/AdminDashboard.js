@@ -7,6 +7,7 @@ import SideMenu from '../reusable/SideMenu'
 import RegisterMember from "./RegisterMember"
 import StudentProfile from './StudentProfile'
 import ShowResult from './ShowResult'
+import EditResult from './updateResult'
 
 
 const AdminDashboard = () => {
@@ -71,9 +72,9 @@ const AdminDashboard = () => {
                     <FaListAlt className="bottom-menu-icon" />
                     <p className="bottom-menu-label">Add Member</p>
                 </div>
-                <div className="bottom-icon-container" id="btm-broadcast-mail" onClick={()=>handleMenu("btm-broadcast-mail", "add-member")}>
+                <div className="bottom-icon-container" id="btm-broadcast-mail" onClick={()=>handleMenu("btm-broadcast-mail", "result-view")}>
                     <FaEnvelope className="bottom-menu-icon" />
-                    <p className="bottom-menu-label">Broadcast Mail</p>
+                    <p className="bottom-menu-label">View Result</p>
                 </div>
             </div> : null}
             {auth && (userType === "Admin") ? <div className="create-dashboard">
@@ -92,7 +93,7 @@ const AdminDashboard = () => {
                     </div>
                     <div className="menu-div" id="broadcast-mail" onClick={()=>handleMenu("broadcast-mail", "result-view")}>
                         <FaEnvelope className="menu-icon" />
-                        <p className="menu-label">Broadcast Mail</p>
+                        <p className="menu-label">View Result</p>
                     </div>
                 </SideMenu>
 
@@ -104,6 +105,7 @@ const AdminDashboard = () => {
                         <Route path="/admin/member-profile" component={StudentProfile}></Route>
                         <Route path="/admin/edit-profile" component={RegisterMember}></Route>
                         <Route path="/admin/result-view" component={ShowResult}></Route>
+                        <Route path="/admin/result-update" component={EditResult}></Route>
                         <Redirect from="/admin/:id" to="/admin/" />
                     </Switch>
                 </div>

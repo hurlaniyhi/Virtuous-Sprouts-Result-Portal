@@ -129,7 +129,7 @@ const Profile = ({route, resultRoute}) => {
                     </div>: null}
                 </div>
 
-                <a className="view-result-btn" onClick={handleNavigation}>View Result</a>
+                {/* <a className="view-result-btn" onClick={handleNavigation}>View Result</a> */}
             </div> : null}
         </div>
     )

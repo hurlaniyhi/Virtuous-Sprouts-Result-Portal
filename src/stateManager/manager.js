@@ -41,8 +41,16 @@ const stateReducer = (state, action) => {
             return action.payload
 
         case "handle-result-view": 
-        console.log({result: action.payload})
-            return {...state, resultData: action.payload}
+            return {...state, resultData: action.payload.result, resultID: action.payload.resultID}
+
+        case "handle-user-recovery": 
+            return {...state, user: action.payload}
+
+        case "handle-instant-userData": 
+            return {...state, userDetails: action.payload}
+
+        case "handle-result-upload-data": 
+            return {...state, editResultData: action.payload}
 
         default: return state
     }
@@ -54,10 +62,10 @@ export const StateProvider = (props) => {
 
     const [state, dispatch] = useReducer(stateReducer,{
         user: {}, process: false, feedbackView: false, feedbackColor: "#6d9c7d", feedbackTitle: "No Message",
-        feedbackText: "No message for now", 
+        feedbackText: "No message for now", editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, studentName: "", result: null},
         member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
         memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show",
-        allMembers: [], memberProfile: null, operation: "", resultData: [] 
+        allMembers: [], memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null 
     })
 
     async function presentFeedback(data){
@@ -70,6 +78,10 @@ export const StateProvider = (props) => {
 
     const handleMemberSelectField = async(data) => {
         await dispatch({type: "handle-select-field", payload: data})
+    }
+
+    const handleResultUploadData = async(data) => {
+        await dispatch({type: "handle-result-upload-data", payload: data})
     }
 
 
@@ -138,6 +150,7 @@ export const StateProvider = (props) => {
     }
 
     const fetchAllMembers = async(memberClass) => {
+        console.log({type: memberClass})
         try{
             await dispatch({type: "toggleProcess", payload: true})
             const response = await myAPI.post('/fetchMembers', {memberClass})
@@ -231,11 +244,12 @@ export const StateProvider = (props) => {
         try{
             console.log({body})
             await dispatch({type: "toggleProcess", payload: true})
-            const response = await myAPI.get('/get-result', body)
+            const response = await myAPI.post('/get-result', body)
             await dispatch({type: "toggleProcess", payload: false})
 
             if(response.data.responseCode === "00"){
-                await dispatch({type: "handle-result-view", payload: response.data.result})
+                await dispatch({type: "handle-result-view", 
+                payload: {result: response.data.result, resultID: response.data.resultID} })
             }
             else{
                 presentFeedback(helpers.errorAlert(response.data.message))
@@ -247,10 +261,99 @@ export const StateProvider = (props) => {
         }
     }
 
+    const instantUserDetails = async() => {
+       let userData = await JSON.parse(localStorage.getItem("userData"))
+       await dispatch({type: "handle-instant-userData", payload: userData})
+    }
+
+
+    const uploadResult = async(body) => {
+        body.studentClass = state.user.memberClass
+        body.teacherName = state.user.memberType
+
+        console.log({payload: body})
+
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/upload-result', body)
+            await dispatch({type: "toggleProcess", payload: false})
+
+            if(response.data.responseCode === "00"){
+                presentFeedback(helpers.successAlert(response.data.message))
+            }
+            else{
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
+    }
+
+    const updateResult = async(history) => {
+        let resultId
+        if(state.editResultData.resultType === "Test"){
+            if(!state.resultID.testId){
+                return infoNotifier(helpers.alertInfo("Test result to be updated did not exist"))
+            }
+            else{
+                resultId = state.resultID.testId
+            }
+        }
+        else if(state.editResultData.resultType === "Exam"){
+            if(!state.resultID.examId){
+                return infoNotifier(helpers.alertInfo("Exam result to be updated did not exist"))
+            }
+            else{
+                resultId = state.resultID.examId
+            }   
+        }
+        
+        let requestPayload = {...state.editResultData, resultId, updatedResult: state.editResultData.result, memberType: "Admin"}
+        console.log(requestPayload)
+        let body = {...state.editResultData}
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/edit-result', requestPayload)
+
+            if(response.data.responseCode === "00"){
+                console.log({newResult: response.data.updatedResult})
+                //....................................................
+                const response2 = await myAPI.post('/get-result', body)
+                await dispatch({type: "toggleProcess", payload: false})
+
+                if(response2.data.responseCode === "00"){
+                    await dispatch({type: "handle-result-view", 
+                    payload: {result: response2.data.result, resultID: response2.data.resultID} })
+
+                    presentFeedback(helpers.successAlert(response.data.message))
+                    history.push('/admin/result-view')
+                }
+                else{
+                    presentFeedback(helpers.successAlert(response.data.message))
+                }
+            }
+            else{
+                await dispatch({type: "toggleProcess", payload: false})
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
+    }
+
+    const recoverUser = async() => {
+        let user = await JSON.parse(localStorage.getItem("userData"))
+        await dispatch({type: "handle-user-recovery", payload: user})
+    }
+
     const signOut = async(history) => {
-        await dispatch({type: "handle-state-reset", payload: helpers.errorAlert()})
         localStorage.clear()
         history.push("/")
+        await dispatch({type: "handle-state-reset", payload: helpers.errorAlert()})
     }
 
 
@@ -267,6 +370,11 @@ export const StateProvider = (props) => {
         memberDelete,
         studentProfile,
         fetchStudentResult,
+        instantUserDetails,
+        handleResultUploadData,
+        uploadResult,
+        updateResult, 
+        recoverUser,
         signOut
     }
 

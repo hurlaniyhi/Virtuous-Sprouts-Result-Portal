@@ -44,7 +44,6 @@ function App() {
         <Route path="/admin" component={AdminDashboard}></Route>
         <Route path="/teacher" component={TeacherDashboard}></Route>
         <Route path="/student" component={StudentDashboard}></Route>
-        {/* <Route path="/resolve" component={ResolveAuth}></Route> */}
         <Redirect from="/:id" to="/" />
         </Switch>
     </Router>

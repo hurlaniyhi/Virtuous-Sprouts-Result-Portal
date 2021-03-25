@@ -6,7 +6,7 @@ import ShowAlert from '../components/reusable/showAlert'
 import Loader from 'react-loader-spinner'
 import LandingPage from '../components/LandingPage'
 import Login from "../components/LoginPage"
-import AdminDashboard from '../components/AdminDashboard/AdminDashboard';
+//import AdminDashboard from '../components/AdminDashboard/AdminDashboard';
 import TeacherDashboard from '../components/TeacherDashboard/TeacherDashboard';
 import StudentDashboard from '../components/StudentDashboard/StudentDashboard';
 
@@ -41,7 +41,7 @@ function App() {
         <Switch>
         <Route path="/" exact component={LandingPage}></Route>
         <Route path="/login" component={Login}></Route>
-        <Route path="/admin" component={AdminDashboard}></Route>
+        {/* <Route path="/admin" component={AdminDashboard}></Route> */}
         <Route path="/teacher" component={TeacherDashboard}></Route>
         <Route path="/student" component={StudentDashboard}></Route>
         <Redirect from="/:id" to="/" />

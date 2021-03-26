@@ -1,5 +1,5 @@
 import React from 'react'
-import Profile from './reusable/profile'
+import Profile from '../reusable/profile'
 
 const StudentProfile = () => {
     return(

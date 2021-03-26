@@ -2,12 +2,12 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import { FaUserPlus, FaBook, FaListAlt, FaEnvelope, FaHome } from 'react-icons/fa'
 import MenuBar from '../components/reusable/MenuBar'
-import AdminHome from '../components/AdminHome'
+import AdminHome from '../components/AdminBoard/AdminHome'
 import SideMenu from '../components/reusable/SideMenu'
-import RegisterMember from "../components/RegisterMember"
-import StudentProfile from '../components/StudentProfile'
-import ShowResult from '../components/ShowResult'
-import EditResult from '../components/updateResult'
+import RegisterMember from "../components/AdminBoard/RegisterMember"
+import StudentProfile from '../components/AdminBoard/StudentProfile'
+import ShowResult from '../components/AdminBoard/ShowResult'
+import UpdateResult from '../components/AdminBoard/updateResult'
 
 
 const AdminDashboard = () => {
@@ -105,7 +105,7 @@ const AdminDashboard = () => {
                         <Route path="/admin/member-profile" component={StudentProfile}></Route>
                         <Route path="/admin/edit-profile" component={RegisterMember}></Route>
                         <Route path="/admin/result-view" component={ShowResult}></Route>
-                        <Route path="/admin/result-update" component={EditResult}></Route>
+                        <Route path="/admin/result-update" component={UpdateResult}></Route>
                         <Redirect from="/admin/:id" to="/admin/" />
                     </Switch>
                 </div>

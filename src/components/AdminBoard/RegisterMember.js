@@ -1,5 +1,5 @@
 import React, {useContext, useState} from 'react'
-import StateManager from '../stateManager/manager'
+import StateManager from '../../stateManager/manager'
 import {FaUserPlus, FaUser, FaAt, FaPhoneAlt, FaLocationArrow, 
     FaChevronDown, FaUsersCog, FaUsers, FaGlobe, FaEdit} from 'react-icons/fa'
 import {useHistory} from 'react-router-dom'

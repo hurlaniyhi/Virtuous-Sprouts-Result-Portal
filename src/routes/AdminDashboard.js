@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import { FaUserPlus, FaBook, FaListAlt, FaEnvelope, FaHome } from 'react-icons/fa'
 import MenuBar from '../components/reusable/MenuBar'
-import AdminHome from '../components/AdminDashboard/AdminHome'
+import AdminHome from '../components/AdminDashboard/AdminHome.js'
 import SideMenu from '../components/reusable/SideMenu'
 import RegisterMember from "../components/AdminDashboard/RegisterMember"
 import StudentProfile from '../components/AdminDashboard/StudentProfile'

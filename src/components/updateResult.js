@@ -1,5 +1,5 @@
 import React from 'react'
-import ResultUpload from '../reusable/resultUpload'
+import ResultUpload from './reusable/resultUpload'
 
 
 const EditResult = () => {

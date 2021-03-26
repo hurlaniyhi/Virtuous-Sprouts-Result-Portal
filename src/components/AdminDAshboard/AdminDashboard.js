@@ -109,7 +109,7 @@ const AdminDashboard = () => {
                         <Redirect from="/admin/:id" to="/admin/" />
                     </Switch>
                 </div>
-            </div> : logUserOut()}
+            </div> : ()=>logUserOut()}
         </div> 
     )
 }

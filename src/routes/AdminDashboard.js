@@ -5,7 +5,7 @@ import MenuBar from '../components/reusable/MenuBar'
 import AdminHome from '../components/AdminHome'
 import SideMenu from '../components/reusable/SideMenu'
 import RegisterMember from "../components/RegisterMember"
-import StudentProfile from '../components/AdminDashboard/StudentProfile'
+import StudentProfile from '../components/StudentProfile'
 import ShowResult from '../components/AdminDashboard/ShowResult'
 import EditResult from '../components/AdminDashboard/updateResult'
 

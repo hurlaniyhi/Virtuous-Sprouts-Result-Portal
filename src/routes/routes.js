@@ -6,8 +6,8 @@ import ShowAlert from '../components/reusable/showAlert'
 import Loader from 'react-loader-spinner'
 import LandingPage from '../components/LandingPage'
 import Login from "../components/LoginPage"
-import TeacherDashboard from '../components/TeacherDashboard/TeacherDashboard'
-import StudentDashboard from '../components/StudentDashboard/StudentDashboard'
+import TeacherDashboard from './TeacherDashboard'
+import StudentDashboard from './StudentDashboard'
 import AdminDashboard from './AdminDashboard'
 
 function App() {

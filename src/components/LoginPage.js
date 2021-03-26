@@ -1,9 +1,8 @@
 import React, {useState, useContext} from 'react'
-import loginLogo from '../assets/logo2.jpg'
+import loginLogo from '../assets/virtuous-sprouts.png'
 import {FaHome, FaLock, FaEyeSlash, FaEye, FaUser} from 'react-icons/fa'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../stateManager/manager'
-import Loader from 'react-loader-spinner'
 import "../styles/style.css"
 
 

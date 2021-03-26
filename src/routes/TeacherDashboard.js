@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom'
 //import { FaUserPlus, FaBook, FaListAlt, FaEnvelope, FaHome } from 'react-icons/fa'
-import MenuBarPlus from '../reusable/MenuBarPlus'
-import TeacherHome from '../TeacherDashboard/TeacherHome'
-import MemberProfile from '../TeacherDashboard/StudentProfile'
-import ShowResult from '../TeacherDashboard/ShowResult'
-import UploadResult from '../TeacherDashboard/UploadResult'
+import MenuBarPlus from '../components/reusable/MenuBarPlus'
+import TeacherHome from '..//components/TeacherDashboard/TeacherHome'
+import MemberProfile from '../components/TeacherDashboard/StudentProfile'
+import ShowResult from '../components/TeacherDashboard/ShowResult'
+import UploadResult from '../components/TeacherDashboard/UploadResult'
 
 
 const TeacherDashboard = () => {

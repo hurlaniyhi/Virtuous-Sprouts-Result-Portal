@@ -1,10 +1,10 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom'
 //import { FaUserPlus, FaBook, FaListAlt, FaEnvelope, FaHome } from 'react-icons/fa'
-import MenuBarPlus from '../reusable/MenuBarPlus'
-import StudentHome from '../StudentDashboard/StudentHome'
-import MyProfile from '../StudentDashboard/StudentProfile'
-import ShowResult from "../StudentDashboard/ShowResult";
+import MenuBarPlus from '../components/reusable/MenuBarPlus'
+import StudentHome from '../components/StudentDashboard/StudentHome'
+import MyProfile from '../components/StudentDashboard/StudentProfile'
+import ShowResult from "../components/StudentDashboard/ShowResult";
 
 
 const StudentDashboard = () => {

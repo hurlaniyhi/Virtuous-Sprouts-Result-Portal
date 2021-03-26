@@ -2,9 +2,9 @@ import React from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom'
 import { FaUserPlus, FaBook, FaListAlt, FaEnvelope, FaHome } from 'react-icons/fa'
 import MenuBar from '../components/reusable/MenuBar'
-// import AdminHome from '../components/AdminDashboard/AdminHome'
+import AdminHome from '../components/AdminHome'
 import SideMenu from '../components/reusable/SideMenu'
-import RegisterMember from "../components/AdminDashboard/RegisterMember"
+import RegisterMember from "../components/RegisterMember"
 import StudentProfile from '../components/AdminDashboard/StudentProfile'
 import ShowResult from '../components/AdminDashboard/ShowResult'
 import EditResult from '../components/AdminDashboard/updateResult'
@@ -99,8 +99,8 @@ const AdminDashboard = () => {
 
                 <div className="sub-routes">
                     <Switch>
-                        {/* <Route path="/admin/" exact component={AdminHome}></Route>
-                        <Route path="/admin/home" component={AdminHome}></Route> */}
+                        <Route path="/admin/" exact component={AdminHome}></Route>
+                        <Route path="/admin/home" component={AdminHome}></Route>
                         <Route path="/admin/add-member" component={RegisterMember}></Route>
                         <Route path="/admin/member-profile" component={StudentProfile}></Route>
                         <Route path="/admin/edit-profile" component={RegisterMember}></Route>

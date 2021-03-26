@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from '../reusable/Home'
+import Home from './reusable/Home'
 
 const AdminHome = () => {
     

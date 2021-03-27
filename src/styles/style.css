@@ -797,7 +797,10 @@ body {
   padding-top: 7rem;
   text-align: center;
   width: 100%;
-  padding-bottom: 10rem; }
+  padding-bottom: 3rem; }
+  @media (max-width: 600px) {
+    .registration-container {
+      padding-bottom: 11rem; } }
 
 .form-container {
   position: relative;
@@ -1009,6 +1012,37 @@ body {
   .alert-btn:hover {
     background-color: rgba(204, 204, 204, 0.3); }
 
+.logout-btn-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.5);
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: rgba(204, 204, 204, 0.4);
+  margin-top: 3rem;
+  font-size: 1.4rem;
+  font-weight: 500; }
+
+.logout-btns {
+  display: block;
+  padding: .8rem;
+  text-decoration: none;
+  text-align: center;
+  outline: none;
+  width: 50%;
+  background-color: #fff;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer; }
+  .logout-btns:first-child {
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-right-color: rgba(204, 204, 204, 0.4); }
+  .logout-btns:hover {
+    background-color: rgba(204, 204, 204, 0.3); }
+
 /*
 ###############################################
                 MENU BAR PLUS
@@ -1171,7 +1205,8 @@ body {
       width: 70%; } }
   @media (max-width: 600px) {
     .profile-sub-container {
-      width: 60%; } }
+      width: 60%;
+      margin-bottom: 12rem; } }
   @media (max-width: 440px) {
     .profile-sub-container {
       width: 70%; } }

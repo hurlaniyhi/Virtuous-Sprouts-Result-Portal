@@ -6,4 +6,4 @@ const StudentProfile = () => {
         <Profile route="/admin/edit-profile" resultRoute="/admin/result-view"/>
     )
 }
-export default StudentProfile
+export default StudentProfile 

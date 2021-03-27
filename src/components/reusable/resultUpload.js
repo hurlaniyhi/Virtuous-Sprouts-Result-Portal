@@ -1,4 +1,4 @@
-import React, {useContext, useState, useEffect} from 'react'
+import React, {useContext, useState, useEffect, useRef} from 'react'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../../stateManager/manager'
 import {helpers} from '../../helpers/helpers'
@@ -79,8 +79,10 @@ const ResultUpload = () => {
         updateResult(history)
     }
 
+
     let resultToUpload;
-    if(state.editResultData.result){
+    if(state.editResultData.result != null){
+        console.log(state.editResultData.result)
         resultToUpload = state.editResultData.result.map(data => {
             return(
                 <div className="info-container" key={data.sn}>
@@ -101,6 +103,11 @@ const ResultUpload = () => {
                 <option value={`${user.firstName} ${user.surname}`} key={user._id}>{`${user.firstName} ${user.surname}`}</option>
             )
         })
+    }
+
+
+    if(!state.editResultData.session && state.user.memberType === "Admin"){
+        history.push("/admin")
     }
 
     return(

@@ -1,13 +1,23 @@
-import React, {useState, useContext} from 'react'
+import React, {useState, useContext, useEffect} from 'react'
 import StateManager from '../../stateManager/manager'
 import {useHistory} from 'react-router-dom'
 import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash } from 'react-icons/fa'
 
     
 const Profile = ({route, resultRoute}) => {
+
     const history = useHistory()
-    const {state, fetchAllMembers, getMemberProfile, setProfileUpdate, memberDelete} = useContext(StateManager)
+    const {state, fetchAllMembers, getMemberProfile, setProfileUpdate, memberDelete, recoverUser} = useContext(StateManager)
     const [userInput, setUserInput] = useState({memberClass: "", studentName: ""})
+
+    useEffect(()=>{
+        handleUserRecovery()
+    }, [])
+
+    async function handleUserRecovery(){
+       await recoverUser()
+    }
+
 
     function handleClassField(e){
         setUserInput({...userInput, memberClass: e.target.value})
@@ -31,9 +41,9 @@ const Profile = ({route, resultRoute}) => {
        setUserInput({...userInput, studentName: ""})
     }
 
-    function handleNavigation(){
-        history.push(resultRoute)
-    }
+    // function handleNavigation(){
+    //     history.push(resultRoute)
+    // }
 
 
     let options;
@@ -46,12 +56,12 @@ const Profile = ({route, resultRoute}) => {
         })
     }
 
-    let userType = localStorage.getItem('memberType')
+   // let userType = localStorage.getItem('memberType')
 
     return(
         <div className="profile-main-container">
             <div className="custom-input-container">
-                {userType != "Student" ? <div className="input-container resized-input select-input">
+                {state.user.memberType != "Student" ? <div className="input-container resized-input select-input">
                     <FaUsersCog  className="user-icon"/>
                     <input disabled type="text" value={userInput.memberClass} className="user-input resized-text" placeholder="Select member class"/>
                     <select name="memberClass" className="user-input resized-text select-field" onChange={handleClassField}>
@@ -66,7 +76,7 @@ const Profile = ({route, resultRoute}) => {
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
                 </div> : null}
-                {state.allMembers.length > 0 ? <div className="input-container resized-input select-input">
+                {state.allMembers ? <div className="input-container resized-input select-input">
                     <FaUsers  className="user-icon"/>
                     <input disabled type="text" value={userInput.studentName} className="user-input resized-text" placeholder="Select student"/>
                     <select name="studentName" className="user-input resized-text select-field" onChange={handleUserDetails}>
@@ -80,9 +90,9 @@ const Profile = ({route, resultRoute}) => {
             {state.memberProfile ? <div style={{width: "100%"}}>
                 <div className="header-text">
                     <p className="info-title-text">User Details</p>
-                    {userType === "Admin" ? 
+                    {state.user.memberType === "Admin" ? 
                     <FaEdit className="header-text-icon-1" onClick={handleProfileUpdate} />: null}
-                    {userType === "Admin" ? 
+                    {state.user.memberType === "Admin" ? 
                     <FaTrash className="header-text-icon-2" onClick={handleMemberDelete} />: null}
                 </div>
 
@@ -123,7 +133,7 @@ const Profile = ({route, resultRoute}) => {
                         <p className="info-label">Class</p>
                         <p className="user-info">{state.memberProfile.memberClass}</p>
                     </div>
-                    {userType === "Admin" ? <div className="info-container">
+                    {state.user === "Admin" ? <div className="info-container">
                         <p className="info-label">Password</p>
                         <p className="user-info">{state.memberProfile.passRecovery}</p>
                     </div>: null}

@@ -25,6 +25,9 @@ const stateReducer = (state, action) => {
         case "handle-alert": 
             return {...state, alertView: action.payload.view, alertText: action.payload.text}
 
+        case "handle-logout-confirmation": 
+            return {...state, logoutView: action.payload.data, history: action.payload.history}
+
         case "handle-fetch-members": 
             return {...state, allMembers: action.payload}
 
@@ -32,7 +35,7 @@ const stateReducer = (state, action) => {
             return {...state, memberProfile: action.payload}
 
         case "clear-member-profile": 
-            return {...state, memberProfile: null, allMembers: []}
+            return {...state, memberProfile: null, allMembers: null}
 
         case "handle-set-profile-update": 
             return {...state, member: action.payload, operation: "edit"}
@@ -64,8 +67,9 @@ export const StateProvider = (props) => {
         user: {}, process: false, feedbackView: false, feedbackColor: "#6d9c7d", feedbackTitle: "No Message",
         feedbackText: "No message for now", editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, studentName: "", result: null},
         member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
-        memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show",
-        allMembers: [], memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null 
+        memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show", logoutView: false,
+        allMembers: null, memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null,
+        history: null 
     })
 
     async function presentFeedback(data){
@@ -369,12 +373,17 @@ export const StateProvider = (props) => {
 
     const recoverUser = async() => {
         let user = await JSON.parse(localStorage.getItem("userData"))
-        await dispatch({type: "handle-user-recovery", payload: user})
+        await dispatch({type: "store_user_data", payload: user})
     }
 
-    const signOut = async(history) => {
+    const logoutConfirmation = async(data, history) => {
+        await dispatch({type: "handle-logout-confirmation", payload: {data, history}})
+    }
+
+    const signOut = async() => {
+        await logoutConfirmation(false, null)
         localStorage.clear()
-        history.push("/")
+        state.history.push("/")
         await dispatch({type: "handle-state-reset", payload: helpers.errorAlert()})
     }
 
@@ -398,6 +407,7 @@ export const StateProvider = (props) => {
         updateResult, 
         deleteResult,
         recoverUser,
+        logoutConfirmation,
         signOut
     }
 

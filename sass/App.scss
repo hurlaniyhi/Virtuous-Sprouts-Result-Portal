@@ -1036,7 +1036,11 @@ body{
     text-align: center;
     width: 100%;
     //height: 100%;
-    padding-bottom: 10rem;
+    padding-bottom: 3rem;
+
+    @media(max-width: 600px){
+        padding-bottom: 11rem;
+    }
 }
 .form-container{
     position: relative;
@@ -1264,6 +1268,43 @@ body{
     }
 }
 
+.logout-btn-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: $color-white;
+    color: rgba(0,0,0, .5);
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-top-color: rgba($color-deep-white, .4);
+    margin-top: 3rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+}
+
+.logout-btns{
+    display: block;
+    padding: .8rem;
+    text-decoration: none;
+    text-align: center;
+    outline: none;
+    width: 50%;
+    background-color: $color-white;
+    color: rgba(0,0,0, .5);
+    cursor: pointer;
+
+    &:first-child{
+        border-right-style: solid;
+        border-right-width: 1px;
+        border-right-color: rgba($color-deep-white, .4);
+    }
+
+    &:hover{
+        background-color: rgba($color-deep-white, .3);
+    }
+}
+
 /*
 ###############################################
                 MENU BAR PLUS
@@ -1483,6 +1524,7 @@ body{
     }
     @media(max-width: 600px){
         width: 60%;
+        margin-bottom: 12rem;
     }
     @media(max-width: 440px){
         width: 70%;

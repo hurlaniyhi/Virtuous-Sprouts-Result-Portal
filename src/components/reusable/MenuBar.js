@@ -9,10 +9,10 @@ import logo from '../../assets/logo2.jpg'
 
 const MenuBar = ({title}) =>{
     const history = useHistory()
-    const {signOut} = useContext(StateManager)
+    const {logoutConfirmation} = useContext(StateManager)
 
     function handleLogout(){
-        signOut(history)
+        logoutConfirmation(true, history)
     }
     return(
         <div className="nav-container">

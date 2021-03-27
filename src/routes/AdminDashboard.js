@@ -76,7 +76,7 @@ const AdminDashboard = () => {
                     <FaEnvelope className="bottom-menu-icon" />
                     <p className="bottom-menu-label">View Result</p>
                 </div>
-            </div> : null}
+            </div> : logUserOut()}
             {auth && (userType === "Admin") ? <div className="create-dashboard">
                 <SideMenu>
                     <div className="menu-div" id="home" onClick={()=>handleMenu("home", "home")}>

@@ -6,7 +6,6 @@ import StateManager from '../stateManager/manager'
 import "../styles/style.css"
 
 
-
 const Login = () => {
     const history = useHistory()
     const {state, signIn} = useContext(StateManager)

@@ -1,4 +1,4 @@
-import React, {useContext, useState} from 'react'
+import React, {useContext, useState, useEffect} from 'react'
 import StateManager from '../../stateManager/manager'
 import {FaUserPlus, FaUser, FaAt, FaPhoneAlt, FaLocationArrow, 
     FaChevronDown, FaUsersCog, FaUsers, FaGlobe, FaEdit} from 'react-icons/fa'
@@ -9,6 +9,17 @@ import Loader from 'react-loader-spinner'
 const RegisterMember = () => {
     const history = useHistory()
     const {state, signUp, handleMemberSelectField, editMemberProfile} = useContext(StateManager)
+
+    useEffect(()=>{
+        initializeStateMember()
+    }, [])
+
+    async function initializeStateMember() {
+        if(state.operation != "edit" && state.member){
+            handleMemberSelectField({firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
+            memberType: "", memberClass: ""})
+        }
+    }
 
     function handleSelectField(e){
         let updated = {...state.member, [e.target.name]: e.target.value}
@@ -31,7 +42,7 @@ const RegisterMember = () => {
 
     return(
         <div className="registration-container">
-            <div className="form-container">
+            {state.member ? <div className="form-container">
                 {state.operation != "edit" ? <div className="page-title-container">
                     <FaUserPlus className="page-title-icon"/>
                     <p className="page-title-text">New Member</p>
@@ -106,7 +117,7 @@ const RegisterMember = () => {
                 <a className="login-btn create-member" onClick={handleProfileUpdate}>
                     Update profile
                 </a>}
-            </div>
+            </div>: window.location.reload()}
             
         </div>
     )

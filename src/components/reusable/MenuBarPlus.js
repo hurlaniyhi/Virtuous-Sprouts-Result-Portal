@@ -6,7 +6,7 @@ import logo from '../../assets/virtuous-sprouts.png'
 
 const MenuBarPlus = ({homeRoute, profileRoute, resultRoute}) => {
     const history = useHistory()
-    const {signOut} = useContext(StateManager)
+    const {logoutConfirmation} = useContext(StateManager)
 
     function handleNavigation(route){
         history.push(route)
@@ -14,7 +14,7 @@ const MenuBarPlus = ({homeRoute, profileRoute, resultRoute}) => {
     }
 
     function handleLogOut() {
-        signOut(history)
+        logoutConfirmation(true, history)
     }
 
     let userData = JSON.parse(localStorage.getItem("userData"))

@@ -11,7 +11,8 @@ import StudentDashboard from './StudentDashboard'
 import AdminDashboard from './AdminDashboard'
 
 function App() {
-    const {state, presentFeedback, infoNotifier} = useContext(StateManager)
+    const {state, presentFeedback, infoNotifier, logoutConfirmation, signOut} = useContext(StateManager)
+
   return (
     <Router>
         <ShowFeedback display={state.feedbackView} color={state.feedbackColor} text={state.feedbackText} 
@@ -27,6 +28,17 @@ function App() {
                 infoNotifier({view: false, text: ""})}>
                 Ok
             </a>
+        </ShowAlert>
+
+        <ShowAlert display={state.logoutView} text="Are you sure you want to logout?">
+            <div className="logout-btn-container">
+                <a className="logout-btns" onClick={()=> signOut()}>
+                    Ok
+                </a>
+                <a className="logout-btns" onClick={()=> logoutConfirmation(false)}>
+                    No
+                </a>
+            </div>
         </ShowAlert>
 
         {state.process ? <div className="request-shade">

@@ -3,23 +3,25 @@ import StateManager from '../../stateManager/manager'
 import {FaUserPlus, FaUser, FaAt, FaPhoneAlt, FaLocationArrow, 
     FaChevronDown, FaUsersCog, FaUsers, FaGlobe, FaEdit} from 'react-icons/fa'
 import {useHistory} from 'react-router-dom'
-import Loader from 'react-loader-spinner'
 
 
 const RegisterMember = () => {
     const history = useHistory()
-    const {state, signUp, handleMemberSelectField, editMemberProfile} = useContext(StateManager)
+    const {state, signUp, handleMemberSelectField, editMemberProfile, resetSomeStates} = useContext(StateManager)
 
     useEffect(()=>{
-        initializeStateMember()
-    }, [])
-
-    async function initializeStateMember() {
-        if(state.operation != "edit" && state.member){
-            handleMemberSelectField({firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
-            memberType: "", memberClass: ""})
+        if(state.operation === "edit"){
+            document.title = "Profile Update"
         }
-    }
+        else{
+            document.title = "Registration"
+        }
+        
+        return () => {
+            resetSomeStates();
+          };
+    }, [])
+ 
 
     function handleSelectField(e){
         let updated = {...state.member, [e.target.name]: e.target.value}
@@ -42,7 +44,7 @@ const RegisterMember = () => {
 
     return(
         <div className="registration-container">
-            {state.member ? <div className="form-container">
+            <div className="form-container">
                 {state.operation != "edit" ? <div className="page-title-container">
                     <FaUserPlus className="page-title-icon"/>
                     <p className="page-title-text">New Member</p>
@@ -117,7 +119,7 @@ const RegisterMember = () => {
                 <a className="login-btn create-member" onClick={handleProfileUpdate}>
                     Update profile
                 </a>}
-            </div>: window.location.reload()}
+            </div>
             
         </div>
     )

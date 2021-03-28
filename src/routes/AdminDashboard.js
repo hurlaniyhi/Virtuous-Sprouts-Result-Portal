@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useEffect, useContext} from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom'
+import StateManager from '../stateManager/manager'
 import { FaUserPlus, FaBook, FaListAlt, FaEnvelope, FaHome } from 'react-icons/fa'
 import MenuBar from '../components/reusable/MenuBar'
 import AdminHome from '../components/AdminBoard/AdminHome'
@@ -13,6 +14,15 @@ import UpdateResult from '../components/AdminBoard/updateResult'
 const AdminDashboard = () => {
 
     const history = useHistory()
+    const {state, recoverUser} = useContext(StateManager)
+
+    useEffect(()=>{
+        handleUserRecovery()
+    }, [])
+
+    async function handleUserRecovery(){
+        await recoverUser()
+     }
 
     function logUserOut(){
         localStorage.clear()

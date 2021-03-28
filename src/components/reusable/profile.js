@@ -7,11 +7,13 @@ import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash } from 'react-icons
 const Profile = ({route, resultRoute}) => {
 
     const history = useHistory()
-    const {state, fetchAllMembers, getMemberProfile, setProfileUpdate, memberDelete, recoverUser} = useContext(StateManager)
+    const {state, fetchAllMembers, getMemberProfile, setProfileUpdate, memberDelete, 
+        recoverUser, resetSomeStates} = useContext(StateManager)
     const [userInput, setUserInput] = useState({memberClass: "", studentName: ""})
 
     useEffect(()=>{
-        handleUserRecovery()
+        //handleUserRecovery()
+        document.title = "Member Profile"
     }, [])
 
     async function handleUserRecovery(){
@@ -33,6 +35,7 @@ const Profile = ({route, resultRoute}) => {
     }
 
     function handleProfileUpdate(){
+        console.log({route})
         setProfileUpdate(route, history)
     }
 

@@ -11,13 +11,23 @@ const ResultUpload = () => {
     const history = useHistory()
     
     const {state, handleResultUploadData, 
-        infoNotifier, fetchAllMembers, 
+        infoNotifier, fetchAllMembers, resetSomeStates2,
         uploadResult, recoverUser, updateResult} = useContext(StateManager)
 
     const [resultInput, setResultInput] = useState({subject: "", score: ""})
 
     useEffect(()=>{
         fetchStudents()
+
+        if(state.user.memberType === "Admin"){
+            document.title = "Result Editing"
+        }
+        else{
+            document.title = "Result Upload"
+        }
+        return () => {
+            resetSomeStates2();
+          };
     }, [])
 
     async function fetchStudents(){
@@ -78,6 +88,7 @@ const ResultUpload = () => {
     function handleUpdateResult(){
         updateResult(history)
     }
+
 
 
     let resultToUpload;

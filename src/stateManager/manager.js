@@ -55,6 +55,13 @@ const stateReducer = (state, action) => {
         case "handle-result-upload-data": 
             return {...state, editResultData: action.payload}
 
+        case "handle-reset-some-states": 
+            return {...state, member: action.payload.member, operation: action.payload.operation, 
+                memberProfile: action.payload.memberProfile, resultData: action.payload.resultData}
+
+        case "handle-reset-some-states2": 
+            return {...state, editResultData: action.payload.editResultData}
+
         default: return state
     }
 
@@ -88,6 +95,13 @@ export const StateProvider = (props) => {
         await dispatch({type: "handle-result-upload-data", payload: data})
     }
 
+    const resetSomeStates = async() => {
+        await dispatch({type: "handle-reset-some-states", payload: helpers.resetSomeState()})
+    }
+
+    const resetSomeStates2 = async() => {
+        await dispatch({type: "handle-reset-some-states2", payload: helpers.resetSomeState2()})
+    }
 
     const signIn = async(history, username, password) => { 
         if(!username || !password){
@@ -105,6 +119,7 @@ export const StateProvider = (props) => {
                 await localStorage.setItem("userData", JSON.stringify(response.data.profile))
                 await localStorage.setItem("firstName", response.data.profile.firstName)
                 await localStorage.setItem("memberType", response.data.profile.memberType)
+
                 if(response.data.profile.memberType === "Teacher"){
                     history.push("/teacher")
                 }
@@ -374,6 +389,7 @@ export const StateProvider = (props) => {
     const recoverUser = async() => {
         let user = await JSON.parse(localStorage.getItem("userData"))
         await dispatch({type: "store_user_data", payload: user})
+        console.log(user.firstName)
     }
 
     const logoutConfirmation = async(data, history) => {
@@ -408,6 +424,8 @@ export const StateProvider = (props) => {
         deleteResult,
         recoverUser,
         logoutConfirmation,
+        resetSomeStates,
+        resetSomeStates2,
         signOut
     }
 

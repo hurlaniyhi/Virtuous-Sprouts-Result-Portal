@@ -1,8 +1,12 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import Home from '../reusable/Home'
 import studentIllustrator from '../../assets/student.svg'
 
 const StudentHome = () => {
+
+    useEffect(()=>{
+        document.title = "Student Home Page"
+    }, [])
     
     let name = localStorage.getItem("firstName")
 

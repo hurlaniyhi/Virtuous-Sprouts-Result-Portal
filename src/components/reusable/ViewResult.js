@@ -9,13 +9,18 @@ const ViewResult = () => {
     const history = useHistory()
 
     const {state, fetchAllMembers, fetchStudentResult, 
-        recoverUser, handleResultUploadData, 
+        recoverUser, handleResultUploadData, resetSomeStates,
         deleteResult} = useContext(StateManager)
 
     const [resultInput, setResultInput] = useState({studentClass: "", studentName: "", session: "", term: ""})
 
     useEffect(()=>{
-        userRecovery()
+        //userRecovery()
+
+        document.title = "Result Fetching"
+        return () => {
+            resetSomeStates();
+          };
     }, [])
 
     async function userRecovery(){

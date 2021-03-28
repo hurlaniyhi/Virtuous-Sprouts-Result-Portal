@@ -1,4 +1,5 @@
-import React from 'react'
+import React, {useContext, useEffect} from 'react'
+import StateManager from '../stateManager/manager'
 import { BrowserRouter as Router, Route, Switch, Redirect, useHistory } from 'react-router-dom'
 //import { FaUserPlus, FaBook, FaListAlt, FaEnvelope, FaHome } from 'react-icons/fa'
 import MenuBarPlus from '../components/reusable/MenuBarPlus'
@@ -11,6 +12,16 @@ import UploadResult from '../components/TeacherDashboard/UploadResult'
 const TeacherDashboard = () => {
 
     const history = useHistory()
+
+    const {state, recoverUser} = useContext(StateManager)
+
+    useEffect(()=>{
+        handleUserRecovery()
+    }, [])
+
+    async function handleUserRecovery(){
+        await recoverUser()
+     }
 
     function logUserOut(){
         localStorage.clear()

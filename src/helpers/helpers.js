@@ -22,5 +22,22 @@ export const helpers = {
             memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show",
             allMembers: [], memberProfile: null, operation: "" 
         }
-    }
+    },
+    resetSomeState: function(){
+        return {
+            member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
+            memberType: "", memberClass: ""},
+            operation: "",
+            memberProfile: null,
+            resultData: null,
+            editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, 
+            studentName: "", result: null}
+        }
+    },
+    resetSomeState2: function(){
+        return {
+            editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, 
+            studentName: "", result: null}
+        }
+    },
 }

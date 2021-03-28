@@ -1,8 +1,9 @@
-import React, {useContext} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
 import StateManager from '../stateManager/manager'
 import ShowFeedback from '../components/reusable/showFeedback'
 import ShowAlert from '../components/reusable/showAlert'
+import ChangePassword from '../components/reusable/ChangePassword'
 import Loader from 'react-loader-spinner'
 import LandingPage from '../components/LandingPage'
 import Login from "../components/LoginPage"
@@ -11,7 +12,38 @@ import StudentDashboard from './StudentDashboard'
 import AdminDashboard from './AdminDashboard'
 
 function App() {
-    const {state, presentFeedback, infoNotifier, logoutConfirmation, signOut} = useContext(StateManager)
+    const {state, presentFeedback, infoNotifier, logoutConfirmation, 
+        signOut, passwordFieldChange, changePasswordView, changePassword} = useContext(StateManager)
+
+        const [error, setError] = useState(false)
+
+    useEffect(()=>{
+
+    }, [error])
+
+    function handlePasswordField(e){
+        passwordFieldChange({...state.passwordChangeFields, [e.target.name]: e.target.value})
+    }
+
+    async function handlePasswordChange() {
+        if(state.passwordChangeFields){
+            if(state.passwordChangeFields.password === state.passwordChangeFields.confirmPassword){
+                changePassword()
+                setError(false)
+            }
+            else{
+                setError(true)
+            }
+        }
+        else{
+            setError(true)
+        }
+    }
+
+    function handlePasswordCancel() {
+        changePasswordView(false)
+        setError(false)
+    }
 
   return (
     <Router>
@@ -40,6 +72,20 @@ function App() {
                 </a>
             </div>
         </ShowAlert>
+
+        <ChangePassword display={state.changePasswordView}>
+            <input type="password" name="password" className="alert-input-1" onChange={handlePasswordField} placeholder="Enter new password" />
+            <input type="password" name="confirmPassword" className="alert-input-2" onChange={handlePasswordField} placeholder="Confirm password" />
+            {error ? <p className="alert-error-text">Password is null or did not match</p>: null}
+            <div className="logout-btn-container">
+                <a className="logout-btns" onClick={handlePasswordCancel}>
+                    Cancel
+                </a>
+                <a className="logout-btns" onClick={handlePasswordChange}>
+                    Change
+                </a>
+            </div>
+        </ChangePassword>
 
         {state.process ? <div className="request-shade">
             <Loader 

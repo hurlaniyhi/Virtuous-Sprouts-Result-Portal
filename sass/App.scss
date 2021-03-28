@@ -1022,6 +1022,36 @@ body{
     animation: position-change3 40s infinite;
 }
 
+.change-pass-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 50%;
+    background-color: rgba($color-green, .6);
+    color: $color-white;
+    position: fixed;
+    bottom: 4rem;
+    right: 2rem;
+    box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
+    transition: all .3s;
+
+    &:hover{
+        transform: scale(1.1);
+        background-color: $color-green-light;
+    }
+
+    @media(max-width: 600px){
+        bottom: 11rem;
+    }
+    @media(max-width: 400px){
+        bottom: 10rem;
+        right: 1rem;
+    }
+
+}
+
 
 /*
 ###############################################
@@ -1238,12 +1268,53 @@ body{
     text-align: center;
     padding: 0rem 1rem;
 }
+
+.alert-input-1, .alert-input-2{
+    display: block;
+    height: 4rem;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 1rem;
+    border: none;
+    border: 1px solid rgba($color-deep-white, .7);
+    color: rgba(0,0,0, .5);
+    outline: none;
+    padding: 0 1.5rem;
+    font-size: 3rem;
+    transition: all .2s;
+
+    &:focus, &:active{
+        border-width: 2.3px;
+        border-color: $color-green;
+    }
+
+    &::placeholder{
+        color: rgba(0,0,0, .3);
+    }
+    &:placeholder-shown{
+        font-size: 1.3rem;
+    }
+
+    &:not(:last-child){
+        margin-top: 1rem;
+    }
+}
+
 .alert-text{
     font-size: 1.4rem;
     color: rgba(0,0,0, .5);
     padding-left: 1.2rem;
     padding-right: 1.2rem;
     text-align: center;
+}
+.alert-error-text{
+    font-size: 1rem;
+    color: red;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    text-align: center;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 .alert-btn{
     display: block;
@@ -1349,7 +1420,7 @@ body{
 
     // FUNCTIONALITY
     &__checkbox:checked ~ &__background {
-        height: 23.5rem;
+        height: 26rem;
     } 
 
     &__checkbox:checked ~ &__background .option-list{

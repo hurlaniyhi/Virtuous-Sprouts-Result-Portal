@@ -8,17 +8,17 @@ const Profile = ({route, resultRoute}) => {
 
     const history = useHistory()
     const {state, fetchAllMembers, getMemberProfile, setProfileUpdate, memberDelete, 
-        recoverUser, resetSomeStates} = useContext(StateManager)
+        recoverUser, resetSomeStates2} = useContext(StateManager)
     const [userInput, setUserInput] = useState({memberClass: "", studentName: ""})
 
     useEffect(()=>{
         //handleUserRecovery()
         document.title = "Member Profile"
-    }, [])
 
-    async function handleUserRecovery(){
-       await recoverUser()
-    }
+        // return () => {
+        //     resetSomeStates2();
+        //   };
+    }, [])
 
 
     function handleClassField(e){
@@ -136,7 +136,7 @@ const Profile = ({route, resultRoute}) => {
                         <p className="info-label">Class</p>
                         <p className="user-info">{state.memberProfile.memberClass}</p>
                     </div>
-                    {state.user === "Admin" ? <div className="info-container">
+                    {state.user.memberType === "Admin" ? <div className="info-container">
                         <p className="info-label">Password</p>
                         <p className="user-info">{state.memberProfile.passRecovery}</p>
                     </div>: null}

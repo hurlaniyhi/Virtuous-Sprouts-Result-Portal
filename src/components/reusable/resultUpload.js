@@ -109,10 +109,11 @@ const ResultUpload = () => {
     let options;
     if(state.allMembers){
         options = state.allMembers.map(user => {
-            
-            return(
-                <option value={`${user.firstName} ${user.surname}`} key={user._id}>{`${user.firstName} ${user.surname}`}</option>
-            )
+            if(user.memberType != "Admin" && user.memberType != "Teacher"){
+                return(
+                    <option value={`${user.firstName} ${user.surname}`} key={user._id}>{`${user.firstName} ${user.surname}`}</option>
+                )
+            }
         })
     }
 

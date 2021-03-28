@@ -6,10 +6,19 @@ import logo from '../../assets/virtuous-sprouts.png'
 
 const MenuBarPlus = ({homeRoute, profileRoute, resultRoute}) => {
     const history = useHistory()
-    const {logoutConfirmation} = useContext(StateManager)
+    const {logoutConfirmation, changePasswordView} = useContext(StateManager)
 
     function handleNavigation(route){
-        history.push(route)
+
+        if(route === "password"){
+            changePasswordView(true)
+        }
+        else if(route === "logout"){
+            handleLogOut()
+        }
+        else{
+            history.push(route)
+        }
         document.querySelector(".navigation__checkbox").checked = false
     }
 
@@ -37,7 +46,8 @@ const MenuBarPlus = ({homeRoute, profileRoute, resultRoute}) => {
                         <p className="option-list-items" onClick={()=>handleNavigation("/teacher/result-upload")}>
                             Upload Result
                         </p>: null}
-                    <p className="option-list-items" onClick={handleLogOut}>Logout</p>
+                    <p className="option-list-items" onClick={()=>handleNavigation("password")}>Change Password</p>
+                    <p className="option-list-items" onClick={()=>handleNavigation("logout")}>Logout</p>
                 </div>
             </div>
         </div>

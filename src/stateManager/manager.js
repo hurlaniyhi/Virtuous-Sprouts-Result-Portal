@@ -62,6 +62,15 @@ const stateReducer = (state, action) => {
         case "handle-reset-some-states2": 
             return {...state, editResultData: action.payload.editResultData}
 
+        case "clear-result-to-upload": 
+            return {...state, editResultData: action.payload}
+
+        case "handle-password-field": 
+            return {...state, passwordChangeFields: action.payload}
+
+        case "handle-password-view": 
+            return {...state, passwordChangeFields: null, changePasswordView: action.payload}
+
         default: return state
     }
 
@@ -76,7 +85,7 @@ export const StateProvider = (props) => {
         member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
         memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show", logoutView: false,
         allMembers: null, memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null,
-        history: null 
+        history: null, changePasswordView: false, passwordChangeFields: {}
     })
 
     async function presentFeedback(data){
@@ -156,6 +165,7 @@ export const StateProvider = (props) => {
 
             if(response.data.responseCode === "00"){
                 presentFeedback(helpers.successAlert("Member successfully added"))
+                resetSomeStates()
             }
             else{ 
                 presentFeedback(helpers.errorAlert(response.data.message))
@@ -299,6 +309,7 @@ export const StateProvider = (props) => {
 
             if(response.data.responseCode === "00"){
                 presentFeedback(helpers.successAlert(response.data.message))
+                await dispatch({type: "clear-result-to-upload", payload: {...state.editResultData, result: null}})
             }
             else{
                 presentFeedback(helpers.errorAlert(response.data.message))
@@ -386,6 +397,10 @@ export const StateProvider = (props) => {
         }
     }
 
+    const passwordFieldChange = async(data) => {
+        await dispatch({type: "handle-password-field", payload: data})
+    }
+
     const recoverUser = async() => {
         let user = await JSON.parse(localStorage.getItem("userData"))
         await dispatch({type: "store_user_data", payload: user})
@@ -394,6 +409,33 @@ export const StateProvider = (props) => {
 
     const logoutConfirmation = async(data, history) => {
         await dispatch({type: "handle-logout-confirmation", payload: {data, history}})
+    }
+
+    const changePasswordView = async(data) => {
+        await dispatch({type: "handle-password-view", payload: data})
+    }
+
+    const changePassword = async() => {
+
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/changePassword',
+            {username: state.user.username, password: state.passwordChangeFields.password})
+            await dispatch({type: "toggleProcess", payload: false})
+           
+            passwordFieldChange(null)
+            changePasswordView(false)
+            if(response.data.responseCode === "00"){
+                presentFeedback(helpers.successAlert(response.data.message))
+            }
+            else{
+                presentFeedback(helpers.successAlert(response.data.message))
+            }
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
     }
 
     const signOut = async() => {
@@ -426,6 +468,9 @@ export const StateProvider = (props) => {
         logoutConfirmation,
         resetSomeStates,
         resetSomeStates2,
+        passwordFieldChange,
+        changePasswordView,
+        changePassword,
         signOut
     }
 

@@ -37,7 +37,7 @@ export const helpers = {
     resetSomeState2: function(){
         return {
             editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, 
-            studentName: "", result: null}
+            studentName: "", result: null},
         }
     },
 }

@@ -64,11 +64,11 @@ function App() {
 
         <ShowAlert display={state.logoutView} text="Are you sure you want to logout?">
             <div className="logout-btn-container">
-                <a className="logout-btns" onClick={()=> signOut()}>
-                    Ok
-                </a>
-                <a className="logout-btns" onClick={()=> logoutConfirmation(false)}>
+            <a className="logout-btns" onClick={()=> logoutConfirmation(false)}>
                     No
+                </a>
+                <a className="logout-btns" onClick={()=> signOut()}>
+                    Yes
                 </a>
             </div>
         </ShowAlert>

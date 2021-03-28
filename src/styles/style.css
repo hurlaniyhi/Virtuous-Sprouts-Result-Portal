@@ -70,6 +70,17 @@ body {
   margin: 0;
   height: 100%; }
 
+input,
+textarea,
+button,
+select,
+a,
+label,
+span,
+div,
+p {
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
 .lpContainer {
   height: 100%;
   background-image: linear-gradient(to right bottom, rgba(109, 156, 125, 0.7), rgba(40, 180, 133, 0.7)), url("../assets/nat-1-large.jpg");
@@ -1051,7 +1062,7 @@ body {
 
 .alert-btn {
   display: block;
-  padding: .8rem;
+  padding: 1rem;
   box-sizing: border-box;
   width: 100%;
   background-color: #fff;
@@ -1085,7 +1096,7 @@ body {
 
 .logout-btns {
   display: block;
-  padding: .8rem;
+  padding: 1rem;
   text-decoration: none;
   text-align: center;
   outline: none;

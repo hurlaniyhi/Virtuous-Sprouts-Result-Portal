@@ -9,7 +9,7 @@ import logo from '../../assets/logo2.jpg'
 
 const MenuBar = ({title}) =>{
     const history = useHistory()
-    const {logoutConfirmation} = useContext(StateManager)
+    const {state, logoutConfirmation} = useContext(StateManager)
 
     function handleLogout(){
         logoutConfirmation(true, history)
@@ -17,7 +17,7 @@ const MenuBar = ({title}) =>{
     return(
         <div className="nav-container">
             <img src={logo}  className="nav-logo" />
-            <p className="page-title">{title}</p>
+            <p className="page-title">{state.pageTitle}</p>
             <FiLogOut className="nav-logout" onClick={handleLogout}/>
         </div>
     )

@@ -4,16 +4,16 @@ import Home from '../reusable/Home'
 
 const AdminHome = () => {
     
-    const {state, handleMemberSelectField, resetSomeStates} = useContext(StateManager)
+    const {state, handleMemberSelectField, resetSomeStates, pageTitle} = useContext(StateManager)
 
     useEffect(()=>{
         resolveRegistrationIssue()
         document.title = "Admin Home Page"
+        pageTitle("Admin Dashboard")
         return () => {
             resetSomeStates();
           };
     }, [])
-
     
     async function resolveRegistrationIssue(){
         handleMemberSelectField({firstName: "", surname: "", email: "", phoneNumber: "", address: "", 

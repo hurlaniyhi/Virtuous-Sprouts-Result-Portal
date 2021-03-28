@@ -1,11 +1,15 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useContext} from 'react'
+import StateManager from '../../stateManager/manager'
 import Home from '../reusable/Home'
 import studentIllustrator from '../../assets/student.svg'
 
 const StudentHome = () => {
 
+    const {pageTitle} = useContext(StateManager)
+
     useEffect(()=>{
         document.title = "Student Home Page"
+        pageTitle("Student Dashboard")
     }, [])
     
     let name = localStorage.getItem("firstName")

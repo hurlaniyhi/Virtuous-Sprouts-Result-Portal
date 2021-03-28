@@ -12,7 +12,7 @@ const ResultUpload = () => {
     
     const {state, handleResultUploadData, 
         infoNotifier, fetchAllMembers, resetSomeStates2,
-        uploadResult, recoverUser, updateResult} = useContext(StateManager)
+        uploadResult, recoverUser, updateResult, pageTitle} = useContext(StateManager)
 
     const [resultInput, setResultInput] = useState({subject: "", score: ""})
 
@@ -21,9 +21,11 @@ const ResultUpload = () => {
 
         if(state.user.memberType === "Admin"){
             document.title = "Result Editing"
+            pageTitle("Result Alteration")
         }
         else{
             document.title = "Result Upload"
+            pageTitle("Result Upload")
         }
         return () => {
             resetSomeStates2();

@@ -10,7 +10,7 @@ const ViewResult = () => {
 
     const {state, fetchAllMembers, fetchStudentResult, 
         recoverUser, handleResultUploadData, resetSomeStates,
-        deleteResult} = useContext(StateManager)
+        deleteResult, pageTitle} = useContext(StateManager)
 
     const [resultInput, setResultInput] = useState({studentClass: "", studentName: "", session: "", term: ""})
 
@@ -18,6 +18,7 @@ const ViewResult = () => {
         //userRecovery()
 
         document.title = "Result Fetching"
+        pageTitle("Result View")
         return () => {
             resetSomeStates();
           };

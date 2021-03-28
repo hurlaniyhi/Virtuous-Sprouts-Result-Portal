@@ -7,11 +7,12 @@ const TeacherHome = () => {
     
     let name = localStorage.getItem("firstName")
 
-    const {state, handleResultUploadData} = useContext(StateManager)
+    const {state, handleResultUploadData, pageTitle} = useContext(StateManager)
 
     useEffect(()=>{
         resolveResultIssue()
         document.title = "Teacher Home Page"
+        pageTitle("Teacher Dashboard")
     }, [])
 
     async function resolveResultIssue(){

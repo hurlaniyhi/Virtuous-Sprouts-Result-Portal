@@ -8,16 +8,13 @@ const Profile = ({route, resultRoute}) => {
 
     const history = useHistory()
     const {state, fetchAllMembers, getMemberProfile, setProfileUpdate, memberDelete, 
-        recoverUser, resetSomeStates2} = useContext(StateManager)
+        pageTitle} = useContext(StateManager)
     const [userInput, setUserInput] = useState({memberClass: "", studentName: ""})
 
     useEffect(()=>{
-        //handleUserRecovery()
         document.title = "Member Profile"
-
-        // return () => {
-        //     resetSomeStates2();
-        //   };
+        pageTitle("Member Profile")
+        
     }, [])
 
 

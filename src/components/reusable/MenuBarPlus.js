@@ -6,7 +6,7 @@ import logo from '../../assets/virtuous-sprouts.png'
 
 const MenuBarPlus = ({homeRoute, profileRoute, resultRoute}) => {
     const history = useHistory()
-    const {logoutConfirmation, changePasswordView} = useContext(StateManager)
+    const {state, logoutConfirmation, changePasswordView} = useContext(StateManager)
 
     function handleNavigation(route){
 
@@ -37,7 +37,7 @@ const MenuBarPlus = ({homeRoute, profileRoute, resultRoute}) => {
 
             <div class="navigation__background">
                 <img src={logo}  className="nav-logo-plus" />
-                <p style={{textAlign: "center"}} className="nav-title-plus">Virtuous Sprouts Academy</p>
+                <p style={{textAlign: "center"}} className="nav-title-plus">{state.pageTitle}</p>
                 <div className="option-list">
                     <p className="option-list-items" onClick={()=>handleNavigation(homeRoute)}>Home</p>
                     <p className="option-list-items" onClick={()=>handleNavigation(profileRoute)}>Student Profile</p>

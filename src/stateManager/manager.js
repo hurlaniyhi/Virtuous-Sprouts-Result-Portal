@@ -71,6 +71,9 @@ const stateReducer = (state, action) => {
         case "handle-password-view": 
             return {...state, passwordChangeFields: null, changePasswordView: action.payload}
 
+        case "handle-page-title": 
+            return {...state, pageTitle: action.payload}
+
         default: return state
     }
 
@@ -85,7 +88,7 @@ export const StateProvider = (props) => {
         member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
         memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show", logoutView: false,
         allMembers: null, memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null,
-        history: null, changePasswordView: false, passwordChangeFields: {}
+        history: null, changePasswordView: false, passwordChangeFields: {}, pageTitle: ""
     })
 
     async function presentFeedback(data){
@@ -110,6 +113,10 @@ export const StateProvider = (props) => {
 
     const resetSomeStates2 = async() => {
         await dispatch({type: "handle-reset-some-states2", payload: helpers.resetSomeState2()})
+    }
+
+    const pageTitle = async(data) => {
+        await dispatch({type: "handle-page-title", payload: data})
     }
 
     const signIn = async(history, username, password) => { 
@@ -471,6 +478,7 @@ export const StateProvider = (props) => {
         passwordFieldChange,
         changePasswordView,
         changePassword,
+        pageTitle,
         signOut
     }
 

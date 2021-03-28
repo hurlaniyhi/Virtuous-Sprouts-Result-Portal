@@ -7,14 +7,16 @@ import {useHistory} from 'react-router-dom'
 
 const RegisterMember = () => {
     const history = useHistory()
-    const {state, signUp, handleMemberSelectField, editMemberProfile, resetSomeStates} = useContext(StateManager)
+    const {state, signUp, handleMemberSelectField, editMemberProfile, resetSomeStates, pageTitle} = useContext(StateManager)
 
     useEffect(()=>{
         if(state.operation === "edit"){
             document.title = "Profile Update"
+            pageTitle("Profile Update")
         }
         else{
             document.title = "Registration"
+            pageTitle("Registration")
         }
         
         return () => {

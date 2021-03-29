@@ -10,7 +10,7 @@ const ViewResult = () => {
 
     const {state, fetchAllMembers, fetchStudentResult, 
         recoverUser, handleResultUploadData, resetSomeStates,
-        deleteResult, pageTitle} = useContext(StateManager)
+        deleteResult, pageTitle, deleteConfirmation} = useContext(StateManager)
 
     const [resultInput, setResultInput] = useState({studentClass: "", studentName: "", session: "", term: ""})
 
@@ -43,7 +43,7 @@ const ViewResult = () => {
         fetchStudentResult(resultInput)
     }
 
-    function  handleRoute(route) {
+   async function handleRoute(route) {
         if(route === "edit"){
 
             handleResultUploadData({...state.editResultData, 
@@ -54,7 +54,9 @@ const ViewResult = () => {
             history.push("/admin/result-update")
         }
         else if(route === "delete"){
-            deleteResult(resultInput)
+            await localStorage.setItem("deleteParams", JSON.stringify(resultInput))
+            deleteConfirmation(true, "result")
+            //deleteResult(resultInput)
         }
     }
 

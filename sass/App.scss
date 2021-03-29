@@ -524,7 +524,6 @@ p{
     box-sizing: border-box;
     padding: 1.5rem 1rem;
     text-align: center;
-    background-color: $color-white;
     color: $color-grey-dark;
     text-decoration: none;
     outline: none;
@@ -702,7 +701,7 @@ p{
     width: 4.5rem;
     height: 4.5rem;
     border-radius: 50%;
-    margin-left: 3.5rem;
+    margin-left: 2rem;
     opacity: 0;
 
     @media(max-width: 600px){
@@ -712,7 +711,7 @@ p{
 .nav-logout{
     font-size: 3rem;
     color: $color-white;
-    margin-right: 5rem;
+    margin-right: 2.5rem;
 }
 
 /*

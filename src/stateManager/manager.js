@@ -73,6 +73,9 @@ const stateReducer = (state, action) => {
 
         case "handle-page-title": 
             return {...state, pageTitle: action.payload}
+        
+        case "handle-delete-view": 
+            return {...state, deleteView: action.payload.view, deleteType: action.payload.type}
 
         default: return state
     }
@@ -88,7 +91,8 @@ export const StateProvider = (props) => {
         member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
         memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show", logoutView: false,
         allMembers: null, memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null,
-        history: null, changePasswordView: false, passwordChangeFields: {}, pageTitle: ""
+        history: null, changePasswordView: false, passwordChangeFields: {}, pageTitle: "", deleteView: false,
+        deleteType: ""
     })
 
     async function presentFeedback(data){
@@ -117,6 +121,10 @@ export const StateProvider = (props) => {
 
     const pageTitle = async(data) => {
         await dispatch({type: "handle-page-title", payload: data})
+    }
+
+    const deleteConfirmation = async(view, type) => {
+        await dispatch({type: "handle-delete-view", payload: {view, type}})
     }
 
     const signIn = async(history, username, password) => { 
@@ -479,6 +487,7 @@ export const StateProvider = (props) => {
         changePasswordView,
         changePassword,
         pageTitle,
+        deleteConfirmation,
         signOut
     }
 

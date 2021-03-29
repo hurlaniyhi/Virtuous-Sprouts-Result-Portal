@@ -12,8 +12,8 @@ import StudentDashboard from './StudentDashboard'
 import AdminDashboard from './AdminDashboard'
 
 function App() {
-    const {state, presentFeedback, infoNotifier, logoutConfirmation, 
-        signOut, passwordFieldChange, changePasswordView, changePassword} = useContext(StateManager)
+    const {state, presentFeedback, infoNotifier, logoutConfirmation, deleteConfirmation, memberDelete,
+        signOut, passwordFieldChange, changePasswordView, changePassword, deleteResult} = useContext(StateManager)
 
         const [error, setError] = useState(false)
 
@@ -45,6 +45,19 @@ function App() {
         setError(false)
     }
 
+    async function handleDelete(){
+        await deleteConfirmation(false, state.deleteType)
+        if(state.deleteType === "result"){
+           const reqParam = await JSON.parse(localStorage.getItem("deleteParams"))
+           await deleteResult(reqParam)
+        }
+        else if(state.deleteType === "profile"){
+           await memberDelete()
+        }
+
+        deleteConfirmation(false, "")
+    }
+
   return (
     <Router>
         <ShowFeedback display={state.feedbackView} color={state.feedbackColor} text={state.feedbackText} 
@@ -68,6 +81,17 @@ function App() {
                     No
                 </a>
                 <a className="logout-btns" onClick={()=> signOut()}>
+                    Yes
+                </a>
+            </div>
+        </ShowAlert>
+
+        <ShowAlert display={state.deleteView} text={`Are you sure you want to delete this ${state.deleteType}?`}>
+            <div className="logout-btn-container">
+            <a className="logout-btns" onClick={()=> deleteConfirmation(false, "")}>
+                    No
+                </a>
+                <a className="logout-btns" onClick={handleDelete}>
                     Yes
                 </a>
             </div>

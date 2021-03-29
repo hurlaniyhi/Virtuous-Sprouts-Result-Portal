@@ -8,7 +8,7 @@ const Profile = ({route, resultRoute}) => {
 
     const history = useHistory()
     const {state, fetchAllMembers, getMemberProfile, setProfileUpdate, memberDelete, 
-        pageTitle} = useContext(StateManager)
+        pageTitle, deleteConfirmation} = useContext(StateManager)
     const [userInput, setUserInput] = useState({memberClass: "", studentName: ""})
 
     useEffect(()=>{
@@ -37,7 +37,8 @@ const Profile = ({route, resultRoute}) => {
     }
 
     async function handleMemberDelete(){
-       await memberDelete()
+       //await memberDelete()
+       await deleteConfirmation(true, "profile")
        setUserInput({...userInput, studentName: ""})
     }
 

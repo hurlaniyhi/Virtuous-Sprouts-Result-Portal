@@ -91,7 +91,7 @@ const RegisterMember = () => {
                     <input disabled type="text" value={state.member.memberType} className="user-input resized-text" placeholder="Select member type"/>
                     <select name="memberType" className="user-input resized-text select-field" onChange={handleSelectField}>
                         <option value="">Select member type</option>
-                        <option value="Admin">Admin</option>
+                        {/* <option value="Admin">Admin</option> */}
                         <option value="Student">Student</option>
                         <option value="Teacher">Teacher</option>
                     </select>

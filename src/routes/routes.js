@@ -15,7 +15,7 @@ function App() {
     const {state, presentFeedback, infoNotifier, logoutConfirmation, deleteConfirmation, memberDelete,
         signOut, passwordFieldChange, changePasswordView, changePassword, deleteResult} = useContext(StateManager)
 
-        const [error, setError] = useState(false)
+        const [error, setError] = useState("")
 
     useEffect(()=>{
 
@@ -26,23 +26,23 @@ function App() {
     }
 
     async function handlePasswordChange() {
-        if(state.passwordChangeFields){
+        if(state.passwordChangeFields.password){
             if(state.passwordChangeFields.password === state.passwordChangeFields.confirmPassword){
                 changePassword()
-                setError(false)
+                setError("")  // false
             }
             else{
-                setError(true)
+                setError("Password did not match")  //true
             }
         }
         else{
-            setError(true)
+            setError("Kindly enter new password and confirm")  //true
         }
     }
 
     function handlePasswordCancel() {
         changePasswordView(false)
-        setError(false)
+        setError("")  //false
     }
 
     async function handleDelete(){
@@ -100,7 +100,7 @@ function App() {
         <ChangePassword display={state.changePasswordView}>
             <input type="password" name="password" className="alert-input-1" onChange={handlePasswordField} placeholder="Enter new password" />
             <input type="password" name="confirmPassword" className="alert-input-2" onChange={handlePasswordField} placeholder="Confirm password" />
-            {error ? <p className="alert-error-text">Password is null or did not match</p>: null}
+            {error ? <p className="alert-error-text">{error}</p>: null}
             <div className="logout-btn-container">
                 <a className="logout-btns" onClick={handlePasswordCancel}>
                     Cancel

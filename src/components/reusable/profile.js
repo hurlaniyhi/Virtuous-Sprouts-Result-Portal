@@ -66,7 +66,10 @@ const Profile = ({route, resultRoute}) => {
                     <FaUsersCog  className="user-icon"/>
                     <input disabled type="text" value={userInput.memberClass} className="user-input resized-text" placeholder="Select member class"/>
                     <select name="memberClass" className="user-input resized-text select-field" onChange={handleClassField}>
-                    <option value="">Select member class</option>
+                        <option value="">Select member class</option>
+                        <option value="Creche">Creche</option>
+                        <option value="Toddler 1">Toddler 1</option>
+                        <option value="Toddler 2">Toddler 2</option>
                         <option value="Nursery 1">Nursery 1</option>
                         <option value="Nursery 2">Nursery 2</option>
                         <option value="Primary 1">Primary 1</option>

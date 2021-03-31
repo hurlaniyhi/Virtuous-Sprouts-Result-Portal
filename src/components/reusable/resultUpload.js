@@ -178,14 +178,21 @@ const ResultUpload = () => {
                     <input disabled type="text" value={resultInput.subject} className="upload-select-input resized-text" placeholder="Select subject"/>
                     <select name="subject" className="each-upload-select-field" onChange={handleSubjectAndScore}>
                         <option value="">Select Subject</option>
-                        <option value="Biology">Biology</option>
+                        <option value="Tahfeedhul Qur'an">Tahfeedhul Qur'an</option>
+                        <option value="Prevocational Studies">Prevocational Studies</option>
                         <option value="Basic Science">Basic Science</option>
-                        <option value="Physics">Physics</option>
-                        <option value="Chemistry">Chemistry</option>
+                        <option value="Islamic Studies">Islamic Studies</option>
+                        <option value="National Value">National Value</option>
+                        <option value="Quantitative Reasoning">Quantitative Reasoning</option>
+                        <option value="Al-Arabiyyah">Al-Arabiyyah</option>
+                        <option value="Verbal Reasoning">Verbal Reasoning</option>
+                        <option value="Al-Qiraahah Wal-Kitaabah">Al-Qiraahah Wal-Kitaabah</option>
                         <option value="Mathematics">Mathematics</option>
-                        <option value="English">English</option>
-                        <option value="History">History</option>
-                        <option value="Account">Account</option>
+                        <option value="English Language">English Language</option>
+                        <option value="Creative Arts/Drawing">Creative Arts/Drawings</option>
+                        <option value="Handwriting">Handwriting</option>
+                        <option value="At-Taoheed">At-Taoheed</option>
+                        <option value="Al-Hadith">Al-Hadith</option>
                     </select>
                     <FaChevronDown  className="each-upload-select-field-icon"/>
                 </div>

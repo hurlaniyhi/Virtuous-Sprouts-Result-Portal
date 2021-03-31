@@ -103,6 +103,9 @@ const RegisterMember = () => {
                     <input disabled type="text" value={state.member.memberClass} className="user-input resized-text" placeholder="Select class"/>
                     <select name="memberClass" className="user-input resized-text select-field" onChange={handleSelectField}>
                         <option value="">Select member class</option>
+                        <option value="Creche">Creche</option>
+                        <option value="Toddler 1">Toddler 1</option>
+                        <option value="Toddler 2">Toddler 2</option>
                         <option value="Nursery 1">Nursery 1</option>
                         <option value="Nursery 2">Nursery 2</option>
                         <option value="Primary 1">Primary 1</option>

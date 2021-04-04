@@ -391,7 +391,7 @@ export const StateProvider = (props) => {
     }
 
     const deleteResult = async(requestPayload) => {
-        
+        console.log({delRequest: requestPayload})
         try{
             await dispatch({type: "toggleProcess", payload: true})
             const response = await myAPI.post('/delete-result', requestPayload)

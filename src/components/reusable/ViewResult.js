@@ -16,7 +16,7 @@ const ViewResult = () => {
 
     useEffect(()=>{
         //userRecovery()
-
+        
         document.title = "Result Fetching"
         pageTitle("Result View")
         return () => {
@@ -65,7 +65,7 @@ const ViewResult = () => {
         options = state.allMembers.map(user => {
             if(user.memberType != "Admin" && user.memberType != "Teacher"){
                 return(
-                    <option value={`${user.firstName} ${user.surname}`} key={user._id}>{`${user.firstName} ${user.surname}`}</option>
+                    <option value={user.username} key={user._id}>{`${user.firstName} ${user.surname}`}</option>
                 )
             }
         })

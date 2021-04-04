@@ -49,6 +49,7 @@ function App() {
         await deleteConfirmation(false, state.deleteType)
         if(state.deleteType === "result"){
            const reqParam = await JSON.parse(localStorage.getItem("deleteParams"))
+           console.log({deleteParam: reqParam})
            await deleteResult(reqParam)
         }
         else if(state.deleteType === "profile"){

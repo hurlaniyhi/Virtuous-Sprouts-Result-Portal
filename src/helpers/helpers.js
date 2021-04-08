@@ -40,4 +40,15 @@ export const helpers = {
             studentName: "", result: null},
         }
     },
+    academicSessions: function(){
+        let year = new Date().getFullYear()
+        let academicSessions = []
+        let startingYear = 2020
+        while(year >= startingYear && academicSessions.length != 10 ){
+            let sessionString = `${year}/${year+1}`
+            academicSessions.push(sessionString)
+            year--
+        }
+        return academicSessions
+    }
 }

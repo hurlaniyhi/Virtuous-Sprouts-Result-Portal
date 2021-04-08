@@ -1,6 +1,7 @@
 import React, {useContext, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../../stateManager/manager'
+import {helpers} from '../../helpers/helpers'
 import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash, FaUpload } from 'react-icons/fa'
 import {FiUpload} from 'react-icons/fi'
 
@@ -24,9 +25,9 @@ const ViewResult = () => {
           };
     }, [])
 
-    async function userRecovery(){
-        recoverUser()
-    }
+    // async function userRecovery(){
+    //     recoverUser()
+    // }
 
     function handleResultField(e){
         setResultInput({...resultInput, [e.target.name]: e.target.value})
@@ -71,8 +72,13 @@ const ViewResult = () => {
         })
     }
 
-    let result;
+    let academicSessions = helpers.academicSessions().map(session => {
+        return(
+            <option value={session} key={session}>{session}</option>
+        )
+    })
 
+    let result;
     if(state.resultData != null){
         let count = 0
         result = state.resultData.map(data => {
@@ -128,8 +134,7 @@ const ViewResult = () => {
                     <input disabled type="text" value={resultInput.session} className="user-input resized-text" placeholder="Select session"/>
                     <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select Session</option>
-                        <option value="2019/2020">2019/2020</option>
-                        <option value="2020/2021">2020/2021</option>
+                        {academicSessions}
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
                 </div>: null : <div className="input-container resized-input select-input">

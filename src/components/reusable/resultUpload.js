@@ -119,6 +119,12 @@ const ResultUpload = () => {
         })
     }
 
+    let academicSessions = helpers.academicSessions().map(session => {
+        return(
+            <option value={session} key={session}>{session}</option>
+        )
+    })
+
 
     if(!state.editResultData.session && state.user.memberType === "Admin"){
         history.push("/admin")
@@ -142,8 +148,7 @@ const ResultUpload = () => {
                     <input disabled type="text" value={state.editResultData.session} className="user-input resized-text" placeholder="Select session"/>
                     <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select Session</option>
-                        <option value="2019/2020">2019/2020</option>
-                        <option value="2020/2021">2020/2021</option>
+                        {academicSessions}
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
                 </div>

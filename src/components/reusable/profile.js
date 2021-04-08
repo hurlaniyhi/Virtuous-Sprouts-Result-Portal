@@ -137,6 +137,10 @@ const Profile = ({route, resultRoute}) => {
                         <p className="info-label">Class</p>
                         <p className="user-info">{state.memberProfile.memberClass}</p>
                     </div>
+                    <div className="info-container">
+                        <p className="info-label">Reg. Date</p>
+                        <p className="user-info">{state.memberProfile.regDate}</p>
+                    </div>
                     {state.user.memberType === "Admin" ? <div className="info-container">
                         <p className="info-label">Password</p>
                         <p className="user-info">{state.memberProfile.passRecovery}</p>

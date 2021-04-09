@@ -38,7 +38,7 @@ const ViewResult = () => {
 
     function handleResultFetch() {
         if(state.user.memberType === "Student"){
-            resultInput.studentName = `${state.user.firstName} ${state.user.surname}`
+            resultInput.studentName = `${state.user.username}`
             resultInput.studentClass = state.user.memberClass
         }
         fetchStudentResult(resultInput)

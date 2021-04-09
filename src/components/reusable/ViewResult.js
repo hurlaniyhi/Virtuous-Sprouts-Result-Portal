@@ -142,7 +142,7 @@ const ViewResult = () => {
                     <input disabled type="text" value={resultInput.session} className="user-input resized-text" placeholder="Select session"/>
                     <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select Session</option>
-                        {options}
+                        {academicSessions}
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
                 </div>}

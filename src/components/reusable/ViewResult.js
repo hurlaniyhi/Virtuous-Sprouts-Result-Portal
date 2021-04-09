@@ -142,8 +142,7 @@ const ViewResult = () => {
                     <input disabled type="text" value={resultInput.session} className="user-input resized-text" placeholder="Select session"/>
                     <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select Session</option>
-                        <option value="2019/2020">2019/2020</option>
-                        <option value="2020/2021">2020/2021</option>
+                        {options}
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
                 </div>}

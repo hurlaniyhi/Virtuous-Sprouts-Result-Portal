@@ -77,6 +77,9 @@ const stateReducer = (state, action) => {
         case "handle-delete-view": 
             return {...state, deleteView: action.payload.view, deleteType: action.payload.type}
 
+        case "handle-mail-view": 
+            return {...state, mailView: action.payload}
+
         default: return state
     }
 
@@ -92,7 +95,7 @@ export const StateProvider = (props) => {
         memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show", logoutView: false,
         allMembers: null, memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null,
         history: null, changePasswordView: false, passwordChangeFields: {}, pageTitle: "", deleteView: false,
-        deleteType: ""
+        deleteType: "", mailView: false
     })
 
     async function presentFeedback(data){
@@ -430,6 +433,10 @@ export const StateProvider = (props) => {
         await dispatch({type: "handle-password-view", payload: data})
     }
 
+    const toggleMailView = async(data) => {
+        await dispatch({type: "handle-mail-view", payload: data})
+    }
+
     const changePassword = async() => {
 
         try{
@@ -444,7 +451,28 @@ export const StateProvider = (props) => {
                 presentFeedback(helpers.successAlert(response.data.message))
             }
             else{
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
+    }
+
+
+    const sendBroadcastMail = async(mailSubject, mailContent) => {
+
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/broadcastMail', {mailSubject, mailContent})
+            await dispatch({type: "toggleProcess", payload: false})
+            toggleMailView(false)
+            if(response.data.responseCode === "00"){
                 presentFeedback(helpers.successAlert(response.data.message))
+            }
+            else{
+                presentFeedback(helpers.errorAlert(response.data.message))
             }
         }
         catch(err){
@@ -488,6 +516,8 @@ export const StateProvider = (props) => {
         changePassword,
         pageTitle,
         deleteConfirmation,
+        toggleMailView,
+        sendBroadcastMail,
         signOut
     }
 

@@ -1033,7 +1033,7 @@ p{
     animation: position-change3 40s infinite;
 }
 
-.change-pass-icon{
+.change-pass-icon, .broadcast-mail{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1061,6 +1061,18 @@ p{
         right: 1rem;
     }
 
+}
+
+.broadcast-mail{
+    bottom: 10rem;
+
+    @media(max-width: 600px){
+        bottom: 17rem;
+    }
+    @media(max-width: 400px){
+        bottom: 16rem;
+        right: 1rem;
+    }
 }
 
 
@@ -1261,7 +1273,7 @@ p{
 ################################################
 */
 
-.alert-block{
+.alert-block, .broadcast-mail-block{
     width: 30rem;
     position: absolute;
     top: 50%;
@@ -1271,6 +1283,11 @@ p{
     border-radius: 2rem;
     overflow: hidden;
 }
+
+.broadcast-mail-block{
+    width: 45rem;
+}
+
 .alert-title{
     color: rgba(0,0,0, .7);
     font-size: 2rem;
@@ -2117,4 +2134,49 @@ p{
     // @media(max-width: 315px){
     //     width: 90%;
     // }
+}
+
+/*
+###############################################
+                BROADCAST MAIL
+################################################
+*/
+
+.mail-input-1, .mail-input-2{
+    display: block;
+    height: 4rem;
+    width: 70%;
+    margin: 0 auto;
+    border-radius: 1rem;
+    border: none;
+    border: 1px solid rgba($color-deep-white, .7);
+    color: rgba(0,0,0, .5);
+    outline: none;
+    padding: 0 1.5rem;
+    font-size: 1.6rem;
+    transition: all .2s;
+
+    &:focus, &:active{
+        border-width: 2.3px;
+        border-color: $color-green;
+    }
+
+    &::placeholder{
+        color: rgba(0,0,0, .3);
+    }
+    &:placeholder-shown{
+        font-size: 1.3rem;
+    }
+
+    &:not(:last-child){
+        margin-top: 1rem;
+    }
+}
+
+.mail-input-2{
+    height: 8rem;
+    margin-top: 2rem;
+    font-family: sans-serif;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
 }

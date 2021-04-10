@@ -10,12 +10,15 @@ import Login from "../components/LoginPage"
 import TeacherDashboard from './TeacherDashboard'
 import StudentDashboard from './StudentDashboard'
 import AdminDashboard from './AdminDashboard'
+import BroadcastMail from '../components/reusable/BroadcastMail'
 
 function App() {
     const {state, presentFeedback, infoNotifier, logoutConfirmation, deleteConfirmation, memberDelete,
-        signOut, passwordFieldChange, changePasswordView, changePassword, deleteResult} = useContext(StateManager)
+        signOut, passwordFieldChange, changePasswordView, toggleMailView, sendBroadcastMail,
+        changePassword, deleteResult} = useContext(StateManager)
 
         const [error, setError] = useState("")
+        const [mailInfo, setMailInfo] = useState({mailSubject: "", mailContent: ""})
 
     useEffect(()=>{
 
@@ -59,6 +62,15 @@ function App() {
         deleteConfirmation(false, "")
     }
 
+    async function handleMailField(e){
+        setMailInfo({...mailInfo, [e.target.name]: e.target.value})
+    }
+
+    async function handleEmailSending(){
+        await sendBroadcastMail(mailInfo.mailSubject, mailInfo.mailContent)
+        setMailInfo({mailSubject: "", mailContent: ""})
+    }
+
   return (
     <Router>
         <ShowFeedback display={state.feedbackView} color={state.feedbackColor} text={state.feedbackText} 
@@ -69,14 +81,14 @@ function App() {
                 </a>
         </ShowFeedback>
 
-        <ShowAlert display={state.alertView} text={state.alertText}>
+        <ShowAlert display={state.alertView} title="Alert" text={state.alertText}>
             <a className="alert-btn" onClick={()=>
                 infoNotifier({view: false, text: ""})}>
                 Ok
             </a>
         </ShowAlert>
 
-        <ShowAlert display={state.logoutView} text="Are you sure you want to logout?">
+        <ShowAlert display={state.logoutView} title="Alert" text="Are you sure you want to logout?">
             <div className="logout-btn-container">
             <a className="logout-btns" onClick={()=> logoutConfirmation(false)}>
                     No
@@ -87,7 +99,7 @@ function App() {
             </div>
         </ShowAlert>
 
-        <ShowAlert display={state.deleteView} text={`Are you sure you want to delete this ${state.deleteType}?`}>
+        <ShowAlert display={state.deleteView} title="Alert" text={`Are you sure you want to delete this ${state.deleteType}?`}>
             <div className="logout-btn-container">
             <a className="logout-btns" onClick={()=> deleteConfirmation(false, "")}>
                     No
@@ -111,6 +123,19 @@ function App() {
                 </a>
             </div>
         </ChangePassword>
+
+        <BroadcastMail display={state.mailView} title="Broadcast Mail">
+            <input type="text" name="mailSubject" className="mail-input-1" onChange={handleMailField} placeholder="Mail subject" />
+            <textarea name="mailContent" className="mail-input-2" onChange={handleMailField} placeholder="Enter your message"></textarea>
+            <div className="logout-btn-container">
+                <a className="logout-btns" onClick={() => toggleMailView(false)}>
+                    Cancel
+                </a>
+                <a className="logout-btns" onClick={handleEmailSending}>
+                    Send mail
+                </a>
+            </div>
+        </BroadcastMail>
 
         {state.process ? <div className="request-shade">
             <Loader 

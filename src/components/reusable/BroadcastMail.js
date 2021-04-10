@@ -1,13 +1,12 @@
 import React from 'react'
 
-const ShowAlert = (props) => {
+const BroadcastMail = (props) => {
 
     return(
         <div style={{width: "100%"}}>
             {props.display ? <div className="feedback-container">
-                <div className="alert-block">
-                    <p className="alert-title">{props.title}</p>
-                    <p className="alert-text">{props.text}</p>
+                <div className="broadcast-mail-block">
+                    <p className="alert-title" style={{fontSize: "1.7rem", paddingBottom: "2rem"}}>{props.title}</p>
                     {props.children}
                 </div>
             </div> : null}
@@ -15,4 +14,4 @@ const ShowAlert = (props) => {
     )
 }
 
-export default ShowAlert
+export default BroadcastMail

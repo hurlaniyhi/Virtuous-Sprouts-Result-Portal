@@ -1,11 +1,11 @@
 import React, {useContext} from 'react'
 import { useHistory } from "react-router-dom"
 import StateManager from '../../stateManager/manager'
-import { FaKey } from 'react-icons/fa'
+import { FaKey, FaEnvelope } from 'react-icons/fa'
 
 const Home = ({navRoute, containerClass, greeting, notification, buttonText, buttonClass, introContainer}) => {
     const history = useHistory()
-    const {state, changePasswordView} = useContext(StateManager)
+    const {state, changePasswordView, toggleMailView} = useContext(StateManager)
     
     function handleNavigation(){
         history.push(navRoute)
@@ -23,6 +23,9 @@ const Home = ({navRoute, containerClass, greeting, notification, buttonText, but
 
             {state.user.memberType === "Admin" ? <div className="change-pass-icon">
                 <FaKey className="result-upload-icon" style={{fontSize: "2rem"}} onClick={()=> changePasswordView(true)} />
+            </div> : null}
+            {state.user.memberType === "Admin" ? <div className="broadcast-mail">
+                <FaEnvelope className="result-upload-icon" style={{fontSize: "2rem"}} onClick={()=> toggleMailView(true)} />
             </div> : null}
         </div>
     )

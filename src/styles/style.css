@@ -798,7 +798,7 @@ p {
   background-color: rgba(255, 255, 255, 0.8);
   animation: position-change3 40s infinite; }
 
-.change-pass-icon {
+.change-pass-icon, .broadcast-mail {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -812,15 +812,25 @@ p {
   right: 2rem;
   box-shadow: 0 0.4rem 0.9rem rgba(0, 0, 0, 0.11);
   transition: all .3s; }
-  .change-pass-icon:hover {
+  .change-pass-icon:hover, .broadcast-mail:hover {
     transform: scale(1.1);
     background-color: #7ed56f; }
   @media (max-width: 600px) {
-    .change-pass-icon {
+    .change-pass-icon, .broadcast-mail {
       bottom: 11rem; } }
   @media (max-width: 400px) {
-    .change-pass-icon {
+    .change-pass-icon, .broadcast-mail {
       bottom: 10rem;
+      right: 1rem; } }
+
+.broadcast-mail {
+  bottom: 10rem; }
+  @media (max-width: 600px) {
+    .broadcast-mail {
+      bottom: 17rem; } }
+  @media (max-width: 400px) {
+    .broadcast-mail {
+      bottom: 16rem;
       right: 1rem; } }
 
 /*
@@ -1002,7 +1012,7 @@ p {
                 ALERT
 ################################################
 */
-.alert-block {
+.alert-block, .broadcast-mail-block {
   width: 30rem;
   position: absolute;
   top: 50%;
@@ -1011,6 +1021,9 @@ p {
   background-color: #fff;
   border-radius: 2rem;
   overflow: hidden; }
+
+.broadcast-mail-block {
+  width: 45rem; }
 
 .alert-title {
   color: rgba(0, 0, 0, 0.7);
@@ -1711,3 +1724,38 @@ p {
   background-color: rgba(109, 156, 125, 0.1);
   padding: 0 .5rem 0 1.5rem;
   position: relative; }
+
+/*
+###############################################
+                BROADCAST MAIL
+################################################
+*/
+.mail-input-1, .mail-input-2 {
+  display: block;
+  height: 4rem;
+  width: 70%;
+  margin: 0 auto;
+  border-radius: 1rem;
+  border: none;
+  border: 1px solid rgba(204, 204, 204, 0.7);
+  color: rgba(0, 0, 0, 0.5);
+  outline: none;
+  padding: 0 1.5rem;
+  font-size: 1.6rem;
+  transition: all .2s; }
+  .mail-input-1:focus, .mail-input-1:active, .mail-input-2:focus, .mail-input-2:active {
+    border-width: 2.3px;
+    border-color: #6d9c7d; }
+  .mail-input-1::placeholder, .mail-input-2::placeholder {
+    color: rgba(0, 0, 0, 0.3); }
+  .mail-input-1:placeholder-shown, .mail-input-2:placeholder-shown {
+    font-size: 1.3rem; }
+  .mail-input-1:not(:last-child), .mail-input-2:not(:last-child) {
+    margin-top: 1rem; }
+
+.mail-input-2 {
+  height: 8rem;
+  margin-top: 2rem;
+  font-family: sans-serif;
+  padding: 1.5rem;
+  margin-bottom: 2rem; }

@@ -176,6 +176,11 @@ const ResultUpload = () => {
                     <FaChevronDown  className="select-field-icon"/>
                 </div>
 
+                {state.user.memberType != "Admin" ?<div className="input-container resized-input">
+                    <FaHighlighter  className="user-icon"/>
+                    <input type="text" name="teacherComment" value={state.editResultData.teacherComment} className="user-input resized-text" placeholder="Teacher's Comment" onChange={handleResultField}/>
+                </div>: null}
+
             </div>
 
             <div className="each-subject-result-container">

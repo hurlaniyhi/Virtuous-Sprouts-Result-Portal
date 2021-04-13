@@ -31,13 +31,13 @@ export const helpers = {
             memberProfile: null,
             resultData: null,
             editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, 
-            studentName: "", result: null}
+            studentName: "", result: null, teacherComment: ""}
         }
     },
     resetSomeState2: function(){
         return {
             editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, 
-            studentName: "", result: null},
+            studentName: "", result: null, teacherComment: ""}
         }
     },
     academicSessions: function(){

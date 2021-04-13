@@ -44,7 +44,9 @@ const stateReducer = (state, action) => {
             return action.payload
 
         case "handle-result-view": 
-            return {...state, resultData: action.payload.result, resultID: action.payload.resultID}
+            return {...state, resultData: action.payload.result, 
+                resultID: action.payload.resultID, resultComment: action.payload.resultComment
+            }
 
         case "handle-user-recovery": 
             return {...state, user: action.payload}
@@ -79,6 +81,9 @@ const stateReducer = (state, action) => {
 
         case "handle-mail-view": 
             return {...state, mailView: action.payload}
+        
+        case "handle-comment-view": 
+            return {...state, resultCommentView: action.payload}
 
         default: return state
     }
@@ -90,12 +95,13 @@ export const StateProvider = (props) => {
 
     const [state, dispatch] = useReducer(stateReducer,{
         user: {}, process: false, feedbackView: false, feedbackColor: "#6d9c7d", feedbackTitle: "No Message",
-        feedbackText: "No message for now", editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, studentName: "", result: null},
+        feedbackText: "No message for now", editResultData: {session: "", term: "", resultType: "", studentClass: "", 
+        resultId: null, studentName: "", result: null, teacherComment: ""},
         member: {firstName: "", surname: "", email: "", phoneNumber: "", address: "", gender: "", 
         memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show", logoutView: false,
         allMembers: null, memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null,
         history: null, changePasswordView: false, passwordChangeFields: {}, pageTitle: "", deleteView: false,
-        deleteType: "", mailView: false
+        deleteType: "", mailView: false, resultComment: {teacherComment: "", adminComment: ""}, resultCommentView: false
     })
 
     async function presentFeedback(data){
@@ -128,6 +134,10 @@ export const StateProvider = (props) => {
 
     const deleteConfirmation = async(view, type) => {
         await dispatch({type: "handle-delete-view", payload: {view, type}})
+    }
+
+    const resultCommentView = async(view) => {
+        await dispatch({type: "handle-comment-view", payload: view})
     }
 
     const signIn = async(history, username, password) => { 
@@ -296,7 +306,13 @@ export const StateProvider = (props) => {
 
             if(response.data.responseCode === "00"){
                 await dispatch({type: "handle-result-view", 
-                payload: {result: response.data.result, resultID: response.data.resultID} })
+                payload: {
+                    result: response.data.result, resultID: response.data.resultID, 
+                    resultComment: {
+                        teacherComment: response.data.teacherComment, 
+                        adminComment: response.data.adminComment
+                    }
+                }})
             }
             else{
                 presentFeedback(helpers.errorAlert(response.data.message))
@@ -481,6 +497,41 @@ export const StateProvider = (props) => {
         }
     }
 
+    const addResultComment = async(adminComment) => {
+        let resultId
+        let resultType
+        if(!state.resultID.examId){
+            resultId = state.resultID.testId
+            resultType = "Test"
+        }
+        else{
+            resultId = state.resultID.examId
+            resultType = "Exam"
+        }
+
+        const fetchResultData = await JSON.parse(localStorage.getItem("resultFetchPayload"))
+
+        try{
+            await dispatch({type: "toggleProcess", payload: true})
+            const response = await myAPI.post('/resultComment', {resultId, resultType, adminComment})
+
+            if(response.data.responseCode === "00"){
+                await fetchStudentResult(fetchResultData)
+                resultCommentView(false)
+            }
+            else{
+                await dispatch({type: "toggleProcess", payload: false})
+                presentFeedback(helpers.errorAlert(response.data.message))
+            }
+        }
+        catch(err){
+            await dispatch({type: "toggleProcess", payload: false})
+            infoNotifier(helpers.alertInfo("No network connection"))
+        }
+
+
+    }
+
     const signOut = async() => {
         await logoutConfirmation(false, null)
         localStorage.clear()
@@ -518,6 +569,8 @@ export const StateProvider = (props) => {
         deleteConfirmation,
         toggleMailView,
         sendBroadcastMail,
+        resultCommentView,
+        addResultComment,
         signOut
     }
 

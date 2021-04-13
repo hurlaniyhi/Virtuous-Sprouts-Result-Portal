@@ -1367,6 +1367,25 @@ p{
     }
 }
 
+.comment-title{
+    font-size: 2rem;
+    color:rgba(0, 0, 0, .5);
+    text-align: center;
+    font-weight: 600;
+    padding-bottom: 1rem;
+}
+
+.comment-box{
+    height: 8rem;
+    padding-top: 1rem;
+    font-family: sans-serif;
+    font-size: 1.5rem;
+
+    &:placeholder-shown{
+        font-size: 1.4rem
+    }
+}
+
 .logout-btn-container{
     display: flex;
     flex-direction: row;
@@ -1403,6 +1422,8 @@ p{
         background-color: rgba($color-deep-white, .3);
     }
 }
+
+
 
 /*
 ###############################################
@@ -1730,7 +1751,7 @@ p{
     margin: 0rem auto;
     width: 50%;
 
-    &-icon-1,&-icon-2{
+    &-icon-1,&-icon-2, &-icon-3{
         position: absolute;
         font-size: 2rem;
         color: $color-green;
@@ -1746,6 +1767,9 @@ p{
 
     &-icon-2{
         right: 1rem;
+    }
+    &-icon-3{
+        right: 8rem;
     }
 
 
@@ -1815,7 +1839,7 @@ p{
     }
     @media(max-width: 600px){
         width: 85%;
-        margin-bottom: 12rem;
+        //margin-bottom: 12rem;
     }
     @media(max-width: 470px){
         width: 90%;
@@ -1910,6 +1934,35 @@ p{
 .result-upload-icon{
     font-size: 2.5rem;
     font-weight: 600;
+}
+
+.comment-container{
+    width: 85%;
+    margin: 0 auto;
+
+    @media(max-width: 730px){
+        width: 90%;
+    }
+    @media(max-width: 600px){
+        width: 85%;
+        margin-bottom: 12rem;
+    }
+    @media(max-width: 470px){
+        width: 90%;
+    }
+    @media(max-width: 350px){
+        width: 95%;
+    }
+}
+.result-comment{
+    color: $color-green;
+    font-size: 1.3rem;
+    font-weight: 600
+}
+.comment-text{
+    color: rgba(0,0,0, .5);
+    font-weight: 400;
+    padding-left: 1rem;
 }
 
 

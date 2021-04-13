@@ -2,14 +2,15 @@ import React, {useContext, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../../stateManager/manager'
 import {helpers} from '../../helpers/helpers'
-import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash, FaUpload } from 'react-icons/fa'
+import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash, FaUpload, FaComment, FaCommentDots } from 'react-icons/fa'
 import {FiUpload} from 'react-icons/fi'
+import {BsChat} from 'react-icons/bs'
 
 
 const ViewResult = () => {
     const history = useHistory()
 
-    const {state, fetchAllMembers, fetchStudentResult, 
+    const {state, fetchAllMembers, fetchStudentResult, resultCommentView,
         recoverUser, handleResultUploadData, resetSomeStates,
         deleteResult, pageTitle, deleteConfirmation} = useContext(StateManager)
 
@@ -38,9 +39,10 @@ const ViewResult = () => {
 
     function handleResultFetch() {
         if(state.user.memberType === "Student"){
-            resultInput.studentName = `${state.user.username}`
+            resultInput.studentName = state.user.username
             resultInput.studentClass = state.user.memberClass
         }
+        localStorage.setItem("resultFetchPayload", JSON.stringify(resultInput))
         fetchStudentResult(resultInput)
     }
 
@@ -176,6 +178,8 @@ const ViewResult = () => {
                 <div className="header-text header-text-large">
                     <p className="info-title-text">Result Data</p>
                     {state.user.memberType === "Admin" ? 
+                    <FaCommentDots className="header-text-icon-3" onClick={()=>resultCommentView(true)} />: null}
+                    {state.user.memberType === "Admin" ? 
                     <FaEdit className="header-text-icon-1" onClick={()=>handleRoute("edit")} />: null}
                     {state.user.memberType === "Admin" ? 
                     <FaTrash className="header-text-icon-2" onClick={()=>handleRoute("delete")} />: null}
@@ -190,6 +194,11 @@ const ViewResult = () => {
                         <p className="result-total">Total Score</p>
                     </div>
                     {result}
+                </div>
+
+                <div className="comment-container">
+                    <p className="result-comment">Teacher's Comment: <span className="comment-text">{state.resultComment.teacherComment}</span></p>
+                    <p className="result-comment">Principal's Comment: <span className="comment-text">{state.resultComment.adminComment}</span></p>
                 </div>
             </div> : null}
 

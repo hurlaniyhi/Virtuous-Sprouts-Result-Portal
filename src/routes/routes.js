@@ -15,10 +15,11 @@ import BroadcastMail from '../components/reusable/BroadcastMail'
 function App() {
     const {state, presentFeedback, infoNotifier, logoutConfirmation, deleteConfirmation, memberDelete,
         signOut, passwordFieldChange, changePasswordView, toggleMailView, sendBroadcastMail,
-        changePassword, deleteResult} = useContext(StateManager)
+        changePassword, deleteResult, resultCommentView, addResultComment} = useContext(StateManager)
 
         const [error, setError] = useState("")
         const [mailInfo, setMailInfo] = useState({mailSubject: "", mailContent: ""})
+        const [resultComment, setResultComment] = useState({adminComment: ""})
 
     useEffect(()=>{
 
@@ -69,6 +70,15 @@ function App() {
     async function handleEmailSending(){
         await sendBroadcastMail(mailInfo.mailSubject, mailInfo.mailContent)
         setMailInfo({mailSubject: "", mailContent: ""})
+    }
+
+    function handleCommentField(e){
+        setResultComment({...resultComment, [e.target.name]: e.target.value})
+    }
+
+    async function handleAddComment(){
+        await addResultComment(resultComment.adminComment)
+        setResultComment({...resultComment, adminComment: ""})
     }
 
   return (
@@ -123,6 +133,19 @@ function App() {
                 </a>
             </div>
         </ChangePassword>
+
+        <ShowAlert display={state.resultCommentView} title="">
+            <p className="comment-title">Principal's Comment</p>
+            <textarea type="text" name="adminComment" className="alert-input-2 comment-box" onChange={handleCommentField} placeholder="Comment on result"></textarea>
+            <div className="logout-btn-container">
+            <a className="logout-btns" onClick={()=> resultCommentView(false)}>
+                    Cancel
+                </a>
+                <a className="logout-btns" onClick={handleAddComment}>
+                    Comment
+                </a>
+            </div>
+        </ShowAlert>
 
         <BroadcastMail display={state.mailView} title="Broadcast Mail">
             <input type="text" name="mailSubject" className="mail-input-1" onChange={handleMailField} placeholder="Mail subject" />

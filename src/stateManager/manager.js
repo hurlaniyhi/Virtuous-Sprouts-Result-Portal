@@ -508,7 +508,7 @@ export const StateProvider = (props) => {
             resultId = state.resultID.examId
             resultType = "Exam"
         }
-
+        
         const fetchResultData = await JSON.parse(localStorage.getItem("resultFetchPayload"))
 
         try{

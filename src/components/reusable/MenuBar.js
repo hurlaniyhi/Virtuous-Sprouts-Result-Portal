@@ -1,9 +1,9 @@
 import React, {useContext} from 'react'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../../stateManager/manager'
-import {FaSignOutAlt } from 'react-icons/fa'
+//import {FaSignOutAlt } from 'react-icons/fa'
 import {FiLogOut } from 'react-icons/fi'
-import logo from '../../assets/logo2.jpg'
+import logo from '../../assets/virtuous-sprouts.png'
 
 
 

@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect, useRef} from 'react'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../../stateManager/manager'
 import {helpers} from '../../helpers/helpers'
-import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaGlobe, FaCogs, FaHighlighter } from 'react-icons/fa'
+import { FaChevronDown, FaUsers, FaRegCalendarAlt, FaCogs, FaVenusDouble, FaMarker } from 'react-icons/fa'
 import {FiTrash2, FiGlobe} from 'react-icons/fi'
 
 
@@ -144,7 +144,7 @@ const ResultUpload = () => {
                 </div>: null}
 
                 <div className="input-container resized-input select-input">
-                    <FaGlobe  className="user-icon"/>
+                    <FaRegCalendarAlt  className="user-icon"/>
                     <input disabled type="text" value={state.editResultData.session} className="user-input resized-text" placeholder="Select session"/>
                     <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select Session</option>
@@ -166,7 +166,7 @@ const ResultUpload = () => {
                 </div>
 
                 <div className="input-container resized-input select-input">
-                    <FaHighlighter  className="user-icon"/>
+                    <FaVenusDouble  className="user-icon"/>
                     <input disabled type="text" value={state.editResultData.resultType} className="user-input resized-text" placeholder="Select result type"/>
                     <select name="resultType" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select result type</option>
@@ -177,7 +177,7 @@ const ResultUpload = () => {
                 </div>
 
                 {state.user.memberType != "Admin" ?<div className="input-container resized-input">
-                    <FaHighlighter  className="user-icon"/>
+                    <FaMarker  className="user-icon"/>
                     <input type="text" name="teacherComment" value={state.editResultData.teacherComment} className="user-input resized-text" placeholder="Teacher's Comment" onChange={handleResultField}/>
                 </div>: null}
 

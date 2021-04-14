@@ -2,7 +2,7 @@ import React, {useContext, useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import StateManager from '../../stateManager/manager'
 import {helpers} from '../../helpers/helpers'
-import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash, FaUpload, FaComment, FaCommentDots } from 'react-icons/fa'
+import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash, FaRegCalendarAlt, FaCogs, FaCommentDots } from 'react-icons/fa'
 import {FiUpload} from 'react-icons/fi'
 import {BsChat} from 'react-icons/bs'
 
@@ -132,7 +132,7 @@ const ViewResult = () => {
                 </div> : null : null}
 
                 {state.user.memberType != "Student" ? resultInput.studentName ? <div className="input-container resized-input select-input">
-                    <FaUsers  className="user-icon"/>
+                    <FaRegCalendarAlt  className="user-icon"/>
                     <input disabled type="text" value={resultInput.session} className="user-input resized-text" placeholder="Select session"/>
                     <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select Session</option>
@@ -140,7 +140,7 @@ const ViewResult = () => {
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
                 </div>: null : <div className="input-container resized-input select-input">
-                    <FaUsers  className="user-icon"/>
+                    <FaRegCalendarAlt  className="user-icon"/>
                     <input disabled type="text" value={resultInput.session} className="user-input resized-text" placeholder="Select session"/>
                     <select name="session" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select Session</option>
@@ -150,7 +150,7 @@ const ViewResult = () => {
                 </div>}
 
                 {state.user.memberType != "Student" ? resultInput.session ? <div className="input-container resized-input select-input">
-                    <FaUsers  className="user-icon"/>
+                    <FaCogs  className="user-icon"/>
                     <input disabled type="text" value={resultInput.term} className="user-input resized-text" placeholder="Select term"/>
                     <select name="term" className="user-input resized-text select-field" onChange={handleResultField}>
                         <option value="">Select Term</option>

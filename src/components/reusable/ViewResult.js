@@ -49,7 +49,8 @@ const ViewResult = () => {
    async function handleRoute(route) {
         if(route === "edit"){
 
-            handleResultUploadData({...state.editResultData, 
+            handleResultUploadData({
+                ...state.editResultData, 
                 session: resultInput.session, term: resultInput.term, resultId: state.resultID,
                 studentName: resultInput.studentName, studentClass: resultInput.studentClass
             })

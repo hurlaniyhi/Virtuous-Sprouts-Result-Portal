@@ -389,7 +389,12 @@ export const StateProvider = (props) => {
 
                 if(response2.data.responseCode === "00"){
                     await dispatch({type: "handle-result-view", 
-                    payload: {result: response2.data.result, resultID: response2.data.resultID} })
+                    payload: {result: response2.data.result, resultID: response2.data.resultID, 
+                        resultComment: {
+                            teacherComment: response2.data.teacherComment, 
+                            adminComment: response2.data.adminComment
+                        }} 
+                    })
 
                     presentFeedback(helpers.successAlert(response.data.message))
                     history.push('/admin/result-view')

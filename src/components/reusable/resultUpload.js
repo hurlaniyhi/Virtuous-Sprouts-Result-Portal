@@ -197,12 +197,13 @@ const ResultUpload = () => {
                         <option value="Al-Arabiyyah">Al-Arabiyyah</option>
                         <option value="Verbal Reasoning">Verbal Reasoning</option>
                         <option value="Al-Qiraahah Wal-Kitaabah">Al-Qiraahah Wal-Kitaabah</option>
-                        <option value="Mathematics">Mathematics</option>
-                        <option value="English Language">English Language</option>
+                        <option value="Mathematics/Numeracy">Mathematics/Numeracy</option>
+                        <option value="English/Literacy">English/Literacy</option>
                         <option value="Creative Arts/Drawing">Creative Arts/Drawings</option>
                         <option value="Handwriting">Handwriting</option>
                         <option value="At-Taoheed">At-Taoheed</option>
                         <option value="Al-Hadith">Al-Hadith</option>
+                        <option value="Rhymes">Rhymes</option>
                     </select>
                     <FaChevronDown  className="each-upload-select-field-icon"/>
                 </div>

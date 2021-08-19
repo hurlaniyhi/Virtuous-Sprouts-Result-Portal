@@ -266,7 +266,11 @@ p {
   background-size: cover;
   background-position: top;
   overflow: hidden;
-  position: relative; }
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; }
 
 .request-shade {
   display: flex;
@@ -839,13 +843,18 @@ p {
 ################################################
 */
 .registration-container {
-  padding-top: 7rem;
+  padding-top: 3rem;
   text-align: center;
   width: 100%;
-  padding-bottom: 3rem; }
+  padding-bottom: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%; }
   @media (max-width: 600px) {
     .registration-container {
-      padding-bottom: 11rem; } }
+      padding-bottom: 11rem;
+      padding-top: 7rem; } }
 
 .form-container {
   position: relative;

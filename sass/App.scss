@@ -1644,13 +1644,13 @@ p{
     width: 100%;
     overflow-y: auto;
     position: relative;
-    overflow: visible;
-   // padding-bottom: 4rem;
+    //overflow: auto;
+    padding-bottom: 5rem;
 }
 .profile-sub-container{
     display: flex;
     flex-direction: column;
-    margin: 0rem auto 2rem auto;
+    margin: 2rem auto 2rem auto;
     background-color: rgba($color-deep-white, .3);
     width: 50%;
     box-shadow: 0 .4rem .9rem rgba(0,0,0, .11);
@@ -1957,6 +1957,7 @@ p{
 .comment-container{
     width: 85%;
     margin: 0 auto;
+    margin-bottom: 7rem !important;
 
     @media(max-width: 730px){
         width: 90%;
@@ -1987,7 +1988,7 @@ p{
     width: 12rem;
     height: 12rem;
     display: block;
-    margin: 2rem auto 1rem auto;
+    margin: 0rem auto 1rem auto;
 }
 
 .result-schoolName{

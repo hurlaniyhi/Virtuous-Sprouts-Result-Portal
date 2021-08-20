@@ -1552,6 +1552,7 @@ p{
     }
 }
 
+
 .nav-logo-plus{
     position: absolute;
     width: 4.5rem;
@@ -1643,6 +1644,7 @@ p{
     width: 100%;
     overflow-y: auto;
     position: relative;
+    overflow: visible;
    // padding-bottom: 4rem;
 }
 .profile-sub-container{
@@ -1979,6 +1981,21 @@ p{
     color: rgba(0,0,0, .5);
     font-weight: 400;
     padding-left: 1rem;
+}
+
+.result-school-logo{
+    width: 12rem;
+    height: 12rem;
+    display: block;
+    margin: 2rem auto 1rem auto;
+}
+
+.result-schoolName{
+    color: $color-green;
+    font-size: 2.5rem;
+    text-align: center;
+    margin: .5rem 2rem 10rem 2rem;
+    padding: 0
 }
 
 

@@ -189,8 +189,8 @@ const ResultUpload = () => {
                     <select name="subject" className="each-upload-select-field" onChange={handleSubjectAndScore}>
                         <option value="">Select Subject</option>
                         <option value="Tahfeedhul Qur'an">Tahfeedhul Qur'an</option>
-                        <option value="Prevocational Studies">Prevocational Studies</option>
-                        <option value="Basic Science">Basic Science</option>
+                        <option value="Pre-vocational Studies">Pre-vocational Studies</option>
+                        <option value="Basic Science and Technology">Basic Science and Technology</option>
                         <option value="Islamic Studies">Islamic Studies</option>
                         <option value="National Value">National Value</option>
                         <option value="Quantitative Reasoning">Quantitative Reasoning</option>
@@ -204,6 +204,30 @@ const ResultUpload = () => {
                         <option value="At-Taoheed">At-Taoheed</option>
                         <option value="Al-Hadith">Al-Hadith</option>
                         <option value="Rhymes">Rhymes</option>
+                        <option value="Business Studies">Business Studies</option>
+                        <option value="Social Studies">Social Studies</option>
+                        <option value="Civic Education">Civic Education</option>
+                        <option value="Yoruba">Yoruba</option>
+                        <option value="Physical and Health Education">Physical and Health Education</option>
+                        <option value="Home Econoimics">Home Econoimics</option>
+                        <option value="Computer Science">Computer Science</option>
+                        <option value="Biology">Biology</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Geography">Geography</option>
+                        <option value="Economics">Economics</option>
+                        <option value="Financial Account">Financial Account</option>
+                        <option value="Commerce">Commerce</option>
+                        <option value="Agric. Science">Agric. Science</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Art">Art</option>
+                        <option value="Literature">Literature</option>
+                        <option value="History">History</option>
+                        <option value="Food and Nutrition">Food and Nutrition</option>
+                        <option value="Fishery">Fishery</option>
+                        <option value="Animal Husbandry">Animal Husbandry</option>
+                        <option value="Government">Government</option>
+                        <option value="Government">General studies</option>
                     </select>
                     <FaChevronDown  className="each-upload-select-field-icon"/>
                 </div>
@@ -211,7 +235,6 @@ const ResultUpload = () => {
                 <a className="add-result-btn" onClick={handleResultToUpload}>Add Result</a>
             </div>
             
-
 
             {state.editResultData.result != null ? <div style={{width: "100%"}}>
                 <div className="header-text header-text-large">

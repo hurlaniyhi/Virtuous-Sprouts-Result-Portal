@@ -5,6 +5,7 @@ import {helpers} from '../../helpers/helpers'
 import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash, FaRegCalendarAlt, FaCogs, FaCommentDots } from 'react-icons/fa'
 import {FiUpload} from 'react-icons/fi'
 import {BsChat} from 'react-icons/bs'
+import schoolLogo from '../../assets/virtuous-sprouts.png'
 
 
 const ViewResult = () => {
@@ -104,6 +105,8 @@ const ViewResult = () => {
     return (
         <div className="profile-main-container">
             <div className="custom-input-container">
+                <img src={schoolLogo} className="result-school-logo" />
+                <p className="result-schoolName">Virtuous Sprouts Academy</p>
             {state.user.memberType != "Student" ? <div className="input-container resized-input select-input">
                     <FaUsersCog  className="user-icon"/>
                     <input disabled type="text" value={resultInput.studentClass} className="user-input resized-text" placeholder="Select member class"/>
@@ -119,6 +122,12 @@ const ViewResult = () => {
                         <option value="Primary 3">Primary 3</option>
                         <option value="Primary 4">Primary 4</option>
                         <option value="Primary 5">Primary 5</option>
+                        <option value="JSS 1">JSS 1</option>
+                        <option value="JSS 2">JSS 2</option>
+                        <option value="JSS 3">JSS 3</option>
+                        <option value="SSS 1">SSS 1</option>
+                        <option value="SSS 2">SSS 2</option>
+                        <option value="SSS 3">SSS 3</option>
                     </select>
                     <FaChevronDown  className="select-field-icon"/>
                 </div> : null}

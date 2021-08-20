@@ -288,7 +288,7 @@ p {
   display: flex;
   flex-direction: row;
   height: 4.5rem;
-  width: 30%;
+  width: 50rem;
   margin: 2rem auto 1rem auto;
   background-color: rgba(204, 204, 204, 0.1);
   border-radius: 100px;
@@ -372,7 +372,7 @@ p {
   border-radius: 10rem;
   margin: 3.5rem auto 2rem auto;
   font-weight: 600;
-  width: 30%;
+  width: 50rem;
   color: #fff;
   cursor: pointer;
   background-color: #6d9c7d;
@@ -854,11 +854,12 @@ p {
   @media (max-width: 600px) {
     .registration-container {
       padding-bottom: 11rem;
-      padding-top: 7rem; } }
+      padding-top: 7rem;
+      display: block; } }
 
 .form-container {
   position: relative;
-  width: 40%;
+  width: 50rem;
   margin: 0 auto;
   padding: 2rem 2rem;
   border: 1px solid rgba(204, 204, 204, 0.4);
@@ -1348,7 +1349,7 @@ p {
   margin-left: 1%; }
 
 .custom-input-container {
-  width: 50%;
+  width: 70rem;
   margin: 10rem auto 9rem auto; }
   @media (max-width: 1090px) {
     .custom-input-container {
@@ -1653,7 +1654,7 @@ p {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 70%;
+  width: 80rem;
   margin: 1rem auto 4rem auto; }
   @media (max-width: 909px) {
     .each-subject-result-container {

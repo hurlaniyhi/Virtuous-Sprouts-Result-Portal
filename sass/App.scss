@@ -422,6 +422,10 @@ p{
     justify-content: center;
     align-items: center;
     //color: #978D81;
+
+    // @media(max-width: 600px){
+    //     display: block
+    // }
 }
 
 .request-shade{
@@ -441,7 +445,7 @@ p{
     display: flex;
     flex-direction: row;
     height: 4.5rem;
-    width: 30%;
+    width: 50rem;  //30%
     margin: 2rem auto 1rem auto;
     background-color: rgba(#ccc, .1);
     border-radius: 100px;
@@ -537,7 +541,7 @@ p{
     border-radius: 10rem;
     margin: 3.5rem auto 2rem auto;
     font-weight: 600;
-    width: 30%;
+    width: 50rem; // 30%
     color: $color-white;
     cursor: pointer;
     background-color: $color-green;
@@ -1104,11 +1108,12 @@ p{
     @media(max-width: 600px){
         padding-bottom: 11rem;  // reduced from 11rem
         padding-top: 7rem;
+        display: block;  //newly added
     }
 }
 .form-container{
     position: relative;
-    width: 40%;
+    width: 50rem;  //40%
     margin: 0 auto;
     padding: 2rem 2rem;
     border: 1px solid rgba($color-deep-white, .4);
@@ -1697,7 +1702,7 @@ p{
     margin-left: 1%;
 }
 .custom-input-container{
-    width: 50%;
+    width: 70rem;  // 50%
     margin: 10rem auto 9rem auto;
     
 
@@ -2054,7 +2059,7 @@ p{
     justify-content: center;
     //flex-wrap: wrap;
     align-items: center;
-    width: 70%;
+    width: 80rem;  //70%
     margin: 1rem auto 4rem auto;
 
     @media(max-width: 909px){

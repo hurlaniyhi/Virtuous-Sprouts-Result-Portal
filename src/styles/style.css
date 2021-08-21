@@ -1292,9 +1292,9 @@ p {
 .profile-main-container {
   height: 100%;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   position: relative;
-  padding-bottom: 5rem; }
+  padding-bottom: 7rem; }
 
 .profile-sub-container {
   display: flex;
@@ -1564,7 +1564,8 @@ p {
 .comment-container {
   width: 85%;
   margin: 0 auto;
-  margin-bottom: 7rem !important; }
+  overflow: auto;
+  margin-bottom: 2rem; }
   @media (max-width: 730px) {
     .comment-container {
       width: 90%; } }
@@ -1583,6 +1584,9 @@ p {
   color: #6d9c7d;
   font-size: 1.3rem;
   font-weight: 600; }
+
+.change-style {
+  display: none; }
 
 .comment-text {
   color: rgba(0, 0, 0, 0.5);

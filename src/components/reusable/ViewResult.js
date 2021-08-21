@@ -16,16 +16,44 @@ const ViewResult = () => {
         deleteResult, pageTitle, deleteConfirmation} = useContext(StateManager)
 
     const [resultInput, setResultInput] = useState({studentClass: "", studentName: "", session: "", term: ""})
+    const [loaded, setLoaded] = useState(false)
 
     useEffect(()=>{
         //userRecovery()
         
         document.title = "Result Fetching"
         pageTitle("Result View")
+       
         return () => {
             resetSomeStates();
           };
     }, [])
+
+
+    useEffect(()=>{
+        const callback = function(entries){
+            entries.forEach(entry =>{
+                if(entry.isIntersecting){
+                    document.querySelector(".bottom-nav-container").classList.add("change-style")
+                }
+                else{
+                    document.querySelector(".bottom-nav-container").classList.remove("change-style")
+                }
+            })
+        }
+
+        let observer = new IntersectionObserver(callback)
+        const target = document.querySelectorAll(".result-comment")
+        console.log(target)
+        target.forEach(target=>{
+            observer.observe(target)
+        })
+
+        return () => {
+            observer = null;
+          };
+    })
+
 
     // async function userRecovery(){
     //     recoverUser()
@@ -184,7 +212,7 @@ const ViewResult = () => {
                 <a className="view-result-btn get-result-btn" onClick={handleResultFetch}>Get Result</a>
             </div>
 
-            {state.resultData != null ? <div style={{width: "100%"}}>
+            {state.resultData != null ? <div style={{width: "100%", overflow: "auto"}}>
                 <div className="header-text header-text-large">
                     <p className="info-title-text">Result Data</p>
                     {state.user.memberType === "Admin" ? 

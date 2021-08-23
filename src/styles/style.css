@@ -1296,7 +1296,7 @@ p {
 .profile-main-container {
   height: 100%;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: visible;
   margin-bottom: 7rem; }
 
 .profile-sub-container {

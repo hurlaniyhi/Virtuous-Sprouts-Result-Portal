@@ -44,7 +44,7 @@ const stateReducer = (state, action) => {
             return action.payload
 
         case "handle-result-view": 
-            return {...state, resultData: action.payload.result, 
+            return {...state, resultData: action.payload.result, resultBeforeEdit: action.payload.result,
                 resultID: action.payload.resultID, resultComment: action.payload.resultComment
             }
 
@@ -62,7 +62,7 @@ const stateReducer = (state, action) => {
                 memberProfile: action.payload.memberProfile, resultData: action.payload.resultData}
 
         case "handle-reset-some-states2": 
-            return {...state, editResultData: action.payload.editResultData}
+            return {...state, editResultData: action.payload.editResultData, resultBeforeEdit: action.payload.resultBeforeEdit}
 
         case "clear-result-to-upload": 
             return {...state, editResultData: action.payload}
@@ -101,7 +101,8 @@ export const StateProvider = (props) => {
         memberType: "", memberClass: ""}, alertView: false, alertText: "Nothing to show", logoutView: false,
         allMembers: null, memberProfile: null, operation: "", resultData: null, userDetails: {}, resultID: null,
         history: null, changePasswordView: false, passwordChangeFields: {}, pageTitle: "", deleteView: false,
-        deleteType: "", mailView: false, resultComment: {teacherComment: "", adminComment: ""}, resultCommentView: false
+        deleteType: "", mailView: false, resultComment: {teacherComment: "", adminComment: ""}, resultCommentView: false,
+        resultBeforeEdit: null
     })
 
     async function presentFeedback(data){
@@ -373,9 +374,11 @@ export const StateProvider = (props) => {
                 resultId = state.resultID.examId
             }   
         }
+
+        let sortedResultToUpdate = helpers.sortResultDataToEdit(state.editResultData.resultType, state.resultBeforeEdit, state.editResultData.result)
         
-        let requestPayload = {...state.editResultData, resultId, updatedResult: state.editResultData.result, memberType: "Admin"}
-        console.log(requestPayload)
+        let requestPayload = {...state.editResultData, resultId, updatedResult: sortedResultToUpdate, memberType: "Admin"}
+        console.log({payload: requestPayload})
         let body = {...state.editResultData}
         try{
             await dispatch({type: "toggleProcess", payload: true})

@@ -37,7 +37,7 @@ export const helpers = {
     resetSomeState2: function(){
         return {
             editResultData: {session: "", term: "", resultType: "", studentClass: "", resultId: null, 
-            studentName: "", result: null, teacherComment: ""}
+            studentName: "", result: null, teacherComment: ""}, resultBeforeEdit: null
         }
     },
     academicSessions: function(){
@@ -50,5 +50,28 @@ export const helpers = {
             year--
         }
         return academicSessions
+    },
+    sortResultDataToEdit: function(type, resultData, editedResultData){
+        let resultType = `${type.toLocaleLowerCase()}Score`
+        let subjectString = ""
+        let sortedResultToUpdate = [...editedResultData]
+
+        for(let y of editedResultData){
+            subjectString += `${y.subject}, `
+        }
+    
+        for(let x of resultData)
+        {
+            if(!subjectString.includes(x.subject)){
+                if(typeof(x[`${resultType}`]) === "number"){
+                    sortedResultToUpdate.push({
+                        "subject": x.subject,
+                        "score": x[`${resultType}`]
+                    })
+                }
+            }
+        }
+
+        return sortedResultToUpdate
     }
 }

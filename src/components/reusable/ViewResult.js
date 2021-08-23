@@ -35,9 +35,11 @@ const ViewResult = () => {
             entries.forEach(entry =>{
                 if(entry.isIntersecting){
                     document.querySelector(".bottom-nav-container").classList.add("change-style")
+                    //document.querySelector(".profile-main-container").classList.add("profile-main-container_print")
                 }
                 else{
                     document.querySelector(".bottom-nav-container").classList.remove("change-style")
+                    //document.querySelector(".profile-main-container").classList.remove("profile-main-container_print")
                 }
             })
         }

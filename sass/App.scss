@@ -169,7 +169,10 @@ p{
     -webkit-tap-highlight-color: rgba(0,0,0,0)
 }
 
-//@page { margin: 0 }
+@page {  //margin: 0
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
 
 
 .lpContainer{
@@ -1645,12 +1648,17 @@ p{
 .profile-main-container{
     height: 100%;
     width: 100%;
-    overflow-y: visible;
-    position: relative;
     //overflow: auto;
-    padding-bottom: 7rem;
+    overflow-y: auto;  // visible  for printing
+   
+    margin-bottom: 7rem;  //padding-bottom: 7rem
     //display: block;
 }
+
+.profile-main-container_print{
+    //overflow-y: visible
+}
+
 .profile-sub-container{
     display: flex;
     flex-direction: column;
@@ -1712,7 +1720,7 @@ p{
     margin: 10rem auto 9rem auto;
     
 
-    @media(max-width: 1090px){
+    @media(max-width: 1100px){  //1090px
         width: 70%;
     }
     @media(max-width: 750px){
@@ -2090,7 +2098,7 @@ p{
     width: 80rem;  //70%
     margin: 1rem auto 4rem auto;
 
-    @media(max-width: 909px){
+    @media(max-width: 1100px){  // 909px
         width: 75%
     }
 

@@ -81,6 +81,10 @@ div,
 p {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
 
+@page {
+  margin-bottom: 2rem;
+  margin-top: 2rem; }
+
 .lpContainer {
   height: 100%;
   background-image: linear-gradient(to right bottom, rgba(109, 156, 125, 0.7), rgba(40, 180, 133, 0.7)), url("../assets/nat-1-large.jpg");
@@ -1292,9 +1296,8 @@ p {
 .profile-main-container {
   height: 100%;
   width: 100%;
-  overflow-y: visible;
-  position: relative;
-  padding-bottom: 7rem; }
+  overflow-y: auto;
+  margin-bottom: 7rem; }
 
 .profile-sub-container {
   display: flex;
@@ -1352,7 +1355,7 @@ p {
 .custom-input-container {
   width: 70rem;
   margin: 10rem auto 9rem auto; }
-  @media (max-width: 1090px) {
+  @media (max-width: 1100px) {
     .custom-input-container {
       width: 70%; } }
   @media (max-width: 750px) {
@@ -1675,7 +1678,7 @@ p {
   align-items: center;
   width: 80rem;
   margin: 1rem auto 4rem auto; }
-  @media (max-width: 909px) {
+  @media (max-width: 1100px) {
     .each-subject-result-container {
       width: 75%; } }
   @media (max-width: 750px) {

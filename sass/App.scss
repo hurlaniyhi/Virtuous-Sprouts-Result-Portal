@@ -183,13 +183,13 @@ p{
         display: none !important;
     }
     .navigation{
-        display: none
+        display: none !important
     }
     .bottom-nav-container{
-        display: none
+        display: none !important
     }
     .side-menu-container{
-        display: none
+        display: none !important
     }
     .sub-routes{
         padding: 0 0 !important;
@@ -207,11 +207,11 @@ p{
         display: none !important
     }
     .header-text{
-        transform: scale(.92) !important;
+        transform: scale(.87) !important;
         margin: 0 auto !important;
     }
     .result-school-logo, .result-schoolName, .input-container, .result-container, .comment-container{
-        transform: scale(.92) !important;
+        transform: scale(.87) !important;
     }
     .comment-container{
         margin: 0 auto !important;

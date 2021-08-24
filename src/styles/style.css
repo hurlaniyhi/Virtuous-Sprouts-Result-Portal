@@ -91,11 +91,11 @@ p {
   .nav-container {
     display: none !important; }
   .navigation {
-    display: none; }
+    display: none !important; }
   .bottom-nav-container {
-    display: none; }
+    display: none !important; }
   .side-menu-container {
-    display: none; }
+    display: none !important; }
   .sub-routes {
     padding: 0 0 !important; }
   .result-upload-btn {
@@ -107,10 +107,10 @@ p {
   .header-text-icon-1, .header-text-icon-2, .header-text-icon-3 {
     display: none !important; }
   .header-text {
-    transform: scale(0.92) !important;
+    transform: scale(0.87) !important;
     margin: 0 auto !important; }
   .result-school-logo, .result-schoolName, .input-container, .result-container, .comment-container {
-    transform: scale(0.92) !important; }
+    transform: scale(0.87) !important; }
   .comment-container {
     margin: 0 auto !important;
     padding: 0 !important; }

@@ -505,7 +505,12 @@ export const StateProvider = (props) => {
         }
     }
 
-    const addResultComment = async(adminComment) => {
+    const addResultComment = async(adminComment, commentType) => {
+        console.log({data: {commentType: commentType, adminComment: adminComment}})
+        if(!commentType || !adminComment){
+          return presentFeedback(helpers.errorAlert("Kindly provide comment type and comment"))
+        }
+
         let resultId
         let resultType
         if(!state.resultID.examId){
@@ -516,12 +521,12 @@ export const StateProvider = (props) => {
             resultId = state.resultID.examId
             resultType = "Exam"
         }
-        
+
         const fetchResultData = await JSON.parse(localStorage.getItem("resultFetchPayload"))
 
         try{
             await dispatch({type: "toggleProcess", payload: true})
-            const response = await myAPI.post('/resultComment', {resultId, resultType, adminComment})
+            const response = await myAPI.post('/resultComment', {resultId, resultType, adminComment, commentType})
 
             if(response.data.responseCode === "00"){
                 await fetchStudentResult(fetchResultData)

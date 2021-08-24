@@ -20,6 +20,7 @@
     "react-scripts": "4.0.3",
     "serve": "^11.3.2",
     "svg-loaders-react": "^2.2.1",
+    "use-detect-print": "0.0.2",
     "web-vitals": "^1.0.1"
   },
   "scripts": {

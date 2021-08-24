@@ -169,9 +169,58 @@ p{
     -webkit-tap-highlight-color: rgba(0,0,0,0)
 }
 
-@page {  //margin: 0
+@page {
     margin-bottom: 2rem;
     margin-top: 2rem;
+    //width: 70%
+}
+
+@media print {
+    body{
+        box-sizing: content-box !important
+    }
+    .nav-container{
+        display: none !important;
+    }
+    .navigation{
+        display: none
+    }
+    .bottom-nav-container{
+        display: none
+    }
+    .side-menu-container{
+        display: none
+    }
+    .sub-routes{
+        padding: 0 0 !important;
+    }
+    .result-upload-btn{
+        display: none !important
+    }
+    .view-result-btn, .get-result-btn{
+        display: none !important
+    }
+    .custom-input-container{
+        margin: 3rem auto 2rem auto !important
+    }
+    .header-text-icon-1, .header-text-icon-2, .header-text-icon-3{
+        display: none !important
+    }
+    .header-text{
+        transform: scale(.92) !important;
+        margin: 0 auto !important;
+    }
+    .result-school-logo, .result-schoolName, .input-container, .result-container, .comment-container{
+        transform: scale(.92) !important;
+    }
+    .comment-container{
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
+    .result-container{
+        margin: 0 auto !important;
+        padding: 0 !important;
+    }
 }
 
 
@@ -1234,6 +1283,9 @@ p{
     top: 0;
     left: 0;
     background-color: rgba(0,0,0, .5);
+    z-index: 6;
+}
+.notifier-container{
     z-index: 5;
 }
 .feedback-block{
@@ -1347,6 +1399,19 @@ p{
 
     &:not(:last-child){
         margin-top: 1rem;
+    }
+}
+
+.comment-type{
+    width: 80%;
+    font-size: 1.5rem;
+
+    &:placeholder-shown{
+        font-size: 1.4rem
+    }
+
+    &::placeholder{
+        color: rgba(0,0,0, .25);
     }
 }
 
@@ -1648,15 +1713,18 @@ p{
 .profile-main-container{
     height: 100%;
     width: 100%;
-    //overflow: auto;
-    overflow-y: visible;  // visible  for printing
+    overflow-y: auto;  // visible  for printing
    
     margin-bottom: 7rem;  //padding-bottom: 7rem
     //display: block;
 }
 
 .profile-main-container_print{
-    //overflow-y: visible
+    height: 100%;
+    width: 100%;
+    overflow-y: visible;  // visible  for printing
+   
+    margin-bottom: 7rem; 
 }
 
 .profile-sub-container{

@@ -19,7 +19,7 @@ function App() {
 
         const [error, setError] = useState("")
         const [mailInfo, setMailInfo] = useState({mailSubject: "", mailContent: ""})
-        const [resultComment, setResultComment] = useState({adminComment: ""})
+        const [resultComment, setResultComment] = useState({adminComment: "", commentType: ""})
 
     useEffect(()=>{
 
@@ -77,8 +77,11 @@ function App() {
     }
 
     async function handleAddComment(){
-        await addResultComment(resultComment.adminComment)
-        setResultComment({...resultComment, adminComment: ""})
+        await addResultComment(resultComment.adminComment, resultComment.commentType)
+
+        if(resultComment.adminComment && resultComment.commentType){
+            setResultComment({...resultComment, adminComment: "", commentType: ""})
+        }
     }
 
   return (
@@ -136,9 +139,14 @@ function App() {
 
         <ShowAlert display={state.resultCommentView} title="">
             <p className="comment-title">Principal's Comment</p>
+            <select name="commentType" className="alert-input-2 comment-type" onChange={handleCommentField}>
+            <option value="">select comment type</option>
+                <option value="Teacher">Teacher's Comment</option>
+                <option value="Principal">Principal's Comment</option>
+            </select>
             <textarea type="text" name="adminComment" className="alert-input-2 comment-box" onChange={handleCommentField} placeholder="Comment on result"></textarea>
             <div className="logout-btn-container">
-            <a className="logout-btns" onClick={()=> resultCommentView(false)}>
+                <a className="logout-btns" onClick={()=> resultCommentView(false)}>
                     Cancel
                 </a>
                 <a className="logout-btns" onClick={handleAddComment}>

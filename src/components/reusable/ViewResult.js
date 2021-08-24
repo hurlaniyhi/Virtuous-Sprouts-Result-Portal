@@ -4,7 +4,7 @@ import StateManager from '../../stateManager/manager'
 import {helpers} from '../../helpers/helpers'
 import { FaChevronDown, FaUsersCog, FaUsers, FaEdit, FaTrash, FaRegCalendarAlt, FaCogs, FaCommentDots } from 'react-icons/fa'
 import {FiUpload} from 'react-icons/fi'
-import {BsChat} from 'react-icons/bs'
+//import {BsChat} from 'react-icons/bs'
 import schoolLogo from '../../assets/virtuous-sprouts.png'
 
 
@@ -16,10 +16,8 @@ const ViewResult = () => {
         deleteResult, pageTitle, deleteConfirmation} = useContext(StateManager)
 
     const [resultInput, setResultInput] = useState({studentClass: "", studentName: "", session: "", term: ""})
-    const [loaded, setLoaded] = useState(false)
 
     useEffect(()=>{
-        //userRecovery()
         
         document.title = "Result Fetching"
         pageTitle("Result View")
@@ -30,36 +28,31 @@ const ViewResult = () => {
     }, [])
 
 
-    useEffect(()=>{
-        const callback = function(entries){
-            entries.forEach(entry =>{
-                if(entry.isIntersecting){
-                    document.querySelector(".bottom-nav-container").classList.add("change-style")
-                    //document.querySelector(".profile-main-container").classList.add("profile-main-container_print")
-                }
-                else{
-                    document.querySelector(".bottom-nav-container").classList.remove("change-style")
-                    //document.querySelector(".profile-main-container").classList.remove("profile-main-container_print")
-                }
-            })
-        }
+    // useEffect(()=>{
+    //     const callback = function(entries){
+    //         entries.forEach(entry =>{
+    //             if(entry.isIntersecting){
+    //                 document.querySelector(".bottom-nav-container").classList.add("change-style")
+    //                 //document.querySelector(".profile-main-container").classList.add("profile-main-container_print")
+    //             }
+    //             else{
+    //                 document.querySelector(".bottom-nav-container").classList.remove("change-style")
+    //                 //document.querySelector(".profile-main-container").classList.remove("profile-main-container_print")
+    //             }
+    //         })
+    //     }
 
-        let observer = new IntersectionObserver(callback)
-        const target = document.querySelectorAll(".result-comment")
-        console.log(target)
-        target.forEach(target=>{
-            observer.observe(target)
-        })
+    //     let observer = new IntersectionObserver(callback)
+    //     const target = document.querySelectorAll(".result-comment")
+    //     console.log(target)
+    //     target.forEach(target=>{
+    //         observer.observe(target)
+    //     })
 
-        return () => {
-            observer = null;
-          };
-    })
-
-
-    // async function userRecovery(){
-    //     recoverUser()
-    // }
+    //     return () => {
+    //         observer = null;
+    //       };
+    // })
 
     function handleResultField(e){
         setResultInput({...resultInput, [e.target.name]: e.target.value})
@@ -133,7 +126,7 @@ const ViewResult = () => {
     //let userData = JSON.parse(localStorage.getItem("userData"))
 
     return (
-        <div className="profile-main-container">
+        <div className="profile-main-container" >
             <div className="custom-input-container">
                 <img src={schoolLogo} className="result-school-logo" />
                 <p className="result-schoolName">Virtuous Sprouts Academy</p>

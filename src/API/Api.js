@@ -6,21 +6,19 @@ import axios from 'axios'
 //http://localhost:5000
 
 const instance = axios.create({
-    baseURL:  "https://halal-school.herokuapp.com"   
+    baseURL: "https://halal-school.herokuapp.com"   
 })
 
 
 instance.interceptors.request.use(
     async (config) => {
         const token = await localStorage.getItem('token')
-       
         
         if(token) {
             config.headers.Authorization = `Bearer ${token}`
         }
         return config;
     },
-
 
     (err) => {
         return Promise.reject(err)

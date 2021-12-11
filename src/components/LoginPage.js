@@ -37,7 +37,7 @@ const Login = () => {
                     <FaUser  className="user-icon"/>
                     <input type="text" name="username" className="user-input" placeholder="Username" onChange={handleInput}/>
                 </div>
-                <div className="input-container">
+                <div className="input-container remove-overflow">
                     <FaLock  className="user-icon"/>
                     <input type={passwordType} name="password" className="password-input" placeholder="Password" onChange={handleInput}/>
                     {passwordType != "password" ? 

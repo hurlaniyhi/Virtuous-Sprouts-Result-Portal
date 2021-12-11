@@ -505,7 +505,9 @@ p{
     background-color: rgba(#ccc, .1);
     border-radius: 100px;
     align-items: center;
-    //overflow: hidden;  //commented out in trying to fix input field collapsing iussue
+    //padding-top: 0.3rem;
+    //padding-bottom: 0.3rem;
+    overflow: hidden;
 
     &:first-child{
         margin-top: 4rem;
@@ -556,6 +558,7 @@ p{
     color: $color-deep-white;
     font-size: 1.55rem;
     width: 70%;
+
     @media(max-width: 900px){
         font-size: 1.8rem;
     }

@@ -496,6 +496,10 @@ p{
     z-index: 5;
 }
 
+.remove-overflow{
+    overflow: auto  //added to solve login input field collapsing issue on mobile
+}
+
 .input-container{
     display: flex;
     flex-direction: row;
@@ -505,8 +509,6 @@ p{
     background-color: rgba(#ccc, .1);
     border-radius: 100px;
     align-items: center;
-    //padding-top: 0.3rem;
-    //padding-bottom: 0.3rem;
     overflow: hidden;
 
     &:first-child{

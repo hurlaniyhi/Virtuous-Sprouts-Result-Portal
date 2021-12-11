@@ -33,7 +33,7 @@ const Login = () => {
                 <img src={loginLogo} className="login-logo" />
                 <p className="login-greeting">Welcome Back, Kindly Login here</p>
                 
-                <div className="input-container">
+                <div className="input-container remove-overflow">
                     <FaUser  className="user-icon"/>
                     <input type="text" name="username" className="user-input" placeholder="Username" onChange={handleInput}/>
                 </div>

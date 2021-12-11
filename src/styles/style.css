@@ -329,8 +329,7 @@ p {
   margin: 2rem auto 1rem auto;
   background-color: rgba(204, 204, 204, 0.1);
   border-radius: 100px;
-  align-items: center;
-  overflow: hidden; }
+  align-items: center; }
   .input-container:first-child {
     margin-top: 4rem; }
   @media (max-width: 1050px) {

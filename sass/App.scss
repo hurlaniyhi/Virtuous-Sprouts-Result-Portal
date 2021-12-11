@@ -505,7 +505,7 @@ p{
     background-color: rgba(#ccc, .1);
     border-radius: 100px;
     align-items: center;
-    overflow: hidden;
+    //overflow: hidden;  //commented out in trying to fix input field collapsing iussue
 
     &:first-child{
         margin-top: 4rem;

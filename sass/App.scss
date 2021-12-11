@@ -497,7 +497,7 @@ p{
 }
 
 .remove-overflow{
-    overflow: visible !important  //added to solve login input field collapsing issue on mobile
+    overflow: visible;  //added to solve login input field collapsing issue on mobile
 }
 
 .input-container{

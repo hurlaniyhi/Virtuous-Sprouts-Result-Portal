@@ -322,7 +322,7 @@ p {
   z-index: 5; }
 
 .remove-overflow {
-  overflow: visible !important; }
+  overflow: visible; }
 
 .input-container {
   display: flex;

@@ -457,7 +457,7 @@ p{
 */
 
 .login-container{
-    height: 100%;
+    min-height: 100%;
     width: 100%;
     background-image: linear-gradient(
         to right bottom,
@@ -469,7 +469,7 @@ p{
     background-size: cover; 
     background-position: top;
     overflow: hidden;
-    position: relative;
+    position: relative; 
 
     // added on my new system as the login container is not centered
     display: flex;

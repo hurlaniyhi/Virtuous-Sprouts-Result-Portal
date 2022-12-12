@@ -28,7 +28,7 @@ const Login = () => {
     let auth = localStorage.getItem("token")
    
     return(
-        <div style={{height: "100%", width: "100%", overflow: "hidden"}}>
+        <div style={{height: "100%", width: "100%"}}>
             {!auth ? <div className="login-container">
                 <img src={loginLogo} className="login-logo" />
                 <p className="login-greeting">Welcome Back, Kindly Login here</p>

@@ -296,7 +296,7 @@ p {
 ################################################
 */
 .login-container {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
   background-image: linear-gradient(to right bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url("../assets/nat-7.jpg");
   position: relative;

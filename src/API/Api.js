@@ -6,7 +6,7 @@ import axios from 'axios'
 //http://localhost:5000
 
 const instance = axios.create({
-    baseURL: "https://halal-school.herokuapp.com"   
+    baseURL: "https://virtuous-sprouts-server.vercel.app"   
 })
 
 

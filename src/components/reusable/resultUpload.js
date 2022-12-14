@@ -191,6 +191,7 @@ const ResultUpload = () => {
                         <option value="Tahfeedhul Qur'an">Tahfeedhul Qur'an</option>
                         <option value="Pre-vocational Studies">Pre-vocational Studies</option>
                         <option value="Basic Science and Technology">Basic Science and Technology</option>
+                        <option value="Basic Technology">Basic Technology</option>
                         <option value="Islamic Studies">Islamic Studies</option>
                         <option value="National Value">National Value</option>
                         <option value="Quantitative Reasoning">Quantitative Reasoning</option>
@@ -227,7 +228,7 @@ const ResultUpload = () => {
                         <option value="Fishery">Fishery</option>
                         <option value="Animal Husbandry">Animal Husbandry</option>
                         <option value="Government">Government</option>
-                        <option value="Government">General studies</option>
+                        <option value="General Knowledge">General Knowledge</option>
                     </select>
                     <FaChevronDown  className="each-upload-select-field-icon"/>
                 </div>
